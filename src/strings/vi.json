@@ -195,7 +195,7 @@
     "AlwaysPlaySubtitles": "Luôn hiển thị phụ đề",
     "AllowedRemoteAddressesHelp": "Danh sách địa chỉ IP được phân tách bằng dấu phẩy hoặc các mục IP/netmask cho các mạng sẽ được phép kết nối từ xa. Nếu để trống, tất cả các địa chỉ sẽ được cho phép.",
     "AllowRemoteAccessHelp": "Nếu không được chọn, tất cả các kết nối từ xa sẽ bị chặn.",
-    "AllowRemoteAccess": "Cho phép kết nối từ xa đến Máy chủ Jellyfin.",
+    "AllowRemoteAccess": "Cho phép kết nối từ xa đến Máy chủ Veso.",
     "AllowOnTheFlySubtitleExtractionHelp": "Phụ đề nhúng có thể được trích xuất từ video và dùng như văn bản thuần túy để giúp ngăn chặn chuyển mã video. Trên một số hệ thống, việc này có thể mất nhiều thời gian và khiến quá trình phát video bị đình trệ trong quá trình trích xuất. Vô hiệu hóa điều này để có phụ đề nhúng được ghi trong chuyển mã video khi chúng không được thiết bị khách hỗ trợ.",
     "AllowOnTheFlySubtitleExtraction": "Cho phép trích xuất phụ đề trực tiếp",
     "AllowMediaConversionHelp": "Cấp hoặc từ chối truy cập vào tính năng chuyển đổi media.",

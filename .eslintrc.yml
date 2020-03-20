@@ -20,7 +20,7 @@ globals:
   jQuery: readonly
   queryString: readonly
   requirejs: readonly
-  # Jellyfin globals
+  # Veso globals
   ApiClient: writable
   AppInfo: writable
   chrome: writable
