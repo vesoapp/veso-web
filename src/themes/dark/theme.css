@@ -1,6 +1,6 @@
 * {
     scrollbar-width: thin;
-    scrollbar-color: #3b3b3b #202020;
+    scrollbar-color: #3b3b3b #101010;
 }
 
 .skinHeader,
@@ -21,7 +21,7 @@ html {
 }
 
 .skinHeader-withBackground {
-    background-color: #202020;
+    background-color: #101010;
 }
 
 .skinHeader.semiTransparent {
@@ -162,7 +162,7 @@ html {
 }
 
 .appfooter {
-    background: #202020;
+    background: #101010;
     color: #ccc;
     color: rgba(255, 255, 255, 0.78);
 }
@@ -205,7 +205,7 @@ html {
 }
 
 .noBackdrop .detailSticky {
-    background: #202020;
+    background: #101010;
 }
 
 .listItem-border {
