@@ -13,7 +13,7 @@ define(["events", "appStorage"], function(events, appStorage) {
     }
 
     function Credentials(key) {
-        this.key = key || "jellyfin_credentials"
+        this.key = key || "veso_credentials"
     }
     return Credentials.prototype.clear = function() {
         this._credentials = null, appStorage.removeItem(this.key)
