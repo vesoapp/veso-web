@@ -33,15 +33,15 @@ jobs:
       displayName: 'Check dist directory'
 
     - script: |
-        yarn pack --filename jellyfin-web.tgz
+        yarn pack --filename veso-web.tgz
       displayName: 'Build package'
 
     - task: PublishPipelineArtifact@1
       displayName: 'Publish package'
       condition: succeeded()
       inputs:
-        targetPath: '$(Build.SourcesDirectory)/jellyfin-web.tgz'
-        artifactName: 'jellyfin-web'
+        targetPath: '$(Build.SourcesDirectory)/veso-web.tgz'
+        artifactName: 'veso-web'
 
   - job: lint
     displayName: 'Lint'

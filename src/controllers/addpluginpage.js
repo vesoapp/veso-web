@@ -96,7 +96,7 @@ define(["jQuery", "loading", "libraryMenu", "globalize", "connectionManager", "e
                 alertText(globalize.translate("PluginInstalledMessage"));
             });
         };
-        if (developer !== 'jellyfin') {
+        if (developer !== 'veso') {
             loading.hide();
             var msg = globalize.translate("MessagePluginInstallDisclaimer");
             msg += "<br/>";

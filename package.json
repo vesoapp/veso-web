@@ -1,8 +1,8 @@
 {
-  "name": "jellyfin-web",
+  "name": "veso-web",
   "version": "0.0.0",
-  "description": "Web interface for Jellyfin",
-  "repository": "https://github.com/jellyfin/jellyfin-web",
+  "description": "Web interface for Veso",
+  "repository": "https://github.com/vesotv/veso-web",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.3",

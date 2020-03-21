@@ -312,7 +312,7 @@ define(["appSettings", "browser", "events", "htmlMediaHelper"], function (appSet
 
     var deviceId;
     var deviceName;
-    var appName = "Jellyfin Web";
+    var appName = "Veso Web";
     var appVersion = "10.4.0";
     var visibilityChange;
     var visibilityState;
