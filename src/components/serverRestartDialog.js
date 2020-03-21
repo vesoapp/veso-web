@@ -6,7 +6,9 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     var currentInstance;
 
     function reloadPageWhenServerAvailable(retryCount) {
+
         var apiClient = currentApiClient;
+
         if (!apiClient) {
             return;
         }
@@ -29,6 +31,7 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
 
     function retryReload(retryCount) {
         setTimeout(function () {
+
             retryCount = retryCount || 0;
             retryCount++;
 
@@ -39,12 +42,15 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     }
 
     function startRestart(instance, apiClient, dlg) {
+
         currentApiClient = apiClient;
         currentDlg = dlg;
         currentInstance = instance;
 
         apiClient.restartServer().then(function () {
+
             setTimeout(reloadPageWhenServerAvailable, 250);
+
         });
     }
 
@@ -88,8 +94,7 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
 
         dlg.querySelector('.text').innerHTML = globalize.translate('RestartPleaseWaitMessage');
 
-        var i;
-        var length;
+        var i, length;
         var html = '';
         for (i = 0, length = configuredButtons.length; i < length; i++) {
             var item = configuredButtons[i];
@@ -133,10 +138,12 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     }
 
     function ServerRestartDialog(options) {
+
         this.options = options;
     }
 
     ServerRestartDialog.prototype.show = function () {
+
         var instance = this;
         loading.show();
 
@@ -148,6 +155,7 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     };
 
     ServerRestartDialog.prototype.destroy = function () {
+
         currentApiClient = null;
         currentDlg = null;
         currentInstance = null;

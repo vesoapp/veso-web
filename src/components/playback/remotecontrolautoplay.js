@@ -32,12 +32,12 @@ define(['events', 'playbackManager'], function (events, playbackManager) {
         }
 
         if (!oldPlayer.isLocalPlayer) {
-            console.debug('Skipping remote control autoplay because oldPlayer is not a local player');
+            console.log('Skipping remote control autoplay because oldPlayer is not a local player');
             return;
         }
 
         if (newPlayer.isLocalPlayer) {
-            console.debug('Skipping remote control autoplay because newPlayer is a local player');
+            console.log('Skipping remote control autoplay because newPlayer is a local player');
             return;
         }
 

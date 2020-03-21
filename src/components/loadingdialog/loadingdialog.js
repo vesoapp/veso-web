@@ -2,12 +2,14 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     'use strict';
 
     function showDialog(instance, options, template) {
+
         var dialogOptions = {
             removeOnClose: true,
             scrollY: false
         };
 
         var enableTvLayout = layoutManager.tv;
+
         if (enableTvLayout) {
             dialogOptions.size = 'fullscreen';
         }
@@ -46,6 +48,7 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
         instance.dlg = dlg;
 
         return dialogHelper.open(dlg).then(function () {
+
             if (enableTvLayout) {
                 scrollHelper.centerFocus.off(dlg.querySelector('.formDialogContent'), false);
             }
@@ -55,10 +58,12 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     }
 
     function LoadingDialog(options) {
+
         this.options = options;
     }
 
     LoadingDialog.prototype.show = function () {
+
         var instance = this;
         loading.show();
 
@@ -71,12 +76,15 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     };
 
     LoadingDialog.prototype.setTitle = function (title) {
+
     };
 
     LoadingDialog.prototype.setText = function (text) {
+
     };
 
     LoadingDialog.prototype.hide = function () {
+
         if (this.dlg) {
             dialogHelper.close(this.dlg);
             this.dlg = null;
@@ -84,6 +92,7 @@ define(['loading', 'events', 'dialogHelper', 'dom', 'layoutManager', 'scrollHelp
     };
 
     LoadingDialog.prototype.destroy = function () {
+
         this.dlg = null;
         this.options = null;
     };

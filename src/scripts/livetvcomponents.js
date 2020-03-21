@@ -1,95 +1,57 @@
-define(["layoutManager", "datetime", "cardBuilder", "apphost"], function (layoutManager, datetime, cardBuilder, appHost) {
+define(["layoutManager", "datetime", "cardBuilder", "apphost"], function(layoutManager, datetime, cardBuilder, appHost) {
     "use strict";
 
     function enableScrollX() {
-        return !layoutManager.desktop;
+        return !layoutManager.desktop
     }
 
     function getBackdropShape() {
-        return enableScrollX() ? "overflowBackdrop" : "backdrop";
+        return enableScrollX() ? "overflowBackdrop" : "backdrop"
     }
 
     function getTimersHtml(timers, options) {
         options = options || {};
-        var i;
-        var length;
-        var items = timers.map(function (t) {
-            t.Type = "Timer";
-            return t;
-        });
-        var groups = [];
-        var currentGroupName = "";
-        var currentGroup = [];
-
+        var i, length, items = timers.map(function(t) {
+                return t.Type = "Timer", t
+            }),
+            groups = [],
+            currentGroupName = "",
+            currentGroup = [];
         for (i = 0, length = items.length; i < length; i++) {
-            var item = items[i];
-            var dateText = "";
-
-            if (options.indexByDate !== false && item.StartDate) {
-                try {
-                    var premiereDate = datetime.parseISO8601Date(item.StartDate, true);
-                    dateText = datetime.toLocaleDateString(premiereDate, {
-                        weekday: "long",
-                        month: "short",
-                        day: "numeric"
-                    });
-                } catch (err) {
-                    console.error("error parsing premiereDate:" + item.StartDate + "; error: " + err);
-                }
-            }
-
-            if (dateText != currentGroupName) {
-                if (currentGroup.length) {
-                    groups.push({
-                        name: currentGroupName,
-                        items: currentGroup
-                    });
-                }
-
-                currentGroupName = dateText;
-                currentGroup = [item];
-            } else {
-                currentGroup.push(item);
-            }
-        }
-
-        if (currentGroup.length) {
-            groups.push({
+            var item = items[i],
+                dateText = "";
+            if (!1 !== options.indexByDate && item.StartDate) try {
+                var premiereDate = datetime.parseISO8601Date(item.StartDate, !0);
+                dateText = datetime.toLocaleDateString(premiereDate, {
+                    weekday: "long",
+                    month: "short",
+                    day: "numeric"
+                })
+            } catch (err) {}
+            dateText != currentGroupName ? (currentGroup.length && groups.push({
                 name: currentGroupName,
                 items: currentGroup
-            });
+            }), currentGroupName = dateText, currentGroup = [item]) : currentGroup.push(item)
         }
-
+        currentGroup.length && groups.push({
+            name: currentGroupName,
+            items: currentGroup
+        });
         var html = "";
-
         for (i = 0, length = groups.length; i < length; i++) {
-            var group = groups[i];
-            var supportsImageAnalysis = appHost.supports("imageanalysis");
-            var cardLayout = appHost.preferVisualCards || supportsImageAnalysis;
-
-            cardLayout = true;
-            if (group.name) {
-                html += '<div class="verticalSection">';
-                html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + group.name + "</h2>";
-            }
-            if (enableScrollX()) {
+            var group = groups[i],
+                supportsImageAnalysis = appHost.supports("imageanalysis"),
+                cardLayout = appHost.preferVisualCards || supportsImageAnalysis;
+            if (cardLayout = !0, group.name && (html += '<div class="verticalSection">', html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + group.name + "</h2>"), enableScrollX()) {
                 var scrollXClass = "scrollX hiddenScrollX";
-
-                if (layoutManager.tv) {
-                    scrollXClass += " smoothScrollX";
-                }
-
-                html += '<div is="emby-itemscontainer" class="itemsContainer ' + scrollXClass + ' padded-left padded-right">';
-            } else {
-                html += '<div is="emby-itemscontainer" class="itemsContainer vertical-wrap padded-left padded-right">';
-            }
-
+                layoutManager.tv && (scrollXClass += " smoothScrollX"), html += '<div is="emby-itemscontainer" class="itemsContainer ' + scrollXClass + ' padded-left padded-right">'
+            } else html += '<div is="emby-itemscontainer" class="itemsContainer vertical-wrap padded-left padded-right">';
             html += cardBuilder.getCardsHtml({
                 items: group.items,
                 shape: cardLayout ? getBackdropShape() : enableScrollX() ? "autoOverflow" : "autoVertical",
-                showParentTitleOrTitle: true,
-                showAirTime: true,
-                showAirEndTime: true,
+                showParentTitleOrTitle: !0,
+                showAirTime: !0,
+                showAirEndTime: !0,
                 showChannelName: !cardLayout,
                 cardLayout: cardLayout,
                 centerText: !cardLayout,
@@ -97,22 +59,15 @@ define(["layoutManager", "datetime", "cardBuilder", "apphost"], function (layout
                 cardFooterAside: "none",
                 preferThumb: !!cardLayout || "auto",
                 defaultShape: cardLayout ? null : "portrait",
-                coverImage: true,
-                allowBottomPadding: false,
-                overlayText: false,
+                coverImage: !0,
+                allowBottomPadding: !1,
+                overlayText: !1,
                 showChannelLogo: cardLayout
-            });
-            html += "</div>";
-
-            if (group.name) {
-                html += "</div>";
-            }
+            }), html += "</div>", group.name && (html += "</div>")
         }
-
-        return Promise.resolve(html);
+        return Promise.resolve(html)
     }
-
     window.LiveTvHelpers = {
         getTimersHtml: getTimersHtml
-    };
+    }
 });

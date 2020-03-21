@@ -1,4 +1,3 @@
-/* eslint-env serviceworker */
 (function () {
     'use strict';
 

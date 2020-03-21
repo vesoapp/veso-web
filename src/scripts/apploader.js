@@ -19,23 +19,11 @@
         document.head.appendChild(script);
     }
 
-    function loadSite() {
-        injectScriptElement(
-            "./libraries/alameda.js",
-            function() {
-                // onload of require library
-                injectScriptElement("./scripts/site.js");
-            }
-        );
-    }
-
-    if (!self.Promise) {
-        // Load Promise polyfill if they are not natively supported
-        injectScriptElement(
-            "./libraries/npo.js",
-            loadSite
-        );
-    } else {
-        loadSite();
-    }
+    injectScriptElement(
+        self.Promise ? "./bower_components/alameda/alameda.js" : "./bower_components/requirejs/require.js",
+        function() {
+            // onload of require library
+            injectScriptElement("./scripts/site.js");
+        }
+    );
 })();

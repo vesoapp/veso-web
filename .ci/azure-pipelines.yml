@@ -20,25 +20,28 @@ jobs:
 
     steps:
     - task: NodeTool@0
-      displayName: 'Install Node'
+      displayName: 'Install Node.js'
       inputs:
         versionSpec: '10.x'
 
-    - script: 'yarn install'
-      displayName: 'Install Dependencies'
+    - script: |
+        yarn install
+      displayName: 'Install dependencies'
 
-    - script: 'test -d dist'
-      displayName: 'Check Build'
+    - script: |
+        test -d dist
+      displayName: 'Check dist directory'
 
-    - script: 'yarn pack --filename veso-web.tgz'
-      displayName: 'Bundle Release'
+    - script: |
+        yarn pack --filename jellyfin-web.tgz
+      displayName: 'Build package'
 
     - task: PublishPipelineArtifact@1
-      displayName: 'Publish Release'
+      displayName: 'Publish package'
       condition: succeeded()
       inputs:
-        targetPath: '$(Build.SourcesDirectory)/veso-web.tgz'
-        artifactName: 'veso-web'
+        targetPath: '$(Build.SourcesDirectory)/jellyfin-web.tgz'
+        artifactName: 'jellyfin-web'
 
   - job: lint
     displayName: 'Lint'
@@ -48,16 +51,14 @@ jobs:
 
     steps:
     - task: NodeTool@0
-      displayName: 'Install Node'
+      displayName: 'Install Node.js'
       inputs:
         versionSpec: '10.x'
 
-    - script: 'yarn install'
-      displayName: 'Install Dependencies'
-
-    - script: 'yarn run lint'
-      displayName: 'Run ESLint'
+    - script: |
+        yarn install
+      displayName: 'Install dependencies'
 
     - script: |
-        yarn run stylelint
-      displayName: 'Run stylelint'
+        yarn run lint
+      displayName: 'Run ESLint'

@@ -2,8 +2,11 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
     "use strict";
 
     function getDefaultProfile() {
+
         return new Promise(function (resolve, reject) {
+
             require(['browserdeviceprofile'], function (profileBuilder) {
+
                 resolve(profileBuilder({}));
             });
         });
@@ -11,22 +14,28 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
 
     var fadeTimeout;
     function fade(instance, elem, startingVolume) {
+
         instance._isFadingOut = true;
 
         // Need to record the starting volume on each pass rather than querying elem.volume
         // This is due to iOS safari not allowing volume changes and always returning the system volume value
+
         var newVolume = Math.max(0, startingVolume - 0.15);
-        console.debug('fading volume to ' + newVolume);
+        console.log('fading volume to ' + newVolume);
         elem.volume = newVolume;
 
         if (newVolume <= 0) {
+
             instance._isFadingOut = false;
             return Promise.resolve();
         }
 
         return new Promise(function (resolve, reject) {
+
             cancelFadeTimeout();
+
             fadeTimeout = setTimeout(function () {
+
                 fade(instance, elem, newVolume).then(resolve, reject);
             }, 100);
         });
@@ -41,8 +50,9 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
     }
 
     function supportsFade() {
+
         if (browser.tv) {
-            // Not working on tizen.
+            // Not working on tizen. 
             // We could possibly enable on other tv's, but all smart tv browsers tend to be pretty primitive
             return false;
         }
@@ -58,7 +68,9 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
     }
 
     function enableHlsPlayer(url, item, mediaSource, mediaType) {
+
         if (!htmlMediaHelper.enableHlsJsPlayer(mediaSource.RunTimeTicks, mediaType)) {
+
             return Promise.reject();
         }
 
@@ -74,18 +86,21 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
                     url: url,
                     type: 'HEAD'
                 }).then(function (response) {
+
                     var contentType = (response.headers.get('Content-Type') || '').toLowerCase();
                     if (contentType === 'application/x-mpegurl') {
                         resolve();
                     } else {
                         reject();
                     }
+
                 }, reject);
             });
         });
     }
 
     function HtmlAudioPlayer() {
+
         var self = this;
 
         self.name = 'Html Audio Player';
@@ -99,9 +114,11 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
 
             self._started = false;
             self._timeUpdated = false;
+
             self._currentTime = null;
 
             var elem = createMediaElement(options);
+
             return setCurrentSrc(elem, options);
         };
 
@@ -113,7 +130,7 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
             bindEvents(elem);
 
             var val = options.url;
-            console.debug('playing url: ' + val);
+            console.log('playing url: ' + val);
 
             // Convert to seconds
             var seconds = (options.playerStartPositionTicks || 0) / 10000000;
@@ -150,6 +167,7 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
                         self._currentSrc = val;
                     });
                 });
+
 
             }, function () {
 
@@ -298,7 +316,7 @@ define(['events', 'browser', 'require', 'apphost', 'appSettings', 'htmlMediaHelp
 
             var errorCode = this.error ? (this.error.code || 0) : 0;
             var errorMessage = this.error ? (this.error.message || '') : '';
-            console.error('media element error: ' + errorCode.toString() + ' ' + errorMessage);
+            console.log('Media element error: ' + errorCode.toString() + ' ' + errorMessage);
 
             var type;
 

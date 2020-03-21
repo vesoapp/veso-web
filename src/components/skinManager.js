@@ -20,7 +20,7 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
         } else {
             Emby.Page.goHome();
         }
-    }
+    };
 
     function getThemes() {
         return [{
@@ -35,16 +35,19 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
             isDefault: true,
             isDefaultServerDashboard: true
         }, {
+            name: "Emby",
+            id: "emby",
+        }, {
             name: "Light",
             id: "light"
         }, {
             name: "Purple Haze",
-            id: "purplehaze"
+            id: "purple-haze"
         }, {
             name: "Windows Media Center",
             id: "wmc"
         }];
-    }
+    };
 
     var skinManager = {
         getThemes: getThemes,
@@ -69,7 +72,7 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
 
         selectedTheme = selectedTheme || defaultTheme;
         return {
-            stylesheetPath: require.toUrl('themes/' + selectedTheme.id + '/theme.css'),
+            stylesheetPath: require.toUrl('components/themes/' + selectedTheme.id + '/theme.css'),
             themeId: selectedTheme.id
         };
     }
@@ -96,7 +99,7 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
                 appHost.setThemeColor(color);
             }
         } catch (err) {
-            console.error('error setting theme color: ' + err);
+            console.log('Error setting theme color: ' + err);
         }
     }
 
@@ -162,7 +165,6 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
     function playSound(path, volume) {
         lastSound = new Date().getTime();
         require(['howler'], function (howler) {
-            /* globals Howl */
             try {
                 var sound = new Howl({
                     src: [path],
@@ -171,7 +173,7 @@ define(['apphost', 'userSettings', 'browser', 'events', 'pluginManager', 'backdr
                 sound.play();
                 currentSound = sound;
             } catch (err) {
-                console.error('error playing sound: ' + err);
+                console.log('Error playing sound: ' + err);
             }
         });
     }

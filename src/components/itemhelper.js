@@ -250,7 +250,9 @@ define(['apphost', 'globalize'], function (appHost, globalize) {
                 if (item.Type !== 'TvChannel') {
                     return true;
                 }
-            } else if (item.MediaType === 'Audio') {
+            }
+
+            else if (item.MediaType === 'Audio') {
                 if (item.Type === 'AudioPodcast') {
                     return true;
                 }
@@ -272,13 +274,7 @@ define(['apphost', 'globalize'], function (appHost, globalize) {
 
         canRate: function (item) {
 
-            if (item.Type === 'Program'
-                || item.Type === 'Timer'
-                || item.Type === 'SeriesTimer'
-                || item.Type === 'CollectionFolder'
-                || item.Type === 'UserView'
-                || item.Type === 'Channel'
-                || !item.UserData) {
+            if (item.Type === 'Program' || item.Type === 'Timer' || item.Type === 'SeriesTimer' || item.Type === 'CollectionFolder' || item.Type === 'UserView' || item.Type === 'Channel') {
                 return false;
             }
 

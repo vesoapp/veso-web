@@ -6,11 +6,14 @@ define(['require', 'css!./loadingLegacy'], function (require) {
     return {
         show: function () {
             var elem = loadingElem;
+
             if (!elem) {
+
                 elem = document.createElement("img");
-                elem.src = require.toUrl('.').split('?')[0] + '/loader.gif';
+                elem.src = require.toUrl('.').split('?')[0] + '/loader2.gif';
 
                 loadingElem = elem;
+
                 elem.classList.add('loading-spinner');
 
                 document.body.appendChild(elem);
@@ -20,7 +23,9 @@ define(['require', 'css!./loadingLegacy'], function (require) {
         },
         hide: function () {
             var elem = loadingElem;
+
             if (elem) {
+
                 elem.classList.add('hide');
             }
         }
