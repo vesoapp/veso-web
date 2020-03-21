@@ -39,8 +39,7 @@ define(['dialogHelper', 'globalize', 'userSettings', 'layoutManager', 'connectio
 
     function save(context) {
 
-        var i;
-        var length;
+        var i, length;
 
         var chkIndicators = context.querySelectorAll('.chkIndicator');
         for (i = 0, length = chkIndicators.length; i < length; i++) {
@@ -63,8 +62,7 @@ define(['dialogHelper', 'globalize', 'userSettings', 'layoutManager', 'connectio
 
     function load(context) {
 
-        var i;
-        var length;
+        var i, length;
 
         var chkIndicators = context.querySelectorAll('.chkIndicator');
         for (i = 0, length = chkIndicators.length; i < length; i++) {
@@ -86,6 +84,20 @@ define(['dialogHelper', 'globalize', 'userSettings', 'layoutManager', 'connectio
         var sortBys = context.querySelectorAll('.chkSortOrder');
         for (i = 0, length = sortBys.length; i < length; i++) {
             sortBys[i].checked = sortBys[i].value === sortByValue;
+        }
+    }
+
+    function onSortByChange() {
+        var newValue = this.value;
+        if (this.checked) {
+            var changed = options.query.SortBy !== newValue;
+
+            options.query.SortBy = newValue.replace('_', ',');
+            options.query.StartIndex = 0;
+
+            if (options.callback && changed) {
+                options.callback();
+            }
         }
     }
 

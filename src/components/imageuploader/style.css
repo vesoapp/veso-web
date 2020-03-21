@@ -1,7 +1,6 @@
 .imageEditor-dropZone {
-    border: 0.2em dashed currentcolor;
-    border-radius: 0.25em;
-
+    border: .2em dashed currentcolor;
+    border-radius: .25em;
     /* padding: 1.6em; */
     text-align: center;
     position: relative;

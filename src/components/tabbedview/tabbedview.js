@@ -101,7 +101,8 @@ define(['backdrop', 'mainTabsManager', 'layoutManager', 'emby-tabs'], function (
 
         if (!currentTabController) {
             mainTabsManager.selectedTabIndex(this.initialTabIndex);
-        } else if (currentTabController && currentTabController.onResume) {
+        }
+        else if (currentTabController && currentTabController.onResume) {
             currentTabController.onResume({});
         }
     };

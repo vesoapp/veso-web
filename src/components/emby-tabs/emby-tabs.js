@@ -10,6 +10,23 @@ define(['dom', 'scroller', 'browser', 'layoutManager', 'focusManager', 'register
         newButton.classList.add(activeButtonClass);
     }
 
+    function getFocusCallback(tabs, e) {
+        return function () {
+            onClick.call(tabs, e);
+        };
+    }
+
+    function onFocus(e) {
+
+        if (layoutManager.tv) {
+
+            if (this.focusTimeout) {
+                clearTimeout(this.focusTimeout);
+            }
+            this.focusTimeout = setTimeout(getFocusCallback(this, e), 700);
+        }
+    }
+
     function getTabPanel(tabs, index) {
 
         return null;
@@ -69,6 +86,10 @@ define(['dom', 'scroller', 'browser', 'layoutManager', 'focusManager', 'register
     }
 
     function onClick(e) {
+
+        if (this.focusTimeout) {
+            clearTimeout(this.focusTimeout);
+        }
 
         var tabs = this;
 
@@ -142,7 +163,7 @@ define(['dom', 'scroller', 'browser', 'layoutManager', 'focusManager', 'register
             tabs.classList.add('scrollX');
             tabs.classList.add('hiddenScrollX');
             tabs.classList.add('smoothScrollX');
-        }
+       }
     }
 
     EmbyTabs.createdCallback = function () {
@@ -155,6 +176,10 @@ define(['dom', 'scroller', 'browser', 'layoutManager', 'focusManager', 'register
 
         dom.addEventListener(this, 'click', onClick, {
             passive: true
+        });
+        dom.addEventListener(this, 'focus', onFocus, {
+            passive: true,
+            capture: true
         });
     };
 
@@ -211,6 +236,10 @@ define(['dom', 'scroller', 'browser', 'layoutManager', 'focusManager', 'register
 
         dom.removeEventListener(this, 'click', onClick, {
             passive: true
+        });
+        dom.removeEventListener(this, 'focus', onFocus, {
+            passive: true,
+            capture: true
         });
     };
 

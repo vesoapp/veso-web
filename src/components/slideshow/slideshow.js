@@ -1,4 +1,4 @@
-define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'focusManager', 'browser', 'apphost', 'loading', 'css!./style', 'material-icons', 'paper-icon-button-light'], function (dialogHelper, inputManager, connectionManager, layoutManager, focusManager, browser, appHost, loading) {
+define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'focusManager', 'browser', 'apphost', 'loading', 'css!./style', 'material-icons', 'paper-icon-button-light'], function (dialogHelper, inputmanager, connectionManager, layoutManager, focusManager, browser, appHost, loading) {
     'use strict';
 
     function getImageUrl(item, options, apiClient) {
@@ -70,15 +70,16 @@ define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'f
 
         var tabIndex = canFocus ? '' : ' tabindex="-1"';
         autoFocus = autoFocus ? ' autofocus' : '';
-        return '<button is="paper-icon-button-light" class="autoSize ' + cssClass + '"' + tabIndex + autoFocus + '><i class="material-icons slideshowButtonIcon">' + icon + '</i></button>';
+        return '<button is="paper-icon-button-light" class="autoSize ' + cssClass + '"' + tabIndex + autoFocus + '><i class="md-icon slideshowButtonIcon">' + icon + '</i></button>';
     }
 
     function setUserScalable(scalable) {
 
         try {
             appHost.setUserScalable(scalable);
-        } catch (err) {
-            console.error('error in appHost.setUserScalable: ' + err);
+        }
+        catch (err) {
+            console.log('error in appHost.setUserScalable: ' + err);
         }
     }
 
@@ -188,27 +189,13 @@ define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'f
                 stopInterval();
             });
 
-            inputManager.on(window, onInputCommand);
+            inputmanager.on(window, onInputCommand);
             document.addEventListener((window.PointerEvent ? 'pointermove' : 'mousemove'), onPointerMove);
 
             dlg.addEventListener('close', onDialogClosed);
 
             if (options.interactive) {
                 loadSwiper(dlg);
-            }
-        }
-
-        function onAutoplayStart() {
-            var btnSlideshowPause = dlg.querySelector('.btnSlideshowPause i');
-            if (btnSlideshowPause) {
-                btnSlideshowPause.innerHTML = "pause";
-            }
-        }
-
-        function onAutoplayStop() {
-            var btnSlideshowPause = dlg.querySelector('.btnSlideshowPause i');
-            if (btnSlideshowPause) {
-                btnSlideshowPause.innerHTML = "&#xE037;";
             }
         }
 
@@ -226,21 +213,16 @@ define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'f
                     // Optional parameters
                     direction: 'horizontal',
                     loop: options.loop !== false,
-                    autoplay: {
-                        delay: options.interval || 8000
-                    },
+                    autoplay: options.interval || 8000,
                     // Disable preloading of all images
                     preloadImages: false,
                     // Enable lazy loading
-                    lazy: true,
-                    loadPrevNext: true,
-                    disableOnInteraction: false,
+                    lazyLoading: true,
+                    lazyLoadingInPrevNext: true,
+                    autoplayDisableOnInteraction: false,
                     initialSlide: options.startIndex || 0,
                     speed: 240
                 });
-
-                swiperInstance.on('autoplayStart', onAutoplayStart);
-                swiperInstance.on('autoplayStop', onAutoplayStop);
 
                 if (layoutManager.mobile) {
                     pause();
@@ -353,15 +335,23 @@ define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'f
         }
 
         function play() {
-            if (swiperInstance.autoplay) {
-                swiperInstance.autoplay.start();
+
+            var btnSlideshowPause = dlg.querySelector('.btnSlideshowPause i');
+            if (btnSlideshowPause) {
+                btnSlideshowPause.innerHTML = "pause";
             }
+
+            swiperInstance.startAutoplay();
         }
 
         function pause() {
-            if (swiperInstance.autoplay) {
-                swiperInstance.autoplay.stop();
+
+            var btnSlideshowPause = dlg.querySelector('.btnSlideshowPause i');
+            if (btnSlideshowPause) {
+                btnSlideshowPause.innerHTML = "play_arrow";
             }
+
+            swiperInstance.stopAutoplay();
         }
 
         function playPause() {
@@ -382,7 +372,7 @@ define(['dialogHelper', 'inputManager', 'connectionManager', 'layoutManager', 'f
                 swiperInstance = null;
             }
 
-            inputManager.off(window, onInputCommand);
+            inputmanager.off(window, onInputCommand);
             document.removeEventListener((window.PointerEvent ? 'pointermove' : 'mousemove'), onPointerMove);
         }
 

@@ -56,7 +56,8 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
         if (instance.options.collectionType === 'tvshows') {
             if (query.IncludeArtists) {
                 allowSearch = false;
-            } else if (queryIncludeItemTypes === 'Movie' ||
+            }
+            else if (queryIncludeItemTypes === 'Movie' ||
                 queryIncludeItemTypes === 'LiveTvProgram' ||
                 queryIncludeItemTypes === 'MusicAlbum' ||
                 queryIncludeItemTypes === 'Audio' ||
@@ -68,10 +69,12 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
                 query.MediaTypes === 'Photo') {
                 allowSearch = false;
             }
-        } else if (instance.options.collectionType === 'movies') {
+        }
+        else if (instance.options.collectionType === 'movies') {
             if (query.IncludeArtists) {
                 allowSearch = false;
-            } else if (queryIncludeItemTypes === 'Series' ||
+            }
+            else if (queryIncludeItemTypes === 'Series' ||
                 queryIncludeItemTypes === 'Episode' ||
                 queryIncludeItemTypes === 'LiveTvProgram' ||
                 queryIncludeItemTypes === 'MusicAlbum' ||
@@ -84,19 +87,23 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
                 query.MediaTypes === 'Photo') {
                 allowSearch = false;
             }
-        } else if (instance.options.collectionType === 'music') {
+        }
+        else if (instance.options.collectionType === 'music') {
             if (query.People) {
                 allowSearch = false;
-            } else if (queryIncludeItemTypes === 'Series' ||
+            }
+            else if (queryIncludeItemTypes === 'Series' ||
                 queryIncludeItemTypes === 'Episode' ||
                 queryIncludeItemTypes === 'LiveTvProgram' ||
                 queryIncludeItemTypes === 'Movie') {
                 allowSearch = false;
             }
-        } else if (instance.options.collectionType === 'livetv') {
+        }
+        else if (instance.options.collectionType === 'livetv') {
             if (query.IncludeArtists || query.IncludePeople) {
                 allowSearch = false;
-            } else if (queryIncludeItemTypes === 'Series' ||
+            }
+            else if (queryIncludeItemTypes === 'Series' ||
                 queryIncludeItemTypes === 'Episode' ||
                 queryIncludeItemTypes === 'MusicAlbum' ||
                 queryIncludeItemTypes === 'Audio' ||
@@ -135,7 +142,7 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
                 } else if (query.IncludeArtists) {
                     methodName = 'getArtists';
-                }
+                } 
             }
 
             return apiClient[methodName](apiClient.getCurrentUserId(), query);
@@ -172,19 +179,19 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
             }, context, '.movieResults', {
 
-                preferThumb: true,
-                inheritThumb: false,
-                shape: (enableScrollX() ? 'overflowPortrait' : 'portrait'),
-                showParentTitleOrTitle: true,
-                showTitle: false,
-                centerText: true,
-                coverImage: true,
-                overlayText: false,
-                overlayMoreButton: true,
-                showAirTime: true,
-                showAirDateTime: true,
-                showChannelName: true
-            });
+                    preferThumb: true,
+                    inheritThumb: false,
+                    shape: (enableScrollX() ? 'overflowPortrait' : 'portrait'),
+                    showParentTitleOrTitle: true,
+                    showTitle: false,
+                    centerText: true,
+                    coverImage: true,
+                    overlayText: false,
+                    overlayMoreButton: true,
+                    showAirTime: true,
+                    showAirDateTime: true,
+                    showChannelName: true
+                });
         } else {
 
             searchType(instance, apiClient, {
@@ -198,11 +205,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
             }, context, '.movieResults', {
 
-                showTitle: true,
-                overlayText: false,
-                centerText: true,
-                showYear: true
-            });
+                    showTitle: true,
+                    overlayText: false,
+                    centerText: true,
+                    showYear: true
+                });
         }
 
         searchType(instance, apiClient, {
@@ -216,11 +223,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.seriesResults', {
 
-            showTitle: true,
-            overlayText: false,
-            centerText: true,
-            showYear: true
-        });
+                showTitle: true,
+                overlayText: false,
+                centerText: true,
+                showYear: true
+            });
 
         if (instance.options.collectionType === 'livetv') {
 
@@ -239,19 +246,19 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
             }, context, '.episodeResults', {
 
-                preferThumb: true,
-                inheritThumb: false,
-                shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
-                showParentTitleOrTitle: true,
-                showTitle: false,
-                centerText: true,
-                coverImage: true,
-                overlayText: false,
-                overlayMoreButton: true,
-                showAirTime: true,
-                showAirDateTime: true,
-                showChannelName: true
-            });
+                    preferThumb: true,
+                    inheritThumb: false,
+                    shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
+                    showParentTitleOrTitle: true,
+                    showTitle: false,
+                    centerText: true,
+                    coverImage: true,
+                    overlayText: false,
+                    overlayMoreButton: true,
+                    showAirTime: true,
+                    showAirDateTime: true,
+                    showChannelName: true
+                });
 
         } else {
 
@@ -266,10 +273,10 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
             }, context, '.episodeResults', {
 
-                coverImage: true,
-                showTitle: true,
-                showParentTitle: true
-            });
+                    coverImage: true,
+                    showTitle: true,
+                    showParentTitle: true
+                });
         }
 
         searchType(instance, apiClient, {
@@ -285,20 +292,20 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.sportsResults', {
 
-            preferThumb: true,
-            inheritThumb: false,
-            shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
-            showParentTitleOrTitle: true,
-            showTitle: false,
-            centerText: true,
-            coverImage: true,
-            overlayText: false,
-            overlayMoreButton: true,
-            showAirTime: true,
-            showAirDateTime: true,
-            showChannelName: true
+                preferThumb: true,
+                inheritThumb: false,
+                shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
+                showParentTitleOrTitle: true,
+                showTitle: false,
+                centerText: true,
+                coverImage: true,
+                overlayText: false,
+                overlayMoreButton: true,
+                showAirTime: true,
+                showAirDateTime: true,
+                showChannelName: true
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -313,20 +320,20 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.kidsResults', {
 
-            preferThumb: true,
-            inheritThumb: false,
-            shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
-            showParentTitleOrTitle: true,
-            showTitle: false,
-            centerText: true,
-            coverImage: true,
-            overlayText: false,
-            overlayMoreButton: true,
-            showAirTime: true,
-            showAirDateTime: true,
-            showChannelName: true
+                preferThumb: true,
+                inheritThumb: false,
+                shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
+                showParentTitleOrTitle: true,
+                showTitle: false,
+                centerText: true,
+                coverImage: true,
+                overlayText: false,
+                overlayMoreButton: true,
+                showAirTime: true,
+                showAirDateTime: true,
+                showChannelName: true
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -341,20 +348,20 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.newsResults', {
 
-            preferThumb: true,
-            inheritThumb: false,
-            shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
-            showParentTitleOrTitle: true,
-            showTitle: false,
-            centerText: true,
-            coverImage: true,
-            overlayText: false,
-            overlayMoreButton: true,
-            showAirTime: true,
-            showAirDateTime: true,
-            showChannelName: true
+                preferThumb: true,
+                inheritThumb: false,
+                shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
+                showParentTitleOrTitle: true,
+                showTitle: false,
+                centerText: true,
+                coverImage: true,
+                overlayText: false,
+                overlayMoreButton: true,
+                showAirTime: true,
+                showAirDateTime: true,
+                showChannelName: true
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -372,20 +379,20 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.programResults', {
 
-            preferThumb: true,
-            inheritThumb: false,
-            shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
-            showParentTitleOrTitle: true,
-            showTitle: false,
-            centerText: true,
-            coverImage: true,
-            overlayText: false,
-            overlayMoreButton: true,
-            showAirTime: true,
-            showAirDateTime: true,
-            showChannelName: true
+                preferThumb: true,
+                inheritThumb: false,
+                shape: (enableScrollX() ? 'overflowBackdrop' : 'backdrop'),
+                showParentTitleOrTitle: true,
+                showTitle: false,
+                centerText: true,
+                coverImage: true,
+                overlayText: false,
+                overlayMoreButton: true,
+                showAirTime: true,
+                showAirDateTime: true,
+                showChannelName: true
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -399,11 +406,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.videoResults', {
 
-            showParentTitle: true,
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showParentTitle: true,
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -415,9 +422,9 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.peopleResults', {
 
-            coverImage: true,
-            showTitle: true
-        });
+                coverImage: true,
+                showTitle: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -428,9 +435,9 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
             IncludeArtists: true
 
         }, context, '.artistResults', {
-            coverImage: true,
-            showTitle: true
-        });
+                coverImage: true,
+                showTitle: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -443,11 +450,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.albumResults', {
 
-            showParentTitle: true,
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showParentTitle: true,
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -460,13 +467,13 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.songResults', {
 
-            showParentTitle: true,
-            showTitle: true,
-            overlayText: false,
-            centerText: true,
-            action: 'play'
+                showParentTitle: true,
+                showTitle: true,
+                overlayText: false,
+                centerText: true,
+                action: 'play'
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -479,11 +486,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.photoResults', {
 
-            showParentTitle: false,
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showParentTitle: false,
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -496,10 +503,10 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.photoAlbumResults', {
 
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -512,11 +519,11 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.bookResults', {
 
-            showTitle: true,
-            overlayText: false,
-            centerText: true
+                showTitle: true,
+                overlayText: false,
+                centerText: true
 
-        });
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -529,10 +536,10 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.audioBookResults', {
 
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
 
         searchType(instance, apiClient, {
             searchTerm: value,
@@ -545,10 +552,10 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
 
         }, context, '.playlistResults', {
 
-            showTitle: true,
-            overlayText: false,
-            centerText: true
-        });
+                showTitle: true,
+                overlayText: false,
+                centerText: true
+            });
     }
 
     function searchType(instance, apiClient, query, context, section, cardOptions) {
@@ -581,6 +588,8 @@ define(['layoutManager', 'globalize', 'require', 'events', 'connectionManager', 
             allowBottomPadding: !enableScrollX()
 
         }, cardOptions || {}));
+
+        section.querySelector('.emby-scroller').scrollToBeginning(true);
     }
 
     function enableScrollX() {

@@ -40,7 +40,8 @@ define(['dialogHelper', 'globalize', 'layoutManager', 'mediaInfo', 'apphost', 'c
                 maxHeight: imageHeight,
                 tag: item.ImageTags.Primary
             });
-        } else if (imageTags.Thumb) {
+        }
+        else if (imageTags.Thumb) {
 
             return apiClient.getScaledImageUrl(item.Id, {
                 type: "Thumb",

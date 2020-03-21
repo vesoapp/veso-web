@@ -1,4 +1,4 @@
-define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings', 'userSettings', 'require', 'css!./style'], function (lazyLoader, imageFetcher, layoutManager, browser, appSettings, userSettings, require) {
+define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings', 'require', 'css!./style'], function (lazyLoader, imageFetcher, layoutManager, browser, appSettings, require) {
     'use strict';
 
     var requestIdleCallback = window.requestIdleCallback || function (fn) {
@@ -6,6 +6,9 @@ define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings',
     };
 
     var self = {};
+
+    // seeing slow performance with firefox
+    var enableFade = false;
 
     function fillImage(elem, source, enableEffects) {
 
@@ -27,7 +30,7 @@ define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings',
     function fillImageElement(elem, source, enableEffects) {
         imageFetcher.loadImage(elem, source).then(function () {
 
-            if (enableEffects !== false) {
+            if (enableFade && enableEffects !== false) {
                 fadeIn(elem);
             }
 
@@ -36,11 +39,10 @@ define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings',
     }
 
     function fadeIn(elem) {
-        if (userSettings.enableFastFadein()) {
-            elem.classList.add('lazy-image-fadein-fast');
-        } else {
-            elem.classList.add('lazy-image-fadein');
-        }
+
+        var cssClass = 'lazy-image-fadein';
+
+        elem.classList.add(cssClass);
     }
 
     function lazyChildren(elem) {
@@ -68,9 +70,7 @@ define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings',
         }
 
         // Use the median
-        values.sort(function (a, b) {
-            return a - b;
-        });
+        values.sort(function (a, b) { return a - b; });
 
         var half = Math.floor(values.length / 2);
 
@@ -78,7 +78,8 @@ define(['lazyLoader', 'imageFetcher', 'layoutManager', 'browser', 'appSettings',
 
         if (values.length % 2) {
             result = values[half];
-        } else {
+        }
+        else {
             result = (values[half - 1] + values[half]) / 2.0;
         }
 

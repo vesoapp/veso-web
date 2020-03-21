@@ -12,6 +12,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
     }
 
     function getCrossOriginValue(mediaSource) {
+
         if (mediaSource.IsRemote) {
             return null;
         }
@@ -96,8 +97,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
         return true;
     }
 
-    var recoverDecodingErrorDate;
-    var recoverSwapAudioCodecDate;
+    var recoverDecodingErrorDate, recoverSwapAudioCodecDate;
     function handleHlsJsMediaError(instance, reject) {
 
         var hlsPlayer = instance._hlsPlayer;
@@ -114,12 +114,12 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
 
         if (!recoverDecodingErrorDate || (now - recoverDecodingErrorDate) > 3000) {
             recoverDecodingErrorDate = now;
-            console.debug('try to recover media Error ...');
+            console.log('try to recover media Error ...');
             hlsPlayer.recoverMediaError();
         } else {
             if (!recoverSwapAudioCodecDate || (now - recoverSwapAudioCodecDate) > 3000) {
                 recoverSwapAudioCodecDate = now;
-                console.debug('try to swap Audio Codec and recover media Error ...');
+                console.log('try to swap Audio Codec and recover media Error ...');
                 hlsPlayer.swapAudioCodec();
                 hlsPlayer.recoverMediaError();
             } else {
@@ -144,8 +144,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
         events.trigger(instance, 'error', [
             {
                 type: type
-            }
-        ]);
+            }]);
     }
 
     function isValidDuration(duration) {
@@ -157,6 +156,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
     }
 
     function setCurrentTimeIfNeeded(element, seconds) {
+
         if (Math.abs(element.currentTime || 0, seconds) <= 1) {
             element.currentTime = seconds;
         }
@@ -233,7 +233,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
                 return Promise.resolve();
             }
         } catch (err) {
-            console.error('error calling video.play: ' + err);
+            console.log('error calling video.play: ' + err);
             return Promise.reject();
         }
     }
@@ -245,7 +245,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
             try {
                 player.unload();
             } catch (err) {
-                console.error(err);
+                console.log(err);
             }
 
             instance._castPlayer = null;
@@ -258,7 +258,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
             try {
                 player.destroy();
             } catch (err) {
-                console.error(err);
+                console.log(err);
             }
 
             instance._shakaPlayer = null;
@@ -271,7 +271,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
             try {
                 player.destroy();
             } catch (err) {
-                console.error(err);
+                console.log(err);
             }
 
             instance._hlsPlayer = null;
@@ -286,7 +286,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
                 player.detachMediaElement();
                 player.destroy();
             } catch (err) {
-                console.error(err);
+                console.log(err);
             }
 
             instance._flvPlayer = null;
@@ -307,14 +307,14 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
 
         hls.on(Hls.Events.ERROR, function (event, data) {
 
-            console.error('HLS Error: Type: ' + data.type + ' Details: ' + (data.details || '') + ' Fatal: ' + (data.fatal || false));
+            console.log('HLS Error: Type: ' + data.type + ' Details: ' + (data.details || '') + ' Fatal: ' + (data.fatal || false));
 
             switch (data.type) {
                 case Hls.ErrorTypes.NETWORK_ERROR:
                     // try to recover network error
                     if (data.response && data.response.code && data.response.code >= 400) {
 
-                        console.debug('hls.js response error code: ' + data.response.code);
+                        console.log('hls.js response error code: ' + data.response.code);
 
                         // Trigger failure differently depending on whether this is prior to start of playback, or after
                         hls.destroy();
@@ -343,7 +343,7 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
 
                             // This could be a CORS error related to access control response headers
 
-                            console.debug('hls.js response error code: ' + data.response.code);
+                            console.log('hls.js response error code: ' + data.response.code);
 
                             // Trigger failure differently depending on whether this is prior to start of playback, or after
                             hls.destroy();
@@ -354,21 +354,23 @@ define(['appSettings', 'browser', 'events'], function (appSettings, browser, eve
                             } else {
                                 onErrorInternal(instance, 'network');
                             }
-                        } else {
-                            console.debug("fatal network error encountered, try to recover");
+                        }
+
+                        else {
+                            console.log("fatal network error encountered, try to recover");
                             hls.startLoad();
                         }
 
                         break;
                     case Hls.ErrorTypes.MEDIA_ERROR:
-                        console.debug("fatal media error encountered, try to recover");
+                        console.log("fatal media error encountered, try to recover");
                         var currentReject = reject;
                         reject = null;
                         handleHlsJsMediaError(instance, currentReject);
                         break;
                     default:
 
-                        console.debug('Cannot recover from hls error - destroy and trigger error');
+                        console.log('Cannot recover from hls error - destroy and trigger error');
                         // cannot recover
                         // Trigger failure differently depending on whether this is prior to start of playback, or after
                         hls.destroy();

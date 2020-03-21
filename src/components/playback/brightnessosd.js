@@ -11,7 +11,7 @@ define(['events', 'playbackManager', 'dom', 'browser', 'css!./iconosd', 'materia
     function getOsdElementHtml() {
         var html = '';
 
-        html += '<i class="material-icons iconOsdIcon brightness_high"></i>';
+        html += '<i class="md-icon iconOsdIcon">&#xE1AC;</i>';
 
         html += '<div class="iconOsdProgressOuter"><div class="iconOsdProgressInner brightnessOsdProgressInner"></div></div>';
 
@@ -98,22 +98,16 @@ define(['events', 'playbackManager', 'dom', 'browser', 'css!./iconosd', 'materia
         }
     }
 
-    function setIcon(iconElement, icon) {
-        iconElement.classList.remove('brightness_high');
-        iconElement.classList.remove('brightness_medium');
-        iconElement.classList.remove('brightness_low');
-        iconElement.classList.add(icon);
-    }
-
     function updateElementsFromPlayer(brightness) {
 
         if (iconElement) {
             if (brightness >= 80) {
-                setIcon(iconElement, 'brightness_high');
-            } else if (brightness >= 20) {
-                setIcon(iconElement, 'brightness_medium');
+                iconElement.innerHTML = '&#xE1AC;';
+            }
+            else if (brightness >= 20) {
+                iconElement.innerHTML = '&#xE1AE;';
             } else {
-                setIcon(iconElement, 'brightness_low');
+                iconElement.innerHTML = '&#xE1AD;';
             }
         }
         if (progressElement) {

@@ -50,7 +50,9 @@ define(['focusManager', 'layoutManager', 'dom', 'css!./style.css', 'paper-icon-b
 
         var vertical = element.classList.contains('alphaPicker-vertical');
 
-        if (!vertical) {
+        if (vertical) {
+
+        } else {
             element.classList.add('focuscontainer-x');
         }
 
@@ -67,7 +69,8 @@ define(['focusManager', 'layoutManager', 'dom', 'css!./style.css', 'paper-icon-b
 
         html += '<div class="' + rowClassName + '">';
         if (options.mode === 'keyboard') {
-            html += '<button data-value=" " is="paper-icon-button-light" class="' + alphaPickerButtonClassName + '"><i class="material-icons alphaPickerButtonIcon space_bar"></i></button>';
+            // space_bar icon
+            html += '<button data-value=" " is="paper-icon-button-light" class="' + alphaPickerButtonClassName + '"><i class="md-icon alphaPickerButtonIcon">&#xE256;</i></button>';
         } else {
             letters = ['#'];
             html += mapLetters(letters, vertical).join('');
@@ -77,7 +80,8 @@ define(['focusManager', 'layoutManager', 'dom', 'css!./style.css', 'paper-icon-b
         html += mapLetters(letters, vertical).join('');
 
         if (options.mode === 'keyboard') {
-            html += '<button data-value="backspace" is="paper-icon-button-light" class="' + alphaPickerButtonClassName + '"><i class="material-icons alphaPickerButtonIcon">backspace</i></button>';
+            // backspace icon
+            html += '<button data-value="backspace" is="paper-icon-button-light" class="' + alphaPickerButtonClassName + '"><i class="md-icon alphaPickerButtonIcon">&#xE14A;</i></button>';
             html += '</div>';
 
             letters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -226,8 +230,7 @@ define(['focusManager', 'layoutManager', 'dom', 'css!./style.css', 'paper-icon-b
     AlphaPicker.prototype.value = function (value, applyValue) {
 
         var element = this.options.element;
-        var btn;
-        var selected;
+        var btn, selected;
 
         if (value !== undefined) {
             if (value != null) {
@@ -241,7 +244,7 @@ define(['focusManager', 'layoutManager', 'dom', 'css!./style.css', 'paper-icon-b
                     try {
                         btn = element.querySelector('.alphaPickerButton[data-value=\'' + value + '\']');
                     } catch (err) {
-                        console.error('error in querySelector: ' + err);
+                        console.log('Error in querySelector: ' + err);
                     }
 
                     if (btn && btn !== selected) {

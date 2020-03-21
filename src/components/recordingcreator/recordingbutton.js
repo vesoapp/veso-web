@@ -21,25 +21,16 @@ define(['globalize', 'connectionManager', 'require', 'loading', 'apphost', 'dom'
         }
     }
 
-    function setButtonIcon(button, icon) {
-        var inner = button.querySelector('i');
-        inner.classList.remove('fiber_smart_record');
-        inner.classList.remove('fiber_manual_record');
-        inner.classList.add(icon);
-    }
-
     function RecordingButton(options) {
         this.options = options;
-
-        var button = options.button;
-
-        setButtonIcon(button, 'fiber_manual_record');
 
         if (options.item) {
             this.refreshItem(options.item);
         } else if (options.itemId && options.serverId) {
             this.refresh(options.itemId, options.serverId);
         }
+        var button = options.button;
+        button.querySelector('i').innerHTML = '&#xE061;';
 
         var clickFn = onRecordingButtonClick.bind(this);
         this.clickFn = clickFn;
@@ -54,25 +45,28 @@ define(['globalize', 'connectionManager', 'require', 'loading', 'apphost', 'dom'
         var status;
 
         if (item.Type === 'SeriesTimer') {
-            return 'fiber_smart_record';
-        } else if (item.TimerId || item.SeriesTimerId) {
+            return '&#xE062;';
+        }
+        else if (item.TimerId || item.SeriesTimerId) {
 
             status = item.Status || 'Cancelled';
-        } else if (item.Type === 'Timer') {
+        }
+        else if (item.Type === 'Timer') {
 
             status = item.Status;
-        } else {
-            return 'fiber_manual_record';
+        }
+        else {
+            return '&#xE061;';
         }
 
         if (item.SeriesTimerId) {
 
             if (status !== 'Cancelled') {
-                return 'fiber_smart_record';
+                return '&#xE062;';
             }
         }
 
-        return 'fiber_manual_record';
+        return '&#xE061;';
     }
 
     RecordingButton.prototype.refresh = function (serverId, itemId) {
@@ -89,7 +83,7 @@ define(['globalize', 'connectionManager', 'require', 'loading', 'apphost', 'dom'
         var options = this.options;
         var button = options.button;
         this.item = item;
-        setButtonIcon(button, getIndicatorIcon(item));
+        button.querySelector('i').innerHTML = getIndicatorIcon(item);
 
         if (item.TimerId && (item.Status || 'Cancelled') !== 'Cancelled') {
             button.classList.add('recordingIcon-active');

@@ -14,12 +14,12 @@
 }
 
 .layout-desktop .tvGuideHeader {
-    margin-bottom: 0.5em;
+    margin-bottom: .5em;
 }
 
 .guideHeaderDateSelection {
     font-size: 86%;
-    padding: 0.4em 0;
+    padding: .4em 0;
 }
 
 .guide-headerTimeslots {
@@ -39,10 +39,10 @@
 
 .guideProgramIndicator {
     text-transform: uppercase;
-    border-radius: 0.25em;
-    margin-right: 0.5em;
+    border-radius: .25em;
+    margin-right: .5em;
     font-size: 82%;
-    padding: 0.2em 0.25em;
+    padding: .2em .25em;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -51,8 +51,6 @@
 }
 
 .guide-channelTimeslotHeader {
-    border: 0 !important;
-    border-right-color: transparent;
     flex-shrink: 0;
     justify-content: center;
 }
@@ -71,14 +69,9 @@
 }
 
 .channelPrograms {
-    height: 4.42em;
-    contain: strict;
-    display: flex;
-    flex-direction: column;
-    border-style: solid;
-    border-width: 1px 0 1px 0;
     white-space: nowrap;
     position: relative;
+    contain: strict;
     box-sizing: border-box;
 }
 
@@ -87,32 +80,31 @@
 }
 
 .guideSpacer {
-    width: 0.3em;
+    width: .3em;
     flex-shrink: 0;
 }
 
-.channelPrograms,
-.timeslotHeadersInner {
+.channelPrograms, .timeslotHeadersInner {
     width: 1800vw;
 }
 
 @media all and (min-width: 37.5em) {
-    .channelPrograms,
-    .timeslotHeadersInner {
+
+    .channelPrograms, .timeslotHeadersInner {
         width: 1400vw;
     }
 }
 
 @media all and (min-width: 50em) {
-    .channelPrograms,
-    .timeslotHeadersInner {
+
+    .channelPrograms, .timeslotHeadersInner {
         width: 1200vw;
     }
 }
 
 @media all and (min-width: 80em) {
-    .channelPrograms,
-    .timeslotHeadersInner {
+
+    .channelPrograms, .timeslotHeadersInner {
         width: 810vw;
     }
 }
@@ -120,17 +112,11 @@
 .timeslotHeader {
     display: inline-flex;
     align-items: center;
-    text-indent: 0.25em;
+    text-indent: .25em;
     width: 2.0833333333333333333333333333333%;
 }
 
-.programCell,
-.guide-channelHeaderCell {
-    outline: none !important;
-}
-
-.guide-channelHeaderCell,
-.guide-channelTimeslotHeader {
+.guide-channelHeaderCell, .guide-channelTimeslotHeader {
     padding: 0 !important;
     cursor: pointer;
     outline: none !important;
@@ -144,12 +130,11 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-
     /* Needed in firefox */
     text-align: left;
     contain: strict;
     flex-shrink: 0;
-    border-radius: 0.12em;
+    border-radius: .12em;
     color: inherit;
 }
 
@@ -163,38 +148,37 @@
     background: transparent;
 }
 
+.guide-channelTimeslotHeader {
+    border: 0 !important;
+}
+
 /* Important - have to put the fixed width on channelsContainer, not the individual channelHeaderCell
    This was causing channelsContainer to extend beyond the fixed width on ps4, tizen, lg and opera tv.
 */
-.channelsContainer,
-.guide-channelTimeslotHeader {
+.channelsContainer, .guide-channelTimeslotHeader {
     width: 24vw;
 }
 
-@media all and (min-width: 31.25em) {
-    .channelsContainer,
-    .guide-channelTimeslotHeader {
+@media all and (min-width:31.25em) {
+    .channelsContainer, .guide-channelTimeslotHeader {
         width: 16vw;
     }
 }
 
-@media all and (min-width: 37.5em) {
-    .channelsContainer,
-    .guide-channelTimeslotHeader {
+@media all and (min-width:37.5em) {
+    .channelsContainer, .guide-channelTimeslotHeader {
         width: 16vw;
     }
 }
 
-@media all and (min-width: 50em) {
-    .channelsContainer,
-    .guide-channelTimeslotHeader {
+@media all and (min-width:50em) {
+    .channelsContainer, .guide-channelTimeslotHeader {
         width: 14vw;
     }
 }
 
-@media all and (min-width: 80em) {
-    .channelsContainer,
-    .guide-channelTimeslotHeader {
+@media all and (min-width:80em) {
+    .channelsContainer, .guide-channelTimeslotHeader {
         width: 12vw;
     }
 }
@@ -213,26 +197,34 @@
 }
 
 @media all and (max-width: 50em) {
-    .newTvProgram,
-    .liveTvProgram,
-    .premiereTvProgram,
-    .guideHdIcon {
+
+    .newTvProgram, .liveTvProgram, .premiereTvProgram, .guideHdIcon {
         display: none;
     }
 }
 
-.channelPrograms + .channelPrograms,
-.guide-channelHeaderCell + .guide-channelHeaderCell {
-    margin-top: -1px;
+.channelPrograms {
+    height: 4.42em;
+    contain: strict;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
 }
 
-.channelPrograms-tv,
-.guide-channelHeaderCell-tv {
+    .channelPrograms + .channelPrograms, .guide-channelHeaderCell + .guide-channelHeaderCell {
+        margin-top: -1px;
+    }
+
+.channelPrograms-tv, .guide-channelHeaderCell-tv {
     height: 3em;
 }
 
-.guide-channelTimeslotHeader,
-.timeslotHeader {
+.guide-channelTimeslotHeader {
+    border-right-color: transparent;
+}
+
+.guide-channelTimeslotHeader, .timeslotHeader {
     background: transparent !important;
     height: 2.8em;
 }
@@ -261,7 +253,6 @@
     text-decoration: none;
     overflow: hidden;
     align-items: center;
-
     /* Needed for Firefox */
     text-align: left;
     contain: strict;
@@ -270,7 +261,7 @@
 }
 
 .guideProgramName {
-    padding: 0 0.7em 0;
+    padding: 0 .7em 0;
     overflow: hidden;
     text-overflow: ellipsis;
     align-items: center;
@@ -278,8 +269,7 @@
     position: relative;
     flex-grow: 1;
     contain: layout style paint;
-
-    /* transition: transform 60ms ease-out; */
+    /*transition: transform 60ms ease-out;*/
 }
 
 .guide-programNameCaret {
@@ -299,11 +289,11 @@
 .guideProgramSecondaryInfo {
     display: flex;
     align-items: center;
-    margin-top: 0.1em;
+    margin-top: .1em;
 }
 
 .programIcon {
-    margin-left: 0.5em;
+    margin-left: .5em;
     height: 1em;
     width: 1em;
     font-size: 1.6em;
@@ -314,16 +304,16 @@
 
 .guide-programTextIcon {
     font-weight: bold;
-    font-size: 0.9em;
-    padding: 0.16em 0.3em;
-    border-radius: 0.25em;
-    margin-right: 0.35em;
+    font-size: .9em;
+    padding: .16em .3em;
+    border-radius: .25em;
+    margin-right: .35em;
     width: auto;
     height: auto;
 }
 
 .guide-programTextIcon-tv {
-    font-size: 0.74em;
+    font-size: .74em;
 }
 
 .guideChannelNumber {
@@ -355,12 +345,14 @@
 }
 
 @media all and (min-width: 62.5em) {
+
     .guideChannelName {
         max-width: 40%;
     }
 }
 
 @media all and (max-width: 62.5em) {
+
     .guideChannelNumber {
         display: none;
     }
@@ -376,19 +368,21 @@
     flex-direction: column;
 }
 
-.channelsContainer,
-.programGrid {
+.channelsContainer, .programGrid {
     contain: layout style paint;
 }
 
-.timerIcon,
-.seriesTimerIcon {
-    color: #c33 !important;
+.programCell, .guide-channelHeaderCell {
+    outline: none !important;
+}
+
+.timerIcon, .seriesTimerIcon {
+    color: #cc3333 !important;
 }
 
 .seriesTimerIcon-inactive {
     color: inherit !important;
-    opacity: 0.7;
+    opacity: .7;
 }
 
 .guideOptions {
@@ -398,6 +392,7 @@
 }
 
 @media all and (max-width: 50em), all and (max-height: 37.5em) {
+
     .tvGuideHeader {
         padding-left: 0;
     }
@@ -420,16 +415,16 @@
 }
 
 .guide-date-tab-button {
-    padding: 0.3em 0.7em !important;
-    margin: 0 0.3em !important;
+    padding: .3em .7em !important;
+    margin: 0 .3em !important;
     font-weight: normal;
 }
 
-.guide-date-tab-button.emby-tab-button-active {
-    border-color: transparent !important;
-}
+    .guide-date-tab-button.emby-tab-button-active {
+        border-color: transparent !important;
+    }
 
-.guide-date-tab-button.show-focus:focus {
-    border-radius: 0.15em !important;
-    transform: none !important;
-}
+    .guide-date-tab-button.show-focus:focus {
+        border-radius: .15em !important;
+        transform: none !important;
+    }

@@ -95,6 +95,7 @@ define(['dialogHelper', 'globalize', 'layoutManager', 'mediaInfo', 'apphost', 'c
             currentResolve = resolve;
 
             require(['text!./recordingeditor.template.html'], function (template) {
+
                 var dialogOptions = {
                     removeOnClose: true,
                     scrollY: false
@@ -102,6 +103,7 @@ define(['dialogHelper', 'globalize', 'layoutManager', 'mediaInfo', 'apphost', 'c
 
                 if (layoutManager.tv) {
                     dialogOptions.size = 'fullscreen';
+                } else {
                 }
 
                 var dlg = dialogHelper.createDialog(dialogOptions);

@@ -1,4 +1,4 @@
-define(["layoutManager", "loading", "datetime", "libraryBrowser", "cardBuilder", "apphost", "imageLoader", "scrollStyles", "emby-itemscontainer"], function (layoutManager, loading, datetime, libraryBrowser, cardBuilder, appHost, imageLoader) {
+define(["layoutManager", "loading", "datetime", "libraryBrowser", "cardBuilder", "apphost", "imageLoader", "scrollStyles", "emby-itemscontainer"], function(layoutManager, loading, datetime, libraryBrowser, cardBuilder, appHost, imageLoader) {
     "use strict";
 
     function getUpcomingPromise(context, params) {
@@ -9,131 +9,82 @@ define(["layoutManager", "loading", "datetime", "libraryBrowser", "cardBuilder",
             UserId: ApiClient.getCurrentUserId(),
             ImageTypeLimit: 1,
             EnableImageTypes: "Primary,Backdrop,Banner,Thumb",
-            EnableTotalRecordCount: false
+            EnableTotalRecordCount: !1
         };
-        query.ParentId = params.topParentId;
-        return ApiClient.getJSON(ApiClient.getUrl("Shows/Upcoming", query));
+        return query.ParentId = params.topParentId, ApiClient.getJSON(ApiClient.getUrl("Shows/Upcoming", query))
     }
 
     function loadUpcoming(context, params, promise) {
-        promise.then(function (result) {
+        promise.then(function(result) {
             var items = result.Items;
-
-            if (items.length) {
-                context.querySelector(".noItemsMessage").style.display = "none";
-            } else {
-                context.querySelector(".noItemsMessage").style.display = "block";
-            }
-
-            renderUpcoming(context.querySelector("#upcomingItems"), items);
-            loading.hide();
-        });
+            items.length ? context.querySelector(".noItemsMessage").style.display = "none" : context.querySelector(".noItemsMessage").style.display = "block", renderUpcoming(context.querySelector("#upcomingItems"), items), loading.hide()
+        })
     }
 
     function enableScrollX() {
-        return !layoutManager.desktop;
+        return !layoutManager.desktop
     }
 
     function getThumbShape() {
-        return enableScrollX() ? "overflowBackdrop" : "backdrop";
+        return enableScrollX() ? "overflowBackdrop" : "backdrop"
     }
 
     function renderUpcoming(elem, items) {
-        var i;
-        var length;
-        var groups = [];
-        var currentGroupName = "";
-        var currentGroup = [];
-
+        var i, length, groups = [],
+            currentGroupName = "",
+            currentGroup = [];
         for (i = 0, length = items.length; i < length; i++) {
-            var item = items[i];
-            var dateText = "";
-
-            if (item.PremiereDate) {
-                try {
-                    var premiereDate = datetime.parseISO8601Date(item.PremiereDate, true);
-                    dateText = datetime.isRelativeDay(premiereDate, -1) ? Globalize.translate("Yesterday") : datetime.toLocaleDateString(premiereDate, {
-                        weekday: "long",
-                        month: "short",
-                        day: "numeric"
-                    });
-                } catch (err) {
-                    console.error('error parsing timestamp for upcoming tv shows');
-                }
-            }
-
-            if (dateText != currentGroupName) {
-                if (currentGroup.length) {
-                    groups.push({
-                        name: currentGroupName,
-                        items: currentGroup
-                    });
-                }
-
-                currentGroupName = dateText;
-                currentGroup = [item];
-            } else {
-                currentGroup.push(item);
-            }
+            var item = items[i],
+                dateText = "";
+            if (item.PremiereDate) try {
+                var premiereDate = datetime.parseISO8601Date(item.PremiereDate, !0);
+                dateText = datetime.isRelativeDay(premiereDate, -1) ? Globalize.translate("Yesterday") : datetime.toLocaleDateString(premiereDate, {
+                    weekday: "long",
+                    month: "short",
+                    day: "numeric"
+                })
+            } catch (err) {}
+            dateText != currentGroupName ? (currentGroup.length && groups.push({
+                name: currentGroupName,
+                items: currentGroup
+            }), currentGroupName = dateText, currentGroup = [item]) : currentGroup.push(item)
         }
-
         var html = "";
-
         for (i = 0, length = groups.length; i < length; i++) {
             var group = groups[i];
-            html += '<div class="verticalSection">';
-            html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + group.name + "</h2>";
-            var allowBottomPadding = true;
-
+            html += '<div class="verticalSection">', html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + group.name + "</h2>";
+            var allowBottomPadding = !0;
             if (enableScrollX()) {
-                allowBottomPadding = false;
+                allowBottomPadding = !1;
                 var scrollXClass = "scrollX hiddenScrollX";
-
-                if (layoutManager.tv) {
-                    scrollXClass += " smoothScrollX";
-                }
-
-                html += '<div is="emby-itemscontainer" class="itemsContainer ' + scrollXClass + ' padded-left padded-right">';
-            } else {
-                html += '<div is="emby-itemscontainer" class="itemsContainer vertical-wrap padded-left padded-right">';
-            }
-
+                layoutManager.tv && (scrollXClass += " smoothScrollX"), html += '<div is="emby-itemscontainer" class="itemsContainer ' + scrollXClass + ' padded-left padded-right">'
+            } else html += '<div is="emby-itemscontainer" class="itemsContainer vertical-wrap padded-left padded-right">';
             var supportsImageAnalysis = appHost.supports("imageanalysis");
-            supportsImageAnalysis = false;
-            html += cardBuilder.getCardsHtml({
+            supportsImageAnalysis = !1, html += cardBuilder.getCardsHtml({
                 items: group.items,
-                showLocationTypeIndicator: false,
+                showLocationTypeIndicator: !1,
                 shape: getThumbShape(),
-                showTitle: true,
-                preferThumb: true,
-                lazy: true,
-                showDetailsMenu: true,
+                showTitle: !0,
+                preferThumb: !0,
+                lazy: !0,
+                showDetailsMenu: !0,
                 centerText: !supportsImageAnalysis,
-                showParentTitle: true,
-                overlayText: false,
+                showParentTitle: !0,
+                overlayText: !1,
                 allowBottomPadding: allowBottomPadding,
                 cardLayout: supportsImageAnalysis,
-                overlayMoreButton: true,
-                missingIndicator: false
-            });
-            html += "</div>";
-            html += "</div>";
+                overlayMoreButton: !0,
+                missingIndicator: !1
+            }), html += "</div>", html += "</div>"
         }
-
-        elem.innerHTML = html;
-        imageLoader.lazyChildren(elem);
+        elem.innerHTML = html, imageLoader.lazyChildren(elem)
     }
-
-    return function (view, params, tabContent) {
-        var upcomingPromise;
-        var self = this;
-
-        self.preRender = function () {
-            upcomingPromise = getUpcomingPromise(view, params);
-        };
-
-        self.renderTab = function () {
-            loadUpcoming(tabContent, params, upcomingPromise);
-        };
-    };
+    return function(view, params, tabContent) {
+        var upcomingPromise, self = this;
+        self.preRender = function() {
+            upcomingPromise = getUpcomingPromise(view, params)
+        }, self.renderTab = function() {
+            loadUpcoming(tabContent, params, upcomingPromise)
+        }
+    }
 });

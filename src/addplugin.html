@@ -1,16 +1,21 @@
 <div id="addPluginPage" data-role="page" class="page type-interior pluginConfigurationPage" data-backbutton="true">
+
     <div>
         <div class="content-primary">
+
             <div class="readOnlyContent">
+
                 <div class="verticalSection">
                     <div class="sectionTitleContainer flex align-items-center">
                         <h1 class="sectionTitle pluginName"></h1>
-                        <a is="emby-linkbutton" class="raised button-alt headerHelpButton" target="_blank" href="https://docs.veso.org/general/server/plugins/index.html">${Help}</a>
+                        <a is="emby-linkbutton" class="raised button-alt headerHelpButton" target="_blank" href="https://docs.jellyfin.org/general/server/plugins/index.html">${Help}</a>
                     </div>
 
                     <p id="tagline" style="font-style: italic;"></p>
                     <p id="pPreviewImage"></p>
+
                     <p id="overview"></p>
+
                 </div>
 
                 <div class="verticalSection">
@@ -22,12 +27,12 @@
                             <select id="selectVersion" name="selectVersion" is="emby-select" label="${LabelSelectVersionToInstall}"></select>
                         </div>
 
-                        <div id="btnInstallDiv" class="hide">
+                        <p id="btnInstallDiv" class="hide">
                             <button is="emby-button" type="submit" id="btnInstall" class="raised button-submit block">
                                 <span>${Install}</span>
                             </button>
                             <div class="fieldDescription">${ServerRestartNeededAfterPluginInstall}</div>
-                        </div>
+                        </p>
                         <p id="nonServerMsg"></p>
                     </form>
                 </div>
