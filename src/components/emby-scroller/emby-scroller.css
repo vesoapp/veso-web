@@ -7,6 +7,17 @@
     margin-right: 3.3%;
 }
 
+.emby-scroller {
+    flex-wrap: inherit;
+    overflow-x: auto !important;
+    scrollbar-width: none;
+}
+
+.emby-scroller::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
+
 @media all and (max-width:50em) {
     .emby-scroller {
         padding-left: 3.3%;
