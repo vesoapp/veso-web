@@ -791,6 +791,5 @@ button {
 }
 
 .cardOverlayFab-primary:hover {
-    transform: scale(1.4, 1.4);
     transition: 0.2s;
 }
