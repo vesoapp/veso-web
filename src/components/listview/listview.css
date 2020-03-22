@@ -182,7 +182,7 @@
 }
 
 .listItemIcon:not(.listItemIcon-transparent) {
-    background-color: #e52c39;
+    background-color: #4CAF50;
     color: #fff;
     padding: .5em;
     border-radius: 100em;
