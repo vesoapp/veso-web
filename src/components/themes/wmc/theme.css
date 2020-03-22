@@ -1,13 +1,13 @@
 html {
     color: #eee;
     color: rgba(255, 255, 255, .9);
-    background-color: #0F3562
+    background-color: #620f0f
 }
 
 .wizardStartForm,
 .ui-corner-all,
 .ui-shadow {
-  background-color: #0C2450
+  background-color: #500c0c
 }
 
 .emby-collapsible-button {
@@ -22,11 +22,11 @@ html {
 
 .formDialogHeader:not(.formDialogHeader-clear),
 .skinHeader-withBackground {
-    background-color: #0C2450;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0C2450), to(#081B3B));
-    background: -webkit-linear-gradient(top, #0C2450, #081B3B);
-    background: -o-linear-gradient(top, #0C2450, #081B3B);
-    background: linear-gradient(to bottom, #0C2450, #081B3B)
+    background-color: #500c0c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#500c0c), to(#3b0808));
+    background: -webkit-linear-gradient(top, #500c0c, #3b0808);
+    background: -o-linear-gradient(top, #500c0c, #3b0808);
+    background: linear-gradient(to bottom, #500c0c, #3b0808)
 }
 
 @supports (backdrop-filter:blur(1.5em)) or (-webkit-backdrop-filter:blur(1.5em)) {
@@ -53,20 +53,20 @@ html {
 
 .backgroundContainer,
 .dialog {
-    background-color: #0F3562;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0F3562), color-stop(#1162A4), to(#03215F));
-    background: -webkit-linear-gradient(top, #0F3562, #1162A4, #03215F);
-    background: -o-linear-gradient(top, #0F3562, #1162A4, #03215F);
-    background: linear-gradient(to bottom, #0F3562, #1162A4, #03215F)
+    background-color: #620f0f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#620f0f), color-stop(#a41111), to(#5f0303));
+    background: -webkit-linear-gradient(top, #620f0f, #a41111, #5f0303);
+    background: -o-linear-gradient(top, #620f0f, #a41111, #5f0303);
+    background: linear-gradient(to bottom, #620f0f, #a41111, #5f0303)
 }
 
 .backgroundContainer.withBackdrop {
-    background: rgba(17, 98, 164, .9)
+    background: rgba(164, 17, 17, 0.9)
 }
 
 .paper-icon-button-light:hover:not(:disabled) {
     color: #e52c39;
-    background-color: rgba(0,164,220, .2);
+    background-color: rgba(220, 0, 0, 0.2);
 }
 
 .paper-icon-button-light.show-focus:focus {
@@ -75,7 +75,7 @@ html {
 
 .fab,
 .raised {
-    background: #082845;
+    background: #450808;
     color: #fff
 }
 
@@ -90,7 +90,7 @@ html {
 }
 
 .button-submit:focus {
-    background: #0cb0e8;
+    background: #4ec63e;
     color: #fff
 }
 
@@ -125,7 +125,7 @@ html {
 .collapseContent,
 .paperList,
 .visualCardBox {
-    background-color: #0F3562
+    background-color: #620f0f
 }
 
 .defaultCardBackground1 {
@@ -133,7 +133,7 @@ html {
 }
 
 .defaultCardBackground2 {
-    background-color: #338abb
+    background-color: #bb3333
 }
 
 .defaultCardBackground3 {
@@ -170,18 +170,18 @@ html {
 }
 
 .toast {
-    background: #081B3B;
+    background: #3b0808;
     color: #fff;
     color: rgba(255, 255, 255, .87)
 }
 
 .appfooter,
 .formDialogFooter:not(.formDialogFooter-clear) {
-    background: #0C2450;
-    background: -webkit-gradient(linear, left bottom, left top, from(#0C2450), to(#081B3B));
-    background: -webkit-linear-gradient(bottom, #0C2450, #081B3B);
-    background: -o-linear-gradient(bottom, #0C2450, #081B3B);
-    background: linear-gradient(to top, #0C2450, #081B3B);
+    background: #500c0c;
+    background: -webkit-gradient(linear, left bottom, left top, from(#500c0c), to(#3b0808));
+    background: -webkit-linear-gradient(bottom, #500c0c, #3b0808);
+    background: -o-linear-gradient(bottom, #500c0c, #3b0808);
+    background: linear-gradient(to top, #500c0c, #3b0808);
     color: rgba(255, 255, 255, .78)
 }
 
@@ -313,7 +313,7 @@ html {
 }
 
 .mainDrawer {
-    background-color: #0F3562;
+    background-color: #620f0f;
     color: #ccc;
     color: rgba(255, 255, 255, .7)
 }
@@ -366,7 +366,7 @@ html {
 }
 
 .programCell-kids {
-    background: #039BE5 !important
+    background: #e50303 !important
 }
 
 .programCell-news {
@@ -408,10 +408,10 @@ html {
 }
 
 .itemBackdropFader {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#115E9E));
-    background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #115E9E);
-    background: -o-linear-gradient(rgba(0, 0, 0, 0), #115E9E);
-    background: linear-gradient(rgba(0, 0, 0, 0), #115E9E)
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#9e1111));
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #9e1111);
+    background: -o-linear-gradient(rgba(0, 0, 0, 0), #9e1111);
+    background: linear-gradient(rgba(0, 0, 0, 0), #9e1111)
 }
 
 .infoBanner {
@@ -428,7 +428,7 @@ html {
 
 .downloadbutton-icon-complete,
 .downloadbutton-icon-on {
-    color: #4285F4
+    color: #61c742
 }
 
 .playstatebutton-icon-played {
@@ -436,7 +436,7 @@ html {
 }
 
 .repeatButton-active {
-    color: #4285F4
+    color: #61c742
 }
 
 .card:focus .card-focuscontent {
@@ -453,7 +453,7 @@ html {
 }
 
 ::-webkit-scrollbar-track-piece {
-    background-color: #081B3B
+    background-color: #3b0808
 }
 
 ::-webkit-scrollbar-thumb:horizontal,

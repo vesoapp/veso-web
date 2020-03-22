@@ -41,7 +41,7 @@ html {
 
 .paper-icon-button-light:hover:not(:disabled) {
     color: #e52c39;
-    background-color: rgba(0,164,220, .2);
+    background-color: rgba(220, 0, 0, 0.2);
 }
 
 .paper-icon-button-light.show-focus:focus {
@@ -110,7 +110,7 @@ html {
 }
 
 .defaultCardBackground2 {
-    background-color: #338abb
+    background-color: #bb3333
 }
 
 .defaultCardBackground3 {
@@ -344,7 +344,7 @@ html {
 }
 
 .programCell-kids {
-    background: #039BE5 !important
+    background: #e50303 !important
 }
 
 .programCell-news {
