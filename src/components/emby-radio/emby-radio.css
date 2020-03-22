@@ -50,7 +50,7 @@
 }
 
 .mdl-radio__button:checked + .mdl-radio__label + .mdl-radio__outer-circle {
-    border: 2px solid #00a4dc;
+    border: 2px solid #e52c39;
 }
 
 .mdl-radio__button:disabled + .mdl-radio__label + .mdl-radio__outer-circle {
@@ -76,7 +76,7 @@
     -webkit-transform: scale3d(0, 0, 0);
     transform: scale3d(0, 0, 0);
     border-radius: 50%;
-    background: #00a4dc;
+    background: #e52c39;
 }
 
 .mdl-radio__button:checked + .mdl-radio__label + .mdl-radio__outer-circle + .mdl-radio__inner-circle {

@@ -4,7 +4,7 @@ define(["events", "globalize", "dom", "datetime", "userSettings", "serverNotific
     function getEntryHtml(entry, apiClient) {
         var html = "";
         html += '<div class="listItem listItem-border">';
-        var color = "#00a4dc";
+        var color = "#e52c39";
         var icon =  "notifications";
         if ("Error" == entry.Severity || "Fatal" == entry.Severity || "Warn" == entry.Severity) {
             color = "#cc0000";

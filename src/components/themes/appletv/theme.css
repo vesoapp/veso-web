@@ -72,12 +72,12 @@ html {
 }
 
 .paper-icon-button-light:hover:not(:disabled) {
-    color: #00a4dc;
+    color: #e52c39;
     background-color: rgba(0,164,220, .2);
 }
 
 .paper-icon-button-light.show-focus:focus {
-    color: #00a4dc;
+    color: #e52c39;
 }
 
 .fab,
@@ -93,7 +93,7 @@ html {
 }
 
 .button-submit {
-    background: #00a4dc;
+    background: #e52c39;
     color: #fff
 }
 
@@ -219,16 +219,16 @@ html {
 }
 
 .itemSelectionPanel {
-    border: 1px solid #00a4dc
+    border: 1px solid #e52c39
 }
 
 .selectionCommandsPanel {
-    background: #00a4dc;
+    background: #e52c39;
     color: #fff
 }
 
 .upNextDialog-countdownText {
-    color: #00a4dc
+    color: #e52c39
 }
 
 .alphaPickerButton {
@@ -239,7 +239,7 @@ html {
 
 .alphaPickerButton-selected,
 .alphaPickerButton-tv:focus {
-    background-color: #00a4dc;
+    background-color: #e52c39;
     color: #fff !important
 }
 
@@ -257,7 +257,7 @@ html {
 }
 
 .progressring-spiner {
-    border-color: #00a4dc
+    border-color: #e52c39
 }
 
 .mediaInfoText {
@@ -281,7 +281,7 @@ html {
 
 .emby-input:focus,
 .emby-textarea:focus {
-    border-color: #00a4dc
+    border-color: #e52c39
 }
 
 .emby-select-withcolor {
@@ -292,7 +292,7 @@ html {
 
 .emby-checkbox:checked+span+.checkboxOutline,
 .emby-select-withcolor:focus {
-    border-color: #00a4dc
+    border-color: #e52c39
 }
 
 .emby-checkbox:focus+span+.checkboxOutline {
@@ -300,7 +300,7 @@ html {
 }
 
 .emby-checkbox:focus:not(:checked)+span+.checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #e52c39;
 }
 
 .emby-select-withcolor>option {
@@ -309,13 +309,13 @@ html {
 }
 
 .emby-select-tv-withcolor:focus {
-    background-color: #00a4dc;
+    background-color: #e52c39;
     color: #fff
 }
 
 .emby-checkbox:checked+span+.checkboxOutline,
 .itemProgressBarForeground {
-    background-color: #00a4dc
+    background-color: #e52c39
 }
 
 .itemProgressBarForeground-recording {
@@ -325,7 +325,7 @@ html {
 .countIndicator,
 .fullSyncIndicator,
 .playedIndicator {
-    background: #00a4dc
+    background: #e52c39
 }
 
 .fullSyncIndicator {
@@ -341,12 +341,12 @@ html {
 }
 
 .navMenuOption-selected {
-    background: #00a4dc !important;
+    background: #e52c39 !important;
     color: #fff
 }
 
 .emby-button.show-focus:focus {
-    background: #00a4dc;
+    background: #e52c39;
     color: #fff
 }
 
@@ -395,7 +395,7 @@ html {
 
 .guide-channelHeaderCell:focus,
 .programCell:focus {
-    background-color: #00a4dc !important;
+    background-color: #e52c39 !important;
     color: #fff !important
 }
 
@@ -415,11 +415,11 @@ html {
 
 .guide-date-tab-button.emby-tab-button-active,
 .guide-date-tab-button:focus {
-    color: #00a4dc
+    color: #e52c39
 }
 
 .guide-date-tab-button.show-focus:focus {
-    background-color: #00a4dc;
+    background-color: #e52c39;
     color: #fff
 }
 
@@ -456,9 +456,9 @@ html {
 }
 
 .card:focus .card-focuscontent {
-    border-color: #00a4dc
+    border-color: #e52c39
 }
 
 .metadataSidebarIcon {
-    color: #00a4dc
+    color: #e52c39
 }

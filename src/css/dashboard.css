@@ -30,16 +30,16 @@ progress::-webkit-progress-bar {
 }
 
 progress::-moz-progress-bar {
-    background-color: #00a4dc
+    background-color: #e52c39
 }
 
 progress::-webkit-progress-value {
-    background-color: #00a4dc
+    background-color: #e52c39
 }
 
 progress[aria-valuenow]:before {
     border-radius: .4em;
-    background-color: #00a4dc
+    background-color: #e52c39
 }
 
 .localnav {
@@ -102,7 +102,7 @@ div[data-role=controlgroup] a[data-role=button]+a[data-role=button] {
 }
 
 div[data-role=controlgroup] a.ui-btn-active {
-    background: #00a4dc !important;
+    background: #e52c39 !important;
     color: #292929 !important
 }
 
@@ -365,7 +365,7 @@ div[data-role=controlgroup] a.ui-btn-active {
 
 .playbackProgress > div {
     z-index: 1000;
-    background-color: #00a4dc;
+    background-color: #e52c39;
 }
 
 .transcodingProgress > div {

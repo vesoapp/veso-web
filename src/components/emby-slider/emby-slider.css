@@ -17,7 +17,7 @@ _:-ms-input-placeholder {
     -ms-user-select: none;
     user-select: none;
     outline: 0;
-    color: #00a4dc;
+    color: #e52c39;
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
@@ -48,7 +48,7 @@ _:-ms-input-placeholder {
     }
 
     .mdl-slider::-moz-range-progress {
-        background: #00a4dc;
+        background: #e52c39;
         width: calc(100% - 20px);
     }
 
@@ -74,7 +74,7 @@ _:-ms-input-placeholder {
         height: 1.2em;
         box-sizing: border-box;
         border-radius: 50%;
-        background: #00a4dc;
+        background: #e52c39;
         border: none;
         transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), border 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -98,7 +98,7 @@ _:-ms-input-placeholder {
     box-sizing: border-box;
     border-radius: 50%;
     background-image: none;
-    background: #00a4dc;
+    background: #e52c39;
     border: none;
     transform: Scale(1.4, 1.4);
 }
@@ -109,7 +109,7 @@ _:-ms-input-placeholder {
     height: 1.8em;
     box-sizing: border-box;
     border-radius: 50%;
-    background: #00a4dc;
+    background: #e52c39;
     border: none;
     transform: scale(.9, .9);
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), border 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -185,7 +185,7 @@ _:-ms-input-placeholder {
     width: 0;
     top: 0;
     bottom: 0;
-    background-color: #00a4dc;
+    background-color: #e52c39;
 }
 
 .mdl-slider-background-lower-clear {
