@@ -40,8 +40,8 @@ html {
 }
 
 .paper-icon-button-light:hover:not(:disabled) {
-    color: #e52b39;
-    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .paper-icon-button-light.show-focus:focus {
