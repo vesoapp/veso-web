@@ -9,7 +9,7 @@ define(['playbackManager', 'layoutManager', 'events'], function (playbackManager
 
     function onOrientationChangeError(err) {
         orientationLocked = false;
-        console.log('error locking orientation: ' + err);
+        console.error('error locking orientation: ' + err);
     }
 
     events.on(playbackManager, 'playbackstart', function (e, player, state) {
@@ -29,8 +29,7 @@ define(['playbackManager', 'layoutManager', 'events'], function (playbackManager
                         // returns a boolean
                         orientationLocked = promise;
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     onOrientationChangeError(err);
                 }
             }
@@ -46,9 +45,8 @@ define(['playbackManager', 'layoutManager', 'events'], function (playbackManager
             if (unlockOrientation) {
                 try {
                     unlockOrientation();
-                }
-                catch (err) {
-                    console.log('error unlocking orientation: ' + err);
+                } catch (err) {
+                    console.error('error unlocking orientation: ' + err);
                 }
                 orientationLocked = false;
             }

@@ -4,6 +4,7 @@ define([], function () {
     'use strict';
 
     var illegalRe = /[\/\?<>\\:\*\|":]/g;
+    // eslint-disable-next-line no-control-regex
     var controlRe = /[\x00-\x1f\x80-\x9f]/g;
     var reservedRe = /^\.+$/;
     var windowsReservedRe = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])(\..*)?$/i;
@@ -34,18 +35,14 @@ define([], function () {
                 // when parsing previous hi-surrogate, 3 is added to byteLength
                 if (prevCodePoint != null && isHighSurrogate(prevCodePoint)) {
                     byteLength += 1;
-                }
-                else {
+                } else {
                     byteLength += 3;
                 }
-            }
-            else if (codePoint <= 0x7f) {
+            } else if (codePoint <= 0x7f) {
                 byteLength += 1;
-            }
-            else if (codePoint >= 0x80 && codePoint <= 0x7ff) {
+            } else if (codePoint >= 0x80 && codePoint <= 0x7ff) {
                 byteLength += 2;
-            }
-            else if (codePoint >= 0x800 && codePoint <= 0xffff) {
+            } else if (codePoint >= 0x800 && codePoint <= 0xffff) {
                 byteLength += 3;
             }
             prevCodePoint = codePoint;
@@ -77,8 +74,7 @@ define([], function () {
 
             if (curByteLength === byteLength) {
                 return string.slice(0, i + 1);
-            }
-            else if (curByteLength > byteLength) {
+            } else if (curByteLength > byteLength) {
                 return string.slice(0, i - segment.length + 1);
             }
         }
@@ -89,11 +85,11 @@ define([], function () {
     return {
         sanitize: function (input, replacement) {
             var sanitized = input
-              .replace(illegalRe, replacement)
-              .replace(controlRe, replacement)
-              .replace(reservedRe, replacement)
-              .replace(windowsReservedRe, replacement)
-              .replace(windowsTrailingRe, replacement);
+                .replace(illegalRe, replacement)
+                .replace(controlRe, replacement)
+                .replace(reservedRe, replacement)
+                .replace(windowsReservedRe, replacement)
+                .replace(windowsTrailingRe, replacement);
             return truncate(sanitized, 255);
         }
     };

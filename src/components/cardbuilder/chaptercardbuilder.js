@@ -1,12 +1,20 @@
 define(['datetime', 'imageLoader', 'connectionManager', 'layoutManager', 'browser'], function (datetime, imageLoader, connectionManager, layoutManager, browser) {
     'use strict';
 
+    var enableFocusTransform = !browser.slow && !browser.edge;
+
     function buildChapterCardsHtml(item, chapters, options) {
+
+        // TODO move card creation code to Card component
 
         var className = 'card itemAction chapterCard';
 
-        if (layoutManager.tv && (browser.animate || browser.edge)) {
-            className += ' card-focusscale';
+        if (layoutManager.tv) {
+            className += ' show-focus';
+
+            if (enableFocusTransform) {
+                className += ' show-animation';
+            }
         }
 
         var mediaStreams = ((item.MediaSources || [])[0] || {}).MediaStreams || [];
@@ -60,7 +68,7 @@ define(['datetime', 'imageLoader', 'connectionManager', 'layoutManager', 'browse
 
             return apiClient.getScaledImageUrl(item.Id, {
 
-                maxWidth: maxWidth,
+                maxWidth: maxWidth * 2,
                 tag: chapter.ImageTag,
                 type: "Chapter",
                 index: index
@@ -82,7 +90,7 @@ define(['datetime', 'imageLoader', 'connectionManager', 'layoutManager', 'browse
         var cardImageContainer = imgUrl ? ('<div class="' + cardImageContainerClass + ' lazy" data-src="' + imgUrl + '">') : ('<div class="' + cardImageContainerClass + '">');
 
         if (!imgUrl) {
-            cardImageContainer += '<i class="md-icon cardImageIcon">local_movies</i>';
+            cardImageContainer += '<i class="material-icons cardImageIcon local_movies"></i>';
         }
 
         var nameHtml = '';
@@ -91,19 +99,6 @@ define(['datetime', 'imageLoader', 'connectionManager', 'layoutManager', 'browse
 
         var cardBoxCssClass = 'cardBox';
         var cardScalableClass = 'cardScalable';
-
-        if (layoutManager.tv) {
-            var enableFocusTransfrom = !browser.slow && !browser.edge;
-
-            cardScalableClass += ' card-focuscontent';
-
-            if (enableFocusTransfrom) {
-                cardBoxCssClass += ' cardBox-focustransform cardBox-withfocuscontent';
-            } else {
-                cardBoxCssClass += ' cardBox-withfocuscontent-large';
-                cardScalableClass += ' card-focuscontent-large';
-            }
-        }
 
         var html = '<button type="button" class="' + className + '"' + dataAttributes + '><div class="' + cardBoxCssClass + '"><div class="' + cardScalableClass + '"><div class="cardPadder-' + shape + '"></div>' + cardImageContainer + '</div><div class="innerCardFooter">' + nameHtml + '</div></div></div></button>';
 

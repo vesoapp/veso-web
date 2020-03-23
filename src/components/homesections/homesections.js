@@ -1,4 +1,4 @@
-define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'layoutManager', 'imageLoader', 'globalize', 'itemShortcuts', 'itemHelper', 'appRouter', 'scripts/imagehelper','paper-icon-button-light', 'emby-itemscontainer', 'emby-scroller', 'emby-button', 'css!./homesections'], function (connectionManager, cardBuilder, appSettings, dom, appHost, layoutManager, imageLoader, globalize, itemShortcuts, itemHelper, appRouter, imageHelper) {
+define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'layoutManager', 'imageLoader', 'globalize', 'itemShortcuts', 'itemHelper', 'appRouter', 'scripts/imagehelper', 'paper-icon-button-light', 'emby-itemscontainer', 'emby-scroller', 'emby-button', 'css!./homesections'], function (connectionManager, cardBuilder, appSettings, dom, appHost, layoutManager, imageLoader, globalize, itemShortcuts, itemHelper, appRouter, imageHelper) {
     'use strict';
 
     function getDefaultSection(index) {
@@ -40,26 +40,48 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
         return getUserViews(apiClient, user.Id).then(function (userViews) {
             var html = '';
 
-            var sectionCount = 7;
-            for (var i = 0; i < sectionCount; i++) {
-                html += '<div class="verticalSection section' + i + '"></div>';
-            }
+            if (userViews.length) {
+                var sectionCount = 7;
+                for (var i = 0; i < sectionCount; i++) {
+                    html += '<div class="verticalSection section' + i + '"></div>';
+                }
 
-            elem.innerHTML = html;
-            elem.classList.add('homeSectionsContainer');
+                elem.innerHTML = html;
+                elem.classList.add('homeSectionsContainer');
 
-            var promises = [];
-            var sections = getAllSectionsToShow(userSettings, sectionCount);
-            for (var i = 0; i < sections.length; i++) {
-                promises.push(loadSection(elem, apiClient, user, userSettings, userViews, sections, i));
-            }
+                var promises = [];
+                var sections = getAllSectionsToShow(userSettings, sectionCount);
+                for (var i = 0; i < sections.length; i++) {
+                    promises.push(loadSection(elem, apiClient, user, userSettings, userViews, sections, i));
+                }
 
-            return Promise.all(promises).then(function () {
-                return resume(elem, {
-                    refresh: true,
-                    returnPromise: false
+                return Promise.all(promises).then(function () {
+                    return resume(elem, {
+                        refresh: true,
+                        returnPromise: false
+                    });
                 });
-            });
+            } else {
+                var noLibDescription;
+                if (user['Policy'] && user['Policy']['IsAdministrator']) {
+                    noLibDescription = Globalize.translate("NoCreatedLibraries", '<a id="button-createLibrary" class="button-link">', '</a>')
+                } else {
+                    noLibDescription = Globalize.translate("AskAdminToCreateLibrary");
+                }
+
+                html += '<div class="centerMessage padded-left padded-right">';
+                html += '<h2>' + Globalize.translate("MessageNothingHere") + '</h2>';
+                html += '<p>' + noLibDescription + '</p>'
+                html += '</div>';
+                elem.innerHTML = html;
+
+                var createNowLink = elem.querySelector("#button-createLibrary")
+                if (createNowLink) {
+                    createNowLink.addEventListener("click", function () {
+                        Dashboard.navigate("library.html");
+                    });
+                }
+            }
         });
     }
 
@@ -83,7 +105,8 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
 
     function resume(elem, options) {
         var elems = elem.querySelectorAll('.itemsContainer');
-        var i, length;
+        var i;
+        var length;
         var promises = [];
 
         for (i = 0, length = elems.length; i < length; i++) {
@@ -160,7 +183,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
         for (var i = 0, length = items.length; i < length; i++) {
             var item = items[i];
             var icon = imageHelper.getLibraryIcon(item.CollectionType);
-            html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl(item) + '" class="raised homeLibraryButton"><i class="md-icon homeLibraryIcon">' + icon + '</i><span class="homeLibraryText">' + item.Name + '</span></a>';
+            html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl(item) + '" class="raised homeLibraryButton"><i class="material-icons homeLibraryIcon">' + icon + '</i><span class="homeLibraryText">' + item.Name + '</span></a>';
         }
 
         html += '</div>';
@@ -259,7 +282,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
             html += '<h2 class="sectionTitle sectionTitle-cards">';
             html += globalize.translate('LatestFromLibrary', parent.Name);
             html += '</h2>';
-            html += '<i class="md-icon">&#xE5CC;</i>';
+            html += '<i class="material-icons chevron_right"></i>';
             html += '</a>';
         } else {
             html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate('LatestFromLibrary', parent.Name) + '</h2>';
@@ -567,7 +590,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
 
                 html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
                     serverId: apiClient.serverId(),
-					section: 'programs'
+                    section: 'programs'
                 }) + '" class="raised"><span>' + globalize.translate('Programs') + '</span></a>';
 
                 html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
@@ -607,7 +630,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
                     html += '<h2 class="sectionTitle sectionTitle-cards">';
                     html += globalize.translate('HeaderOnNow');
                     html += '</h2>';
-                    html += '<i class="md-icon">&#xE5CC;</i>';
+                    html += '<i class="material-icons chevron_right"></i>';
                     html += '</a>';
 
                 } else {
@@ -682,7 +705,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
             html += '<h2 class="sectionTitle sectionTitle-cards">';
             html += globalize.translate('HeaderNextUp');
             html += '</h2>';
-            html += '<i class="md-icon">&#xE5CC;</i>';
+            html += '<i class="material-icons chevron_right"></i>';
             html += '</a>';
         } else {
             html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate('HeaderNextUp') + '</h2>';

@@ -18,8 +18,7 @@ define(['appRouter', 'focusManager', 'browser', 'layoutManager', 'inputManager',
         if (layoutManager.tv) {
             if (dlg.classList.contains('scrollX')) {
                 centerFocus(dlg, true, false);
-            }
-            else if (dlg.classList.contains('smoothScrollY')) {
+            } else if (dlg.classList.contains('smoothScrollY')) {
                 centerFocus(dlg, false, false);
             }
         }
@@ -33,7 +32,7 @@ define(['appRouter', 'focusManager', 'browser', 'layoutManager', 'inputManager',
             try {
                 parentNode.removeChild(elem);
             } catch (err) {
-                console.log('Error removing dialog element: ' + err);
+                console.error('error removing dialog element: ' + err);
             }
         }
     }
@@ -168,8 +167,8 @@ define(['appRouter', 'focusManager', 'browser', 'layoutManager', 'inputManager',
                 close(dlg);
             }
         }, {
-                passive: true
-            });
+            passive: true
+        });
     }
 
     function isHistoryEnabled(dlg) {
@@ -243,8 +242,14 @@ define(['appRouter', 'focusManager', 'browser', 'layoutManager', 'inputManager',
 
         var onAnimationFinish = function () {
             focusManager.pushScope(dlg);
+
             if (dlg.getAttribute('data-autofocus') === 'true') {
                 focusManager.autoFocus(dlg);
+            }
+
+            if (document.activeElement && !dlg.contains(document.activeElement)) {
+                // Blur foreign element to prevent triggering of an action from the previous scope
+                document.activeElement.blur();
             }
         };
 
@@ -433,8 +438,7 @@ define(['appRouter', 'focusManager', 'browser', 'layoutManager', 'inputManager',
             if (layoutManager.tv) {
                 centerFocus(dlg, true, true);
             }
-        }
-        else if (options.scrollY !== false) {
+        } else if (options.scrollY !== false) {
             dlg.classList.add('smoothScrollY');
 
             if (layoutManager.tv) {

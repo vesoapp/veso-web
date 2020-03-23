@@ -88,27 +88,27 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
         menuItems.push({
             name: globalize.translate("ButtonEditImages"),
             id: "editimages",
-            ironIcon: "photo"
+            icon: "photo"
         });
         menuItems.push({
             name: globalize.translate("ManageLibrary"),
             id: "edit",
-            ironIcon: "folder_open"
+            icon: "folder_open"
         });
         menuItems.push({
             name: globalize.translate("ButtonRemove"),
             id: "delete",
-            ironIcon: "remove"
+            icon: "delete"
         });
         menuItems.push({
             name: globalize.translate("ButtonRename"),
             id: "rename",
-            ironIcon: "mode_edit"
+            icon: "mode_edit"
         });
         menuItems.push({
             name: globalize.translate("ScanLibrary"),
             id: "refresh",
-            ironIcon: "refresh"
+            icon: "refresh"
         });
 
         require(["actionsheet"], function (actionsheet) {
@@ -213,19 +213,19 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
         }, {
             name: globalize.translate("FolderTypeMovies"),
             value: "movies",
-            message: getLink("MovieLibraryHelp", "https://docs.veso.tv/general/server/media/movies.html")
+            message: getLink("MovieLibraryHelp", "https://docs.jellyfin.org/general/server/media/movies.html")
         }, {
             name: globalize.translate("FolderTypeMusic"),
             value: "music",
-            message: getLink("MusicLibraryHelp", "https://docs.veso.tv/general/server/media/music.html")
+            message: getLink("MusicLibraryHelp", "https://docs.jellyfin.org/general/server/media/music.html")
         }, {
             name: globalize.translate("FolderTypeTvShows"),
             value: "tvshows",
-            message: getLink("TvLibraryHelp", "https://docs.veso.tv/general/server/media/shows.html")
+            message: getLink("TvLibraryHelp", "https://docs.jellyfin.org/general/server/media/shows.html")
         }, {
             name: globalize.translate("FolderTypeBooks"),
             value: "books",
-            message: getLink("BookLibraryHelp", "https://docs.veso.tv/general/server/media/books.html")
+            message: getLink("BookLibraryHelp", "https://docs.jellyfin.org/general/server/media/books.html")
         }, {
             name: globalize.translate("OptionHomeVideos"),
             value: "homevideos"
@@ -256,6 +256,7 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
 
         if (virtualFolder.PrimaryImageItemId) {
             imgUrl = ApiClient.getScaledImageUrl(virtualFolder.PrimaryImageItemId, {
+                maxWidth: Math.round(dom.getScreenWidth() * 0.40),
                 type: "Primary"
             });
         }
@@ -267,7 +268,7 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
             hasCardImageContainer = true;
         } else if (!virtualFolder.showNameWithIcon) {
             html += '<div class="cardImageContainer editLibrary" style="cursor:pointer;">';
-            html += '<i class="cardImageIcon-small md-icon">' + (virtualFolder.icon || imageHelper.getLibraryIcon(virtualFolder.CollectionType)) + "</i>";
+            html += '<i class="cardImageIcon-small material-icons">' + (virtualFolder.icon || imageHelper.getLibraryIcon(virtualFolder.CollectionType)) + "</i>";
             hasCardImageContainer = true;
         }
 
@@ -280,7 +281,7 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
 
         if (!imgUrl && virtualFolder.showNameWithIcon) {
             html += '<h3 class="cardImageContainer addLibrary" style="position:absolute;top:0;left:0;right:0;bottom:0;cursor:pointer;flex-direction:column;">';
-            html += '<i class="cardImageIcon-small md-icon">' + (virtualFolder.icon || imageHelper.getLibraryIcon(virtualFolder.CollectionType)) + "</i>";
+            html += '<i class="cardImageIcon-small material-icons">' + (virtualFolder.icon || imageHelper.getLibraryIcon(virtualFolder.CollectionType)) + "</i>";
 
             if (virtualFolder.showNameWithIcon) {
                 html += '<div style="margin:1em 0;position:width:100%;">';
@@ -297,7 +298,7 @@ define(["jQuery", "apphost", "scripts/taskbutton", "loading", "libraryMenu", "gl
 
         if (virtualFolder.showMenu !== false) {
             html += '<div style="text-align:right; float:right;padding-top:5px;">';
-            html += '<button type="button" is="paper-icon-button-light" class="btnCardMenu autoSize"><i class="md-icon">&#xE5D3;</i></button>';
+            html += '<button type="button" is="paper-icon-button-light" class="btnCardMenu autoSize"><i class="material-icons more_horiz"></i></button>';
             html += "</div>";
         }
 

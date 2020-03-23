@@ -1,4 +1,4 @@
-define(["jQuery", "loading", "emby-checkbox", "emby-input", "listViewStyle", "paper-icon-button-light"], function ($__q, loading) {
+define(["jQuery", "loading", "emby-checkbox", "emby-input", "listViewStyle", "paper-icon-button-light"], function ($, loading) {
     "use strict";
 
     return function (page, providerId, options) {
@@ -69,7 +69,7 @@ define(["jQuery", "loading", "emby-checkbox", "emby-input", "listViewStyle", "pa
                 info.NewsCategories = getCategories(page.querySelector(".txtNews"));
                 info.SportsCategories = getCategories(page.querySelector(".txtSports"));
                 info.EnableAllTuners = page.querySelector(".chkAllTuners").checked;
-                info.EnabledTuners = info.EnableAllTuners ? [] : $__q(".chkTuner", page).get().filter(function (tuner) {
+                info.EnabledTuners = info.EnableAllTuners ? [] : $(".chkTuner", page).get().filter(function (tuner) {
                     return tuner.checked;
                 }).map(function (tuner) {
                     return tuner.getAttribute("data-id");
@@ -135,8 +135,8 @@ define(["jQuery", "loading", "emby-checkbox", "emby-input", "listViewStyle", "pa
             page.querySelector(".tunerList").innerHTML = html;
         }
 
-        function onSelectPathClick(e__u) {
-            var page = $__q(e__u.target).parents(".xmltvForm")[0];
+        function onSelectPathClick(e) {
+            var page = $(e.target).parents(".xmltvForm")[0];
 
             require(["directorybrowser"], function (directoryBrowser) {
                 var picker = new directoryBrowser();
@@ -163,19 +163,15 @@ define(["jQuery", "loading", "emby-checkbox", "emby-input", "listViewStyle", "pa
         self.init = function () {
             options = options || {};
 
-            if (false !== options.showCancelButton) {
-                page.querySelector(".btnCancel").classList.remove("hide");
-            } else {
-                page.querySelector(".btnCancel").classList.add("hide");
-            }
+            // Only hide the buttons if explicitly set to false; default to showing if undefined or null
+            // FIXME: rename this option to clarify logic
+            var hideCancelButton = options.showCancelButton === false;
+            page.querySelector(".btnCancel").classList.toggle("hide", hideCancelButton);
 
-            if (false !== options.showSubmitButton) {
-                page.querySelector(".btnSubmitListings").classList.remove("hide");
-            } else {
-                page.querySelector(".btnSubmitListings").classList.add("hide");
-            }
+            var hideSubmitButton = options.showSubmitButton === false;
+            page.querySelector(".btnSubmitListings").classList.toggle("hide", hideSubmitButton);
 
-            $__q("form", page).on("submit", function () {
+            $("form", page).on("submit", function () {
                 submitListingsForm();
                 return false;
             });

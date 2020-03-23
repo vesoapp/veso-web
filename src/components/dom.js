@@ -63,12 +63,15 @@ define([], function () {
     var supportsCaptureOption = false;
     try {
         var opts = Object.defineProperty({}, 'capture', {
+            // eslint-disable-next-line getter-return
             get: function () {
                 supportsCaptureOption = true;
             }
         });
         window.addEventListener("test", null, opts);
-    } catch (e) { }
+    } catch (e) {
+        console.debug('error checking capture support');
+    }
 
     function addEventListenerWithOptions(target, type, handler, options) {
         var optionsOrCapture = options;
@@ -109,6 +112,22 @@ define([], function () {
         return windowSize;
     }
 
+    var standardWidths = [480, 720, 1280, 1440, 1920, 2560, 3840, 5120, 7680];
+    function getScreenWidth() {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        if (height > width) {
+            width = height * (16.0 / 9.0);
+        }
+
+        var closest = standardWidths.sort(function (a, b) {
+            return Math.abs(width - a) - Math.abs(width - b);
+        })[0];
+
+        return closest;
+    }
+
     var _animationEvent;
     function whichAnimationEvent() {
 
@@ -116,8 +135,8 @@ define([], function () {
             return _animationEvent;
         }
 
-        var t,
-            el = document.createElement("div");
+        var t;
+        var el = document.createElement("div");
         var animations = {
             "animation": "animationend",
             "OAnimation": "oAnimationEnd",
@@ -146,8 +165,8 @@ define([], function () {
             return _transitionEvent;
         }
 
-        var t,
-            el = document.createElement("div");
+        var t;
+        var el = document.createElement("div");
         var transitions = {
             "transition": "transitionend",
             "OTransition": "oTransitionEnd",
@@ -172,6 +191,7 @@ define([], function () {
         addEventListener: addEventListenerWithOptions,
         removeEventListener: removeEventListenerWithOptions,
         getWindowSize: getWindowSize,
+        getScreenWidth: getScreenWidth,
         whichTransitionEvent: whichTransitionEvent,
         whichAnimationEvent: whichAnimationEvent,
         whichAnimationCancelEvent: whichAnimationCancelEvent

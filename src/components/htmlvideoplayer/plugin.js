@@ -1,5 +1,6 @@
-define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackManager', 'appRouter', 'appSettings', 'connectionManager', 'htmlMediaHelper', 'itemHelper', 'fullscreenManager'], function (browser, require, events, appHost, loading, dom, playbackManager, appRouter, appSettings, connectionManager, htmlMediaHelper, itemHelper, fullscreenManager) {
+define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackManager', 'appRouter', 'appSettings', 'connectionManager', 'htmlMediaHelper', 'itemHelper', 'fullscreenManager', 'globalize'], function (browser, require, events, appHost, loading, dom, playbackManager, appRouter, appSettings, connectionManager, htmlMediaHelper, itemHelper, fullscreenManager, globalize) {
     "use strict";
+    /* globals cast */
 
     var mediaManager;
 
@@ -11,7 +12,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             try {
                 parentNode.removeChild(elem);
             } catch (err) {
-                console.log('Error removing dialog element: ' + err);
+                console.error('error removing dialog element: ' + err);
             }
         }
     }
@@ -25,6 +26,14 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
         // For now, until ready
         return _supportsTextTracks;
+    }
+
+    function supportsCanvas() {
+        return !!document.createElement('canvas').getContext;
+    }
+
+    function supportsWebWorkers() {
+        return !!window.Worker;
     }
 
     function enableNativeTrackSupport(currentSrc, track) {
@@ -87,23 +96,19 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
     }
 
     function getMediaStreamAudioTracks(mediaSource) {
-
         return mediaSource.MediaStreams.filter(function (s) {
             return s.Type === 'Audio';
         });
     }
 
     function getMediaStreamTextTracks(mediaSource) {
-
         return mediaSource.MediaStreams.filter(function (s) {
             return s.Type === 'Subtitle';
         });
     }
 
     function zoomIn(elem) {
-
         return new Promise(function (resolve, reject) {
-
             var duration = 240;
             elem.style.animation = 'htmlvideoplayer-zoomin ' + duration + 'ms ease-in normal';
             dom.addEventListener(elem, dom.whichAnimationEvent(), resolve, {
@@ -185,10 +190,11 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
         var lastCustomTrackMs = 0;
         var currentClock;
+        var currentSubtitlesOctopus;
         var currentAssRenderer;
         var customTrackIndex = -1;
 
-        var showTrackOffset = false;
+        var showTrackOffset;
         var currentTrackOffset;
 
         var videoSubtitlesElem;
@@ -237,7 +243,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
                 loading.show();
 
-                console.log('prefetching hls playlist: ' + hlsPlaylistUrl);
+                console.debug('prefetching hls playlist: ' + hlsPlaylistUrl);
 
                 return connectionManager.getApiClient(item.ServerId).ajax({
 
@@ -246,7 +252,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
                 }).then(function () {
 
-                    console.log('completed prefetching hls playlist: ' + hlsPlaylistUrl);
+                    console.debug('completed prefetching hls playlist: ' + hlsPlaylistUrl);
 
                     loading.hide();
                     streamInfo.url = hlsPlaylistUrl;
@@ -255,7 +261,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
                 }, function () {
 
-                    console.log('error prefetching hls playlist: ' + hlsPlaylistUrl);
+                    console.error('error prefetching hls playlist: ' + hlsPlaylistUrl);
 
                     loading.hide();
                     return Promise.resolve();
@@ -280,6 +286,8 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
             self._currentTime = null;
 
+            self.resetSubtitleOffset();
+
             return createMediaElement(options).then(function (elem) {
 
                 return updateVideoUrl(options, options.mediaSource).then(function () {
@@ -298,10 +306,10 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         type: 'flv',
                         url: url
                     },
-                        {
-                            seekType: 'range',
-                            lazyLoad: false
-                        });
+                    {
+                        seekType: 'range',
+                        lazyLoad: false
+                    });
 
                     flvPlayer.attachMediaElement(elem);
                     flvPlayer.load();
@@ -350,6 +358,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             return new Promise(function (resolve, reject) {
 
                 require(['shaka'], function () {
+                    /* globals shaka */
 
                     var player = new shaka.Player(elem);
 
@@ -401,7 +410,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             lrd.media.streamType = cast.receiver.media.StreamType.OTHER;
             lrd.media.customData = options;
 
-            console.log('loading media url into mediaManager');
+            console.debug('loading media url into media manager');
 
             try {
                 mediaManager.load(lrd);
@@ -411,7 +420,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 return Promise.resolve();
             } catch (err) {
 
-                console.log('mediaManager error: ' + err);
+                console.debug('media manager error: ' + err);
                 return Promise.reject();
             }
         }
@@ -420,7 +429,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
         function onMediaManagerLoadMedia(event) {
 
             if (self._castPlayer) {
-                self._castPlayer.unload();    // Must unload before starting again.
+                self._castPlayer.unload(); // Must unload before starting again.
             }
             self._castPlayer = null;
 
@@ -453,11 +462,11 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 protocol = cast.player.api.CreateSmoothStreamingProtocol(host);
             }
 
-            console.log('loading playback url: ' + url);
-            console.log('contentType: ' + contentType);
+            console.debug('loading playback url: ' + url);
+            console.debug('content type: ' + contentType);
 
             host.onError = function (errorCode) {
-                console.log("Fatal Error - " + errorCode);
+                console.error("fatal Error - " + errorCode);
             };
 
             mediaElement.autoplay = false;
@@ -492,7 +501,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             elem.removeEventListener('error', onError);
 
             var val = options.url;
-            console.log('playing url: ' + val);
+            console.debug('playing url: ' + val);
 
             // Convert to seconds
             var seconds = (options.playerStartPositionTicks || 0) / 10000000;
@@ -532,12 +541,8 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             } else*/ if (browser.chromecast && val.indexOf('.m3u8') !== -1 && options.mediaSource.RunTimeTicks) {
 
                 return setCurrentSrcChromecast(self, elem, options, val);
-            }
-
-            else if (htmlMediaHelper.enableHlsJsPlayer(options.mediaSource.RunTimeTicks, 'Video') && val.indexOf('.m3u8') !== -1) {
-                
+            } else if (htmlMediaHelper.enableHlsJsPlayer(options.mediaSource.RunTimeTicks, 'Video') && val.indexOf('.m3u8') !== -1) {
                 return setSrcWithHlsJs(self, elem, options, val);
-
             } else if (options.playMethod !== 'Transcode' && options.mediaSource.Container === 'flv') {
 
                 return setSrcWithFlvJs(self, elem, options, val);
@@ -560,6 +565,11 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             setCurrentTrackElement(index);
         };
 
+        self.resetSubtitleOffset = function() {
+            currentTrackOffset = 0;
+            showTrackOffset = false;
+        }
+
         self.enableShowingSubtitleOffset = function() {
             showTrackOffset = true;
         }
@@ -572,36 +582,36 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             return showTrackOffset;
         }
 
+        function getTextTrack() {
+            var videoElement = self._mediaElement;
+            if (videoElement) {
+                return Array.from(videoElement.textTracks)
+                    .find(function(trackElement) {
+                        // get showing .vtt textTack
+                        return trackElement.mode === 'showing';
+                    });
+            } else {
+                return null;
+            }
+        }
+
         self.setSubtitleOffset = function(offset) {
 
             var offsetValue = parseFloat(offset);
 
             // if .ass currently rendering
-            if (currentAssRenderer){
+            if (currentAssRenderer) {
                 updateCurrentTrackOffset(offsetValue);
             } else {
-                var videoElement = self._mediaElement;
-                var mediaStreamTextTracks = getMediaStreamTextTracks(self._currentPlayOptions.mediaSource);
-
-                Array.from(videoElement.textTracks)
-                    .filter(function(trackElement) {
-                    // get showing .vtt textTacks
-                    return trackElement.mode === 'showing';
-                })
-                .forEach(function(trackElement) {
-
-                    var track = customTrackIndex === -1 ? null : mediaStreamTextTracks.filter(function (t) {
-                        return t.Index === customTrackIndex;
-                    })[0];
-
-                    if (track) {
-                        offsetValue = updateCurrentTrackOffset(offsetValue);
-                        setVttSubtitleOffset(trackElement, offsetValue);
-                    } else {
-                        console.log("No available track, cannot apply offset : " + offsetValue);
-                    }
-
-                });
+                var trackElement = getTextTrack();
+                // if .vtt currently rendering
+                if (trackElement) {
+                    setTextTrackSubtitleOffset(trackElement, offsetValue);
+                } else if (currentTrackEvents) {
+                    setTrackEventsSubtitleOffset(currentTrackEvents, offsetValue);
+                } else {
+                    console.debug("No available track, cannot apply offset: ", offsetValue);
+                }
             }
         };
 
@@ -609,7 +619,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
             var relativeOffset = offsetValue;
             var newTrackOffset = offsetValue;
-            if(currentTrackOffset){
+            if (currentTrackOffset) {
                 relativeOffset -= currentTrackOffset;
             }
             currentTrackOffset = newTrackOffset;
@@ -617,16 +627,27 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             return relativeOffset;
         }
 
-        function setVttSubtitleOffset(currentTrack, offsetValue) {
+        function setTextTrackSubtitleOffset(currentTrack, offsetValue) {
 
-            if(currentTrack.cues) {
+            if (currentTrack.cues) {
+                offsetValue = updateCurrentTrackOffset(offsetValue);
                 Array.from(currentTrack.cues)
-                .forEach(function(cue) {
-                    cue.startTime -= offsetValue;
-                    cue.endTime -= offsetValue;
+                    .forEach(function(cue) {
+                        cue.startTime -= offsetValue;
+                        cue.endTime -= offsetValue;
+                    });
+            }
+        }
+
+        function setTrackEventsSubtitleOffset(trackEvents, offsetValue) {
+
+            if (Array.isArray(trackEvents)) {
+                offsetValue = updateCurrentTrackOffset(offsetValue);
+                trackEvents.forEach(function(trackEvent) {
+                    trackEvent.StartPositionTicks -= offsetValue;
+                    trackEvent.EndPositionTicks -= offsetValue;
                 });
             }
-
         }
 
         self.getSubtitleOffset = function() {
@@ -649,7 +670,6 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             var profiles = deviceProfile.DirectPlayProfiles || [];
 
             return profiles.filter(function (p) {
-
 
                 if (p.Type === 'Video') {
 
@@ -683,7 +703,9 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             }
 
             var audioIndex = -1;
-            var i, length, stream;
+            var i;
+            var length;
+            var stream;
 
             for (i = 0, length = streams.length; i < length; i++) {
                 stream = streams[i];
@@ -707,22 +729,18 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             // https://msdn.microsoft.com/en-us/library/hh772507(v=vs.85).aspx
 
             var elemAudioTracks = elem.audioTracks || [];
-            console.log('found ' + elemAudioTracks.length + ' audio tracks');
+            console.debug('found ' + elemAudioTracks.length + ' audio tracks');
 
             for (i = 0, length = elemAudioTracks.length; i < length; i++) {
 
                 if (audioIndex === i) {
-                    console.log('setting audio track ' + i + ' to enabled');
+                    console.debug('setting audio track ' + i + ' to enabled');
                     elemAudioTracks[i].enabled = true;
                 } else {
-                    console.log('setting audio track ' + i + ' to disabled');
+                    console.debug('setting audio track ' + i + ' to disabled');
                     elemAudioTracks[i].enabled = false;
                 }
             }
-
-            setTimeout(function () {
-                elem.currentTime = elem.currentTime;
-            }, 100);
         };
 
         self.stop = function (destroyPlayer) {
@@ -891,7 +909,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
         function onError() {
             var errorCode = this.error ? (this.error.code || 0) : 0;
             var errorMessage = this.error ? (this.error.message || '') : '';
-            console.log('Media element error: ' + errorCode.toString() + ' ' + errorMessage);
+            console.error('media element error: ' + errorCode.toString() + ' ' + errorMessage);
 
             var type;
 
@@ -958,6 +976,12 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             currentClock = null;
             self._currentAspectRatio = null;
 
+            var octopus = currentSubtitlesOctopus;
+            if (octopus) {
+                octopus.dispose();
+            }
+            currentSubtitlesOctopus = null;
+
             var renderer = currentAssRenderer;
             if (renderer) {
                 renderer.setEnabled(false);
@@ -1014,12 +1038,32 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 return;
             }
 
+            self.resetSubtitleOffset();
             var item = self._currentPlayOptions.item;
 
             destroyCustomTrack(videoElement);
             customTrackIndex = track.Index;
             renderTracksEvents(videoElement, track, item);
             lastCustomTrackMs = 0;
+        }
+
+        function renderWithSubtitlesOctopus(videoElement, track, item) {
+            var attachments = self._currentPlayOptions.mediaSource.MediaAttachments || [];
+            var options = {
+                video: videoElement,
+                subUrl: getTextTrackUrl(track, item),
+                fonts: attachments.map(function (i) {
+                    return i.DeliveryUrl;
+                }),
+                workerUrl: appRouter.baseUrl() + "/libraries/subtitles-octopus-worker.js",
+                legacyWorkerUrl: appRouter.baseUrl() + "/libraries/subtitles-octopus-worker-legacy.js",
+                onError: function() {
+                    htmlMediaHelper.onErrorInternal(self, 'mediadecodeerror');
+                }
+            };
+            require(['JavascriptSubtitlesOctopus'], function(SubtitlesOctopus) {
+                currentSubtitlesOctopus = new SubtitlesOctopus(options);
+            });
         }
 
         function renderWithLibjass(videoElement, track, item) {
@@ -1029,8 +1073,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             if (browser.ps4) {
                 // Text outlines are not rendering very well
                 rendererSettings.enableSvg = false;
-            }
-            else if (browser.edge || browser.msie) {
+            } else if (browser.edge || browser.msie) {
                 // svg not rendering at all
                 rendererSettings.enableSvg = false;
             }
@@ -1069,6 +1112,16 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             });
         }
 
+        function renderSsaAss(videoElement, track, item) {
+            if (supportsCanvas() && supportsWebWorkers()) {
+                console.debug('rendering subtitles with SubtitlesOctopus');
+                renderWithSubtitlesOctopus(videoElement, track, item);
+            } else {
+                console.debug('rendering subtitles with libjass');
+                renderWithLibjass(videoElement, track, item);
+            }
+        }
+
         function onVideoResize() {
             if (browser.iOS) {
                 // the new sizes will be delayed for about 500ms with wkwebview
@@ -1084,7 +1137,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 var videoElement = self._mediaElement;
                 var width = videoElement.offsetWidth;
                 var height = videoElement.offsetHeight;
-                console.log('videoElement resized: ' + width + 'x' + height);
+                console.debug('videoElement resized: ' + width + 'x' + height);
                 renderer.resize(width, height, 0, 0);
             }
         }
@@ -1179,7 +1232,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 var format = (track.Codec || '').toLowerCase();
                 if (format === 'ssa' || format === 'ass') {
                     // libjass is needed here
-                    renderWithLibjass(videoElement, track, item);
+                    renderSsaAss(videoElement, track, item);
                     return;
                 }
 
@@ -1201,7 +1254,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         trackElement.removeCue(trackElement.cues[0]);
                     }
                 } catch (e) {
-                    console.log('Error removing cue from textTrack');
+                    console.error('error removing cue from textTrack');
                 }
 
                 trackElement.mode = 'disabled';
@@ -1215,7 +1268,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             fetchSubtitles(track, item).then(function (data) {
 
                 // show in ui
-                console.log('downloaded ' + data.TrackEvents.length + ' track events');
+                console.debug('downloaded ' + data.TrackEvents.length + ' track events');
                 // add some cues to show the text
                 // in safari, the cues need to be added before setting the track mode to showing
                 data.TrackEvents.forEach(function (trackEvent) {
@@ -1232,7 +1285,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
         function updateSubtitleText(timeMs) {
 
             // handle offset for ass tracks
-            if(currentTrackOffset) {
+            if (currentTrackOffset) {
                 timeMs += (currentTrackOffset * 1000);
             }
 
@@ -1241,7 +1294,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 try {
                     clock.seek(timeMs / 1000);
                 } catch (err) {
-                    console.log('Error in libjass: ' + err);
+                    console.error('error in libjass: ' + err);
                 }
                 return;
             }
@@ -1274,7 +1327,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
         function setCurrentTrackElement(streamIndex) {
 
-            console.log('Setting new text track index to: ' + streamIndex);
+            console.debug('setting new text track index to: ' + streamIndex);
 
             var mediaStreamTextTracks = getMediaStreamTextTracks(self._currentPlayOptions.mediaSource);
 
@@ -1292,38 +1345,6 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                 // null these out to disable the player's native display (handled below)
                 streamIndex = -1;
                 track = null;
-            }
-        }
-
-        function updateTextStreamUrls(startPositionTicks) {
-
-            if (!supportsTextTracks()) {
-                return;
-            }
-
-            var allTracks = self._mediaElement.textTracks; // get list of tracks
-            var i;
-            var track;
-
-            for (i = 0; i < allTracks.length; i++) {
-
-                track = allTracks[i];
-
-                // This throws an error in IE, but is fine in chrome
-                // In IE it's not necessary anyway because changing the src seems to be enough
-                try {
-                    while (track.cues.length) {
-                        track.removeCue(track.cues[0]);
-                    }
-                } catch (e) {
-                    console.log('Error removing cue from textTrack');
-                }
-            }
-
-            var tracks = self._mediaElement.querySelectorAll('track');
-            for (i = 0; i < tracks.length; i++) {
-                track = tracks[i];
-                track.src = replaceQueryString(track.src, 'startPositionTicks', startPositionTicks);
             }
         }
 
@@ -1350,7 +1371,6 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         dlg.classList.add('videoPlayerContainer');
 
                         if (options.backdropUrl) {
-
                             dlg.classList.add('videoPlayerContainer-withBackdrop');
                             dlg.style.backgroundImage = "url('" + options.backdropUrl + "')";
                         }
@@ -1359,11 +1379,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                             dlg.classList.add('videoPlayerContainer-onTop');
                         }
 
-                        // playsinline new for iOS 10
-                        // https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html
-
                         var html = '';
-
                         var cssClass = 'htmlvideoplayer';
 
                         if (!browser.chromecast) {
@@ -1374,7 +1390,6 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         if (!appHost.supports('htmlvideoautoplay')) {
                             html += '<video class="' + cssClass + '" preload="metadata" autoplay="autoplay" controls="controls" webkit-playsinline playsinline>';
                         } else {
-
                             // Chrome 35 won't play with preload none
                             html += '<video class="' + cssClass + '" preload="metadata" autoplay="autoplay" webkit-playsinline playsinline>';
                         }
@@ -1399,7 +1414,6 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         self._mediaElement = videoElement;
 
                         if (mediaManager) {
-
                             if (!mediaManager.embyInit) {
                                 initMediaManager();
                                 mediaManager.embyInit = true;
@@ -1415,9 +1429,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
                         } else {
                             resolve(videoElement);
                         }
-
                     });
-
                 } else {
                     if (options.backdropUrl) {
                         dlg.classList.add('videoPlayerContainer-withBackdrop');
@@ -1480,7 +1492,12 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             }
         }
 
+        if (browser.safari || browser.iOS || browser.iPad) {
+            list.push('AirPlay')
+        }
+
         list.push('SetBrightness');
+        list.push("SetAspectRatio")
 
         return list;
     }
@@ -1541,7 +1558,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
     };
 
     function onPictureInPictureError(err) {
-        console.log('Picture in picture error: ' + err.toString());
+        console.error('Picture in picture error: ' + err.toString());
     }
 
     HtmlVideoPlayer.prototype.setPictureInPictureEnabled = function (isEnabled) {
@@ -1561,8 +1578,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
             this.isPip = isEnabled;
             if (isEnabled) {
                 Windows.UI.ViewManagement.ApplicationView.getForCurrentView().tryEnterViewModeAsync(Windows.UI.ViewManagement.ApplicationViewMode.compactOverlay);
-            }
-            else {
+            } else {
                 Windows.UI.ViewManagement.ApplicationView.getForCurrentView().tryEnterViewModeAsync(Windows.UI.ViewManagement.ApplicationViewMode.default);
             }
         } else {
@@ -1586,6 +1602,35 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
         }
 
         return false;
+    };
+
+    HtmlVideoPlayer.prototype.isAirPlayEnabled = function () {
+
+        if (document.AirPlayEnabled) {
+            return document.AirplayElement ? true : false;
+        }
+
+        return false;
+    };
+
+    HtmlVideoPlayer.prototype.setAirPlayEnabled = function (isEnabled) {
+        var video = this._mediaElement;
+
+        if (document.AirPlayEnabled) {
+            if (video) {
+                if (isEnabled) {
+                    video.requestAirPlay().catch(function(err) {
+                        console.error("Error requesting AirPlay", err)
+                    });
+                } else {
+                    document.exitAirPLay().catch(function(err) {
+                        console.error("Error exiting AirPlay", err)
+                    });
+                }
+            }
+        } else {
+            video.webkitShowPlaybackTargetPicker();
+        }
     };
 
     HtmlVideoPlayer.prototype.setBrightness = function (val) {
@@ -1709,19 +1754,40 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
     };
 
     HtmlVideoPlayer.prototype.setAspectRatio = function (val) {
-
+        var mediaElement = this._mediaElement;
+        if (mediaElement) {
+            if ("auto" === val) {
+                mediaElement.style.removeProperty("object-fit")
+            } else {
+                mediaElement.style["object-fit"] = val
+            }
+        }
+        this._currentAspectRatio = val
     };
 
     HtmlVideoPlayer.prototype.getAspectRatio = function () {
-        return this._currentAspectRatio;
+        return this._currentAspectRatio || "auto";
     };
 
     HtmlVideoPlayer.prototype.getSupportedAspectRatios = function () {
-        return [];
+        return [{
+            name: "Auto",
+            id: "auto"
+        }, {
+            name: "Cover",
+            id: "cover"
+        }, {
+            name: "Fill",
+            id: "fill"
+        }]
     };
 
     HtmlVideoPlayer.prototype.togglePictureInPicture = function () {
         return this.setPictureInPictureEnabled(!this.isPictureInPictureEnabled());
+    };
+
+    HtmlVideoPlayer.prototype.toggleAirPlay = function () {
+        return this.setAirPlayEnabled(!this.isAirPlayEnabled());
     };
 
     HtmlVideoPlayer.prototype.getBufferedRanges = function () {
@@ -1761,7 +1827,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
             if (protocol) {
                 mediaCategory.stats.push({
-                    label: 'Protocol:',
+                    label: globalize.translate("LabelProtocol"),
                     value: protocol
                 });
             }
@@ -1771,12 +1837,12 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
         if (this._hlsPlayer || this._shakaPlayer) {
             mediaCategory.stats.push({
-                label: 'Stream type:',
+                label: globalize.translate("LabelStreamType"),
                 value: 'HLS'
             });
         } else {
             mediaCategory.stats.push({
-                label: 'Stream type:',
+                label: globalize.translate("LabelStreamType"),
                 value: 'Video'
             });
         }
@@ -1788,13 +1854,13 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
         categories.push(videoCategory);
 
         var rect = mediaElement.getBoundingClientRect ? mediaElement.getBoundingClientRect() : {};
-        var height = rect.height;
-        var width = rect.width;
+        var height = parseInt(rect.height);
+        var width = parseInt(rect.width);
 
         // Don't show player dimensions on smart TVs because the app UI could be lower resolution than the video and this causes users to think there is a problem
         if (width && height && !browser.tv) {
             videoCategory.stats.push({
-                label: 'Player dimensions:',
+                label: globalize.translate("LabelPlayerDimensions"),
                 value: width + 'x' + height
             });
         }
@@ -1804,7 +1870,7 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
         if (width && height) {
             videoCategory.stats.push({
-                label: 'Video resolution:',
+                label: globalize.translate("LabelVideoResolution"),
                 value: width + 'x' + height
             });
         }
@@ -1814,13 +1880,13 @@ define(['browser', 'require', 'events', 'apphost', 'loading', 'dom', 'playbackMa
 
             var droppedVideoFrames = playbackQuality.droppedVideoFrames || 0;
             videoCategory.stats.push({
-                label: 'Dropped frames:',
+                label: globalize.translate("LabelDroppedFrames"),
                 value: droppedVideoFrames
             });
 
             var corruptedVideoFrames = playbackQuality.corruptedVideoFrames || 0;
             videoCategory.stats.push({
-                label: 'Corrupted frames:',
+                label: globalize.translate("LabelCorruptedFrames"),
                 value: corruptedVideoFrames
             });
         }

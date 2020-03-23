@@ -3,10 +3,11 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
 
     function getCommands(options) {
         var item = options.item;
+        var user = options.user;
+
         var canPlay = playbackManager.canPlay(item);
         var restrictOptions = (browser.operaTv || browser.web0s) && !user.Policy.IsAdministrator;
 
-        var user = options.user;
         var commands = [];
 
         if (canPlay && item.MediaType !== "Photo") {
@@ -14,7 +15,7 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                 commands.push({
                     name: globalize.translate("Play"),
                     id: "resume",
-                    icon: "play_arrow"
+                    icon: "&#xE037;"
                 });
             }
 
@@ -22,7 +23,7 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                 commands.push({
                     name: globalize.translate("PlayAllFromHere"),
                     id: "playallfromhere",
-                    icon: "play_arrow"
+                    icon: "&#xE037;"
                 });
             }
         }
@@ -52,8 +53,6 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
             //}
         }
 
-
-
         if (item.IsFolder || item.Type === "MusicArtist" || item.Type === "MusicGenre") {
             if (item.CollectionType !== "livetv") {
                 if (options.shuffle !== false) {
@@ -71,7 +70,7 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                 commands.push({
                     name: globalize.translate("InstantMix"),
                     id: "instantmix",
-                    icon: "shuffle"
+                    icon: "explore"
                 });
             }
         }
@@ -179,7 +178,7 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                 commands.push({
                     name: globalize.translate("EditImages"),
                     id: "editimages",
-                    icon: "edit"
+                    icon: "image"
                 });
             }
         }
@@ -347,22 +346,30 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                     break;
                 case "copy-stream":
                     var downloadHref = apiClient.getItemDownloadUrl(itemId);
-                    var textArea = document.createElement("textarea");
-                    textArea.value = downloadHref;
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    try {
-                        document.execCommand("copy");
-
-                        require(["toast"], function (toast) {
-                            toast(globalize.translate("CopyStreamURLSuccess"));
-                        });
-                    } catch (err) {
-                        console.error("Failed to copy to clipboard");
+                    var textAreaCopy = function () {
+                        var textArea = document.createElement("textarea");
+                        textArea.value = downloadHref;
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        if (document.execCommand("copy")) {
+                            require(["toast"], function (toast) {
+                                toast(globalize.translate("CopyStreamURLSuccess"));
+                            });
+                        } else {
+                            prompt(globalize.translate("CopyStreamURL"), downloadHref);
+                        }
+                        document.body.removeChild(textArea);
+                    };
+                    if (navigator.clipboard === undefined) {
+                        textAreaCopy();
+                    } else {
+                        navigator.clipboard.writeText(downloadHref).then(function () {
+                            require(["toast"], function (toast) {
+                                toast(globalize.translate("CopyStreamURLSuccess"));
+                            });
+                        }, textAreaCopy);
                     }
-
-                    document.body.removeChild(textArea);
                     getResolveFunction(resolve, id)();
                     break;
                 case "editsubtitles":
@@ -435,7 +442,7 @@ define(["apphost", "globalize", "connectionManager", "itemHelper", "appRouter", 
                     navigator.share({
                         title: item.Name,
                         text: item.Overview,
-                        url: "https://github.com/vesotv/veso"
+                        url: "https://github.com/jellyfin/jellyfin"
                     });
                     break;
                 case "album":

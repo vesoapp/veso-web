@@ -2,19 +2,19 @@ define(["datetime", "jQuery", "material-icons"], function (datetime, $) {
     "use strict";
 
     function getNode(item, folderState, selected) {
-        var htmlName = getNodeInnerHtml(item),
-            node = {
-                id: item.Id,
-                text: htmlName,
-                state: {
-                    opened: item.IsFolder && folderState == "open",
-                    selected: selected
-                },
-                li_attr: {
-                    serveritemtype: item.Type,
-                    collectiontype: item.CollectionType
-                }
-            };
+        var htmlName = getNodeInnerHtml(item);
+        var node = {
+            id: item.Id,
+            text: htmlName,
+            state: {
+                opened: item.IsFolder && folderState == "open",
+                selected: selected
+            },
+            li_attr: {
+                serveritemtype: item.Type,
+                collectiontype: item.CollectionType
+            }
+        };
         if (item.IsFolder) {
             node.children = [{
                 text: "Loading...",
@@ -43,25 +43,20 @@ define(["datetime", "jQuery", "material-icons"], function (datetime, $) {
         }
         var htmlName = "<div class='editorNode'>";
         if (item.IsFolder) {
-            htmlName += '<i class="md-icon metadataSidebarIcon">folder</i>';
-        }
-        else if (item.MediaType === "Video") {
-            htmlName += '<i class="md-icon metadataSidebarIcon">movie</i>';
-        }
-        else if (item.MediaType === "Audio") {
-            htmlName += '<i class="md-icon metadataSidebarIcon">audiotrack</i>';
-        }
-        else if (item.Type === "TvChannel") {
-            htmlName += '<i class="md-icon metadataSidebarIcon">live_tv</i>';
-        }
-        else if (item.MediaType === "Photo") {
-            htmlName += '<i class="md-icon metadataSidebarIcon">photo</i>';
-        }
-        else if (item.MediaType === "Book") {
-            htmlName += '<i class="md-icon metadataSidebarIcon">book</i>';
+            htmlName += '<i class="material-icons metadataSidebarIcon">folder</i>';
+        } else if (item.MediaType === "Video") {
+            htmlName += '<i class="material-icons metadataSidebarIcon">movie</i>';
+        } else if (item.MediaType === "Audio") {
+            htmlName += '<i class="material-icons metadataSidebarIcon">audiotrack</i>';
+        } else if (item.Type === "TvChannel") {
+            htmlName += '<i class="material-icons metadataSidebarIcon live_tv"></i>';
+        } else if (item.MediaType === "Photo") {
+            htmlName += '<i class="material-icons metadataSidebarIcon">photo</i>';
+        } else if (item.MediaType === "Book") {
+            htmlName += '<i class="material-icons metadataSidebarIcon">book</i>';
         }
         if (item.LockData) {
-            htmlName += '<i class="md-icon metadataSidebarIcon">lock</i>';
+            htmlName += '<i class="material-icons metadataSidebarIcon">lock</i>';
         }
         htmlName += name;
         htmlName += "</div>";
@@ -304,7 +299,7 @@ define(["datetime", "jQuery", "material-icons"], function (datetime, $) {
     $(document).on("itemsaved", ".metadataEditorPage", function (e, item) {
         updateEditorNode(this, item);
     }).on("pagebeforeshow", ".metadataEditorPage", function () {
-        require(["css!css/metadataeditor.css"]);
+        require(["css!assets/css/metadataeditor.css"]);
     }).on("pagebeforeshow", ".metadataEditorPage", function () {
         var page = this;
         Dashboard.getCurrentUser().then(function (user) {

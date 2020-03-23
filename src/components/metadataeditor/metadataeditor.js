@@ -144,7 +144,9 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
             AirTime: form.querySelector('#txtAirTime').value,
             Genres: getListValues(form.querySelector("#listGenres")),
             Tags: getListValues(form.querySelector("#listTags")),
-            Studios: getListValues(form.querySelector("#listStudios")).map(function (element) { return { Name: element }; }),
+            Studios: getListValues(form.querySelector("#listStudios")).map(function (element) {
+                return { Name: element };
+            }),
 
             PremiereDate: getDateValue(form, '#txtPremiereDate', 'PremiereDate'),
             DateCreated: getDateValue(form, '#txtDateAdded', 'DateCreated'),
@@ -202,7 +204,9 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
     }
 
     function getListValues(list) {
-        return Array.prototype.map.call(list.querySelectorAll('.textValue'), function (el) { return el.textContent; });
+        return Array.prototype.map.call(list.querySelectorAll('.textValue'), function (el) {
+            return el.textContent;
+        });
     }
 
     function addElementToList(source, sortCallback) {
@@ -439,7 +443,6 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
 
         var html = metadataInfo.ContentTypeOptions.map(function (i) {
 
-
             return '<option value="' + i.Value + '">' + i.Name + '</option>';
 
         }).join('');
@@ -474,7 +477,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
             html += '</div>';
 
             if (formatString) {
-                html += '<button type="button" is="paper-icon-button-light" class="btnOpenExternalId align-self-flex-end" data-fieldid="' + id + '"><i class="md-icon">open_in_browser</i></button>';
+                html += '<button type="button" is="paper-icon-button-light" class="btnOpenExternalId align-self-flex-end" data-fieldid="' + id + '"><i class="material-icons open_in_browser"></i></button>';
             }
             html += '</div>';
 
@@ -744,7 +747,9 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
         populateListView(context.querySelector('#listGenres'), item.Genres);
         populatePeople(context, item.People || []);
 
-        populateListView(context.querySelector('#listStudios'), (item.Studios || []).map(function (element) { return element.Name || ''; }));
+        populateListView(context.querySelector('#listStudios'), (item.Studios || []).map(function (element) {
+            return element.Name || '';
+        }));
 
         populateListView(context.querySelector('#listTags'), item.Tags);
 
@@ -783,8 +788,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
 
         if (item.Type === 'Series') {
             context.querySelector('#selectDisplayOrder').value = item.DisplayOrder || '';
-        }
-        else {
+        } else {
             context.querySelector('#selectDisplayOrder').value = item.DisplayOrder || '';
         }
 
@@ -859,7 +863,9 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
         html += "<option value=''></option>";
 
         var ratings = [];
-        var i, length, rating;
+        var i;
+        var length;
+        var rating;
 
         var currentValueFound = false;
 
@@ -901,7 +907,9 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
 
         items = items || [];
         if (typeof (sortCallback) === 'undefined') {
-            items.sort(function (a, b) { return a.toLowerCase().localeCompare(b.toLowerCase()); });
+            items.sort(function (a, b) {
+                return a.toLowerCase().localeCompare(b.toLowerCase());
+            });
         } else {
             items = sortCallback(items);
         }
@@ -909,7 +917,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
         for (var i = 0; i < items.length; i++) {
             html += '<div class="listItem">';
 
-            html += '<i class="md-icon listItemIcon" style="background-color:#333;">live_tv</i>';
+            html += '<i class="material-icons listItemIcon live_tv" style="background-color:#333;"></i>';
 
             html += '<div class="listItemBody">';
 
@@ -919,7 +927,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
 
             html += '</div>';
 
-            html += '<button type="button" is="paper-icon-button-light" data-index="' + i + '" class="btnRemoveFromEditorList autoSize"><i class="md-icon">delete</i></button>';
+            html += '<button type="button" is="paper-icon-button-light" data-index="' + i + '" class="btnRemoveFromEditorList autoSize"><i class="material-icons">delete</i></button>';
 
             html += '</div>';
         }
@@ -940,7 +948,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
 
             html += '<div class="listItem">';
 
-            html += '<i class="md-icon listItemIcon" style="background-color:#333;">person</i>';
+            html += '<i class="material-icons listItemIcon" style="background-color:#333;">person</i>';
 
             html += '<div class="listItemBody">';
             html += '<button style="text-align:left;" type="button" class="btnEditPerson clearButton" data-index="' + i + '">';
@@ -956,7 +964,7 @@ define(['itemHelper', 'dom', 'layoutManager', 'dialogHelper', 'datetime', 'loadi
             html += '</button>';
             html += '</div>';
 
-            html += '<button type="button" is="paper-icon-button-light" data-index="' + i + '" class="btnDeletePerson autoSize"><i class="md-icon">delete</i></button>';
+            html += '<button type="button" is="paper-icon-button-light" data-index="' + i + '" class="btnDeletePerson autoSize"><i class="material-icons">delete</i></button>';
 
             html += '</div>';
         }

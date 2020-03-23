@@ -1,14 +1,14 @@
 {
-
     "name": "Veso",
     "description": "Veso: the Free Software Media System.",
     "lang": "en-US",
     "short_name": "Veso",
-    "start_url": "/web/index.html#!/home.html",
+    "start_url": "index.html#!/home.html",
     "theme_color": "#101010",
     "background_color": "#101010",
     "display": "standalone",
-    "icons": [{
+    "icons": [
+        {
             "sizes": "72x72",
             "src": "touchicon72.png",
             "type": "image/png"

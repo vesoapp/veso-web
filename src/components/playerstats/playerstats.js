@@ -18,7 +18,7 @@ define(['events', 'globalize', 'playbackManager', 'connectionManager', 'playMeth
         if (layoutManager.tv) {
             button = '';
         } else {
-            button = '<button type="button" is="paper-icon-button-light" class="playerStats-closeButton"><i class="md-icon">close</i></button>';
+            button = '<button type="button" is="paper-icon-button-light" class="playerStats-closeButton"><i class="material-icons">close</i></button>';
         }
 
         var contentClass = layoutManager.tv ? 'playerStats-content playerStats-content-tv' : 'playerStats-content';
@@ -364,8 +364,7 @@ define(['events', 'globalize', 'playbackManager', 'connectionManager', 'playMeth
                 var category = playerStats[i];
                 if (category.type === 'audio') {
                     category.name = 'Audio Info';
-                }
-                else if (category.type === 'video') {
+                } else if (category.type === 'video') {
                     category.name = 'Video Info';
                 }
                 categories.push(category);

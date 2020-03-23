@@ -1,5 +1,6 @@
 define(['require', 'events', 'browser', 'appRouter', 'loading'], function (require, events, browser, appRouter, loading) {
     "use strict";
+    /* globals YT */
 
     function zoomIn(elem, iterations) {
         var keyframes = [
@@ -134,7 +135,6 @@ define(['require', 'events', 'browser', 'appRouter', 'loading'], function (requi
         return new Promise(function (resolve, reject) {
 
             require(['queryString'], function (queryString) {
-
 
                 instance._currentSrc = options.url;
                 var params = queryString.parse(options.url.split('?')[1]);
