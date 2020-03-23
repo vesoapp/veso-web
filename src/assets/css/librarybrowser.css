@@ -40,6 +40,12 @@
     padding-top: 4.5em !important;
 }
 
+@media (max-width: 1000px) {
+    .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: 7em !important;
+    }
+}
+
 .absolutePageTabContent {
     position: absolute;
     left: 0;

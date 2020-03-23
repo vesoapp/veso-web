@@ -273,7 +273,7 @@ html {
 }
 
 .emby-checkbox:checked + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #e42a39;
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
