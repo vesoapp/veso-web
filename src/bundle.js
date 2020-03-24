@@ -97,7 +97,7 @@ _define("material-icons", function() {
     return material_icons;
 });
 
-var jellyfin_noto = require("jellyfin-noto");
-_define("jellyfin-noto", function () {
-    return jellyfin_noto;
+var veso_noto = require("veso-noto");
+_define("veso-noto", function () {
+    return veso_noto;
 });
