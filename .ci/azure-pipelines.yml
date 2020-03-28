@@ -61,7 +61,7 @@ jobs:
     - script: 'test -d dist'
       displayName: 'Check Build'
 
-    - script: 'mv dist jellyfin-web'
+    - script: 'mv dist veso-web'
       displayName: 'Rename Directory'
       condition: succeeded()
 
@@ -69,8 +69,8 @@ jobs:
       displayName: 'Publish Release'
       condition: succeeded()
       inputs:
-        targetPath: '$(Build.SourcesDirectory)/jellyfin-web'
-        artifactName: 'jellyfin-web-$(BuildConfiguration)'
+        targetPath: '$(Build.SourcesDirectory)/veso-web'
+        artifactName: 'veso-web-$(BuildConfiguration)'
 
   - job: lint
     displayName: 'Lint'

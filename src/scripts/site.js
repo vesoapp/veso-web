@@ -692,7 +692,7 @@ var AppInfo = {};
                     "sortable",
                     "webcomponents",
                     "material-icons",
-                    "jellyfin-noto",
+                    "veso-noto",
                     "page",
                     "polyfill"
                 ]
@@ -711,7 +711,7 @@ var AppInfo = {};
         });
 
         require(["css!assets/css/site"]);
-        require(["jellyfin-noto"]);
+        require(["veso-noto"]);
 
         // define styles
         // TODO determine which of these files can be moved to the components themselves

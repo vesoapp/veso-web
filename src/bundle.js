@@ -97,8 +97,8 @@ _define("material-icons", function() {
 });
 
 // noto font
-var noto = require("jellyfin-noto");
-_define("jellyfin-noto", function () {
+var noto = require("veso-noto");
+_define("veso-noto", function () {
     return noto;
 });
 

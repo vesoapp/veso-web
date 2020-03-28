@@ -6296,9 +6296,9 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-"jellyfin-noto@https://github.com/jellyfin/jellyfin-noto":
+"veso-noto@https://github.com/vesotv/veso-noto":
   version "1.0.2"
-  resolved "https://github.com/jellyfin/jellyfin-noto#a441b179c833288fc372cadb408d32a76c5479f1"
+  resolved "https://github.com/vesotv/veso-noto#a441b179c833288fc372cadb408d32a76c5479f1"
 
 jquery@>=1.9.1, jquery@^3.4.1:
   version "3.4.1"
@@ -6533,9 +6533,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-"libass-wasm@https://github.com/jellyfin/JavascriptSubtitlesOctopus":
+"libass-wasm@https://github.com/vesotv/JavascriptSubtitlesOctopus":
   version "4.0.0"
-  resolved "https://github.com/jellyfin/JavascriptSubtitlesOctopus#1d12af0b04fb2337570b57d706dd97db2f904b9d"
+  resolved "https://github.com/vesotv/JavascriptSubtitlesOctopus#1d12af0b04fb2337570b57d706dd97db2f904b9d"
 
 liftoff@^3.1.0:
   version "3.1.0"

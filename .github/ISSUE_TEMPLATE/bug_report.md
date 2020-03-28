@@ -29,7 +29,7 @@ assignees: ''
 **System (please complete the following information):**
  - OS: [e.g. Docker, Debian, Windows]
  - Browser: [e.g. Firefox, Chrome, Safari]
- - Jellyfin Version: [e.g. 10.0.1]
+ - Veso Version: [e.g. 10.0.1]
 
 **Additional context**
 <!-- Add any other context about the problem here. -->

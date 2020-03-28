@@ -12,9 +12,9 @@ define(["browser"], function (browser) {
                 return baseUrl + "playstation.svg";
             case "Kodi":
                 return baseUrl + "kodi.svg";
-            case "Jellyfin Android":
+            case "Veso Android":
                 return baseUrl + "android.svg";
-            case "Jellyfin Web":
+            case "Veso Web":
                 switch (device.Name || device.DeviceName) {
                     case "Opera":
                     case "Opera TV":

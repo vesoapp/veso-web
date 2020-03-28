@@ -54,8 +54,8 @@ define(['loading', 'globalize', 'events', 'viewManager', 'layoutManager', 'skinM
             case 'ServerUpdateNeeded':
                 require(['alert'], function (alert) {
                     alert({
-                        text: globalize.translate('ServerUpdateNeeded', 'https://github.com/jellyfin/jellyfin'),
-                        html: globalize.translate('ServerUpdateNeeded', '<a href="https://github.com/jellyfin/jellyfin">https://github.com/jellyfin/jellyfin</a>')
+                        text: globalize.translate('ServerUpdateNeeded', 'https://github.com/vesotv/veso'),
+                        html: globalize.translate('ServerUpdateNeeded', '<a href="https://github.com/vesotv/veso">https://github.com/vesotv/veso</a>')
                     }).then(function () {
                         appRouter.showSelectServer();
                     });
