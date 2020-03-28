@@ -1,81 +1,61 @@
-<h1 align="center">Veso Web</h1>
-<h3 align="center">Part of the <a href="https://veso.tv">Veso Project</a></h3>
+# Veso web interface
 
----
+Veso is an open source media server. An emby/veso fork that will move to a js react framework and focus on remote/rclone mounted media rather than local storage.
 
-<p align="center">
-<img alt="Logo Banner" src="https://raw.githubusercontent.com/veso/veso-ux/master/branding/SVG/banner-logo-solid.svg?sanitize=true"/>
-<br/>
-<br/>
-<a href="https://github.com/vesotv/veso-web">
-<img alt="GPL 2.0 License" src="https://img.shields.io/github/license/veso/veso-web.svg"/>
-</a>
-<a href="https://github.com/vesotv/veso-web/releases">
-<img alt="Current Release" src="https://img.shields.io/github/release/veso/veso-web.svg"/>
-</a>
-<a href="https://translate.veso.tv/projects/veso/veso-web/?utm_source=widget">
-<img src="https://translate.veso.tv/widgets/veso/-/veso-web/svg-badge.svg" alt="Translation Status"/>
-</a>
-<br/>
-<a href="https://opencollective.com/veso">
-<img alt="Donate" src="https://img.shields.io/opencollective/all/veso.svg?label=backers"/>
-</a>
-<a href="https://features.veso.tv">
-<img alt="Feature Requests" src="https://img.shields.io/badge/fider-vote%20on%20features-success.svg"/>
-</a>
-<a href="https://forum.veso.tv">
-<img alt="Discuss on our Forum" src="https://img.shields.io/discourse/https/forum.veso.tv/users.svg"/>
-</a>
-<a href="https://matrix.to/#/+veso:matrix.org">
-<img alt="Chat on Matrix" src="https://img.shields.io/matrix/veso:matrix.org.svg?logo=matrix"/>
-</a>
-<a href="https://www.reddit.com/r/veso">
-<img alt="Join our Subreddit" src="https://img.shields.io/badge/reddit-r%2Fveso-%23FF5700.svg"/>
-</a>
-</p>
+## Installation
 
-Veso Web is the frontend used for most of the clients available for end users, such as desktop browsers, Android, and iOS. We welcome all contributions and pull requests! If you have a larger feature in mind please open an issue so we can discuss the implementation before you start. Translations can be improved very easily from our <a href="https://translate.veso.tv/projects/veso/veso-web">Weblate</a> instance. Look through the following graphic to see if your native language could use some work!
+```bash
+git clone https://github.com/vesotv/veso-web.git
+cd veso-web
+yarn install 
+yarn run serve
+```
 
-<a href="https://translate.veso.tv/engage/veso/?utm_source=widget">
-<img src="https://translate.veso.tv/widgets/veso/-/veso-web/multi-auto.svg" alt="Detailed Translation Status"/>
-</a>
+# Veso
 
-## Build Process
+Veso is an open source media server. An emby/veso fork that will move to a js react framework and focus on remote/rclone mounted media rather than local storage.
 
-### Dependencies
+## Installation
 
-- Yarn
-- Gulp-cli
+Docker
 
-### Getting Started
+```bash
+docker run -d \
+ --volume /path/to/config:/config \
+ --volume /path/to/cache:/cache \
+ --volume /path/to/media:/media \
+ --user 1000:1000 \
+ --p 8096:8096 \
+ --p 8920:8920 `#optional` \
+ --restart=unless-stopped \
+ vesotv/veso
+```
+Docker compose
+```bash
+ version: "3"
+ services:
+   veso:
+     image: vesotv/veso
+     user: 1000:1000
+     ports:
+       - 8096:8096
+       - 8920:8920
+     volumes:
+       - /path/to/config:/config
+       - /path/to/cache:/cache
+       - /path/to/media:/media
+```
 
-1. Clone or download this repository.
+## Usage
 
-   ```sh
-   git clone https://github.com/vesotv/veso-web.git
-   cd veso-web
-   ```
+```python
+http://localhost:8096
+```
 
-2. Install build dependencies in the project directory.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-   ```sh
-   yarn install
-   ```
+Please make sure to update tests as appropriate.
 
-3. Run the web client with webpack for local development.
-
-   ```sh
-   yarn serve
-   ```
-
-4. Build the client with sourcemaps.
-
-   ```sh
-   yarn build:development
-   ```
-
-   You can build a nginx compatible version as well.
-
-   ```sh
-   yarn build:standalone
-   ```
+## Contact
+``#veso`` on freenode
