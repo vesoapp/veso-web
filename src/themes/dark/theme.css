@@ -21,7 +21,7 @@ html {
 }
 
 .skinHeader-withBackground {
-    background-color: #202020;
+    background-color: #101010;
 }
 
 .skinHeader.semiTransparent {
@@ -45,8 +45,8 @@ html {
 }
 
 .paper-icon-button-light:hover:not(:disabled) {
-    color: #00a4dc;
-    background-color: rgba(0, 164, 220, 0.2);
+    color: #ffffff;
+    background-color: rgba(229, 43, 57, 0.7);
 }
 
 .paper-icon-button-light.show-focus:focus {
@@ -205,7 +205,7 @@ html {
 }
 
 .noBackdrop .detailSticky {
-    background: #202020;
+    background: #101010;
 }
 
 .listItem-border {
@@ -273,7 +273,7 @@ html {
 }
 
 .emby-checkbox:checked + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #e42a39;
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
@@ -282,7 +282,7 @@ html {
 
 .emby-checkbox:checked + span + .checkboxOutline,
 .itemProgressBarForeground {
-    background-color: #00a4dc;
+    background-color: #e42a39;
 }
 
 .emby-checkbox:focus:not(:checked) + span + .checkboxOutline {

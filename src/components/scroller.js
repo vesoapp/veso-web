@@ -134,7 +134,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
         };
         var scrolling = {
             last: 0,
-            delta: 0,
             resetTime: 200
         };
 
@@ -444,7 +443,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
             dragging.start = +new Date();
             dragging.time = 0;
             dragging.path = 0;
-            dragging.delta = 0;
             dragging.locked = 0;
             dragging.pathToLock = isTouch ? 30 : 10;
 
@@ -480,7 +478,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
             dragging.pathX = pointer.pageX - dragging.initX;
             dragging.pathY = pointer.pageY - dragging.initY;
             dragging.path = sqrt(pow(dragging.pathX, 2) + pow(dragging.pathY, 2));
-            dragging.delta = o.horizontal ? dragging.pathX : dragging.pathY;
 
             if (!dragging.released && dragging.path < 1) {
                 return;
@@ -512,12 +509,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
                 dragging.source.addEventListener('click', disableOneEvent);
             }
 
-            // Cancel dragging on release
-            if (dragging.released) {
-                dragEnd();
-            }
-
-            self.slideTo(round(dragging.initPos - dragging.delta));
         }
 
         /**
@@ -567,62 +558,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
         }
 
         /**
-		 * Mouse wheel delta normalization.
-		 *
-		 * @param  {Event} event
-		 *
-		 * @return {Int}
-		 */
-        function normalizeWheelDelta(event) {
-            // JELLYFIN MOD: Only use deltaX for horizontal scroll and remove IE8 support
-            scrolling.curDelta = o.horizontal ? event.deltaX : event.deltaY;
-            // END JELLYFIN MOD
-
-            if (transform) {
-                scrolling.curDelta /= event.deltaMode === 1 ? 3 : 100;
-            }
-            return scrolling.curDelta;
-        }
-
-        /**
-		 * Mouse scrolling handler.
-		 *
-		 * @param  {Event} event
-		 *
-		 * @return {Void}
-		 */
-        function scrollHandler(event) {
-
-            ensureSizeInfo();
-            var pos = self._pos;
-            // Ignore if there is no scrolling to be done
-            if (!o.scrollBy || pos.start === pos.end) {
-                return;
-            }
-            var delta = normalizeWheelDelta(event);
-
-            if (transform) {
-                // Trap scrolling only when necessary and/or requested
-                if (delta > 0 && pos.dest < pos.end || delta < 0 && pos.dest > pos.start) {
-                    //stopDefault(event, 1);
-                }
-
-                self.slideBy(o.scrollBy * delta);
-            } else {
-
-                if (isSmoothScrollSupported) {
-                    delta *= 12;
-                }
-
-                if (o.horizontal) {
-                    nativeScrollElement.scrollLeft += delta;
-                } else {
-                    nativeScrollElement.scrollTop += delta;
-                }
-            }
-        }
-
-        /**
 		 * Destroys instance and everything it created.
 		 *
 		 * @return {Void}
@@ -636,10 +571,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
 
             // Reset native FRAME element scroll
             dom.removeEventListener(frame, 'scroll', resetScroll, {
-                passive: true
-            });
-
-            dom.removeEventListener(scrollSource, wheelEvent, scrollHandler, {
                 passive: true
             });
 
@@ -803,23 +734,10 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
                     });
                 }
 
-                if (o.mouseWheel) {
-                    // Scrolling navigation
-                    dom.addEventListener(scrollSource, wheelEvent, scrollHandler, {
-                        passive: true
-                    });
-                }
-
             } else if (o.horizontal) {
 
                 // Don't bind to mouse events with vertical scroll since the mouse wheel can handle this natively
 
-                if (o.mouseWheel) {
-                    // Scrolling navigation
-                    dom.addEventListener(scrollSource, wheelEvent, scrollHandler, {
-                        passive: true
-                    });
-                }
             }
 
             dom.addEventListener(frame, 'click', onFrameClick, {
@@ -836,21 +754,6 @@ define(['browser', 'layoutManager', 'dom', 'focusManager', 'ResizeObserver', 'sc
             // Return instance
             return self;
         };
-    };
-
-    /**
-     * Slide SLIDEE by amount of pixels.
-     *
-     * @param {Int}  delta     Pixels/Items. Positive means forward, negative means backward.
-     * @param {Bool} immediate Reposition immediately without an animation.
-     *
-     * @return {Void}
-     */
-    scrollerFactory.prototype.slideBy = function (delta, immediate) {
-        if (!delta) {
-            return;
-        }
-        this.slideTo(this._pos.dest + delta, immediate);
     };
 
     /**

@@ -815,6 +815,7 @@ button::-moz-focus-inner {
 }
 
 .cardOverlayFab-primary:hover {
-    transform: scale(1.4, 1.4);
-    transition: 0.2s;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
