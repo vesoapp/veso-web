@@ -89,7 +89,6 @@
 
 .videoOsdBottom {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
     padding: 1%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -105,6 +104,10 @@
     color: #fff;
     user-select: none;
     -webkit-touch-callout: none;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
 }
 
 .videoOsdBottom-hidden {
@@ -161,24 +164,11 @@
 }
 
 .osdPoster {
-    width: 10%;
     position: relative;
-    margin-right: 0.5em;
 }
 
 .osdPoster img {
-    position: absolute;
-    height: auto;
-    width: 100%;
-    -webkit-box-shadow: 0 0 1.9vh #000;
-    box-shadow: 0 0 1.9vh #000;
-    border: 0.08em solid #222;
-    user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    display: none;
 }
 
 .osdTitle,
