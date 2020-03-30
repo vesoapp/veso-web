@@ -243,7 +243,9 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
         return function (items) {
             var cardLayout = false;
             var shape;
-            if (itemType === 'Channel' || viewType === 'movies' || viewType === 'books') {
+            if (itemType === 'Channel' || viewType === 'movies') {
+                shape = getThumbShape();
+            } else if (viewType === 'books') {
                 shape = getPortraitShape();
             } else if (viewType === 'music') {
                 shape = getSquareShape();
@@ -254,7 +256,7 @@ define(['connectionManager', 'cardBuilder', 'appSettings', 'dom', 'apphost', 'la
             return cardBuilder.getCardsHtml({
                 items: items,
                 shape: shape,
-                preferThumb: viewType !== 'movies' && itemType !== 'Channel' && viewType !== 'music' ? 'auto' : null,
+                preferThumb: viewType !== itemType !== 'Channel' && viewType !== 'music' ? 'auto' : null,
                 showUnplayedIndicator: false,
                 showChildCountIndicator: true,
                 context: 'home',

@@ -28,7 +28,8 @@ define(["events", "layoutManager", "inputManager", "userSettings", "libraryMenu"
             var container = page.querySelector("#recentlyAddedItems");
             cardBuilder.buildCards(items, {
                 itemsContainer: container,
-                shape: getPortraitShape(),
+                shape: getThumbShape(),
+                preferThumb: true,
                 scalable: true,
                 overlayPlayButton: true,
                 allowBottomPadding: allowBottomPadding,
@@ -49,7 +50,7 @@ define(["events", "layoutManager", "inputManager", "userSettings", "libraryMenu"
             SortOrder: "Descending",
             IncludeItemTypes: "Movie",
             Filters: "IsResumable",
-            Limit: screenWidth >= 1920 ? 5 : screenWidth >= 1600 ? 5 : 3,
+            Limit: 6,
             Recursive: true,
             Fields: "PrimaryImageAspectRatio,MediaSourceCount,BasicSyncInfo",
             CollapseBoxSetItems: false,
@@ -117,11 +118,13 @@ define(["events", "layoutManager", "inputManager", "userSettings", "libraryMenu"
             html += '<div is="emby-scroller" class="padded-top-focusscale padded-bottom-focusscale" data-mousewheel="false" data-centerfocus="true">';
             html += '<div is="emby-itemscontainer" class="itemsContainer scrollSlider focuscontainer-x">';
         } else {
-            html += '<div is="emby-itemscontainer" class="itemsContainer focuscontainer-x padded-left padded-right vertical-wrap">';
+            html += '<div is="emby-scroller" class="padded-top-focusscale padded-bottom-focusscale" data-mousewheel="false" data-centerfocus="true">';
+            html += '<div is="emby-itemscontainer" class="itemsContainer scrollSlider focuscontainer-x">';
         }
 
         html += cardBuilder.getCardsHtml(recommendation.Items, {
-            shape: getPortraitShape(),
+            shape: getThumbShape(),
+            preferThumb: true,
             scalable: true,
             overlayPlayButton: true,
             allowBottomPadding: allowBottomPadding,
@@ -130,9 +133,7 @@ define(["events", "layoutManager", "inputManager", "userSettings", "libraryMenu"
             centerText: true
         });
 
-        if (enableScrollX()) {
-            html += '</div>';
-        }
+        html += '</div>';
         html += "</div>";
         html += "</div>";
         return html;
