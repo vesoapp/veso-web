@@ -345,12 +345,12 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     i.material-icons.starIcon {
         font-size: inherit;
     }
+    .osdPause {
+        margin-left: 13%;
+        margin-right: 13%;
+    }
 }
-.osdPause {
-    margin-left: 13%;
-    margin-right: 13%;
-}
-.videoOsdBottom .btnFastForward,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
+.videoOsdBottom .btnFastForward,.videoOsdBottom .btnPause,.videoOsdBottom .btnRewind,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
     margin: 0;
 }
 .osdSecond {
