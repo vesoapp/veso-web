@@ -89,7 +89,7 @@
 
 .videoOsdBottom {
     position: fixed;
-    padding: 1%;
+    padding: 0 1.75%;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -176,6 +176,14 @@
     margin: 0 1em 0 0;
 }
 
+.osdTitle {
+    color: rgba(255,255,255,.8);
+}
+
+.osdFirst {
+    padding-bottom: 0.8em;
+}
+
 .osdMediaInfo {
     display: flex;
     -webkit-align-items: center;
@@ -197,8 +205,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin-bottom: 0.7em;
-    padding-left: 1.04em;
 }
 
 .osdMainTextContainer {
@@ -276,4 +282,91 @@
     .videoOsdBottom .endsAtText {
         display: none !important;
     }
+}
+.videoOsdBottom .flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.osdFirst {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.osdIn {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.osdSecond {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.osdFirst h3.osdTitle {
+    font-weight: normal;
+    font-size: 1.75em;
+}
+.osdSecond i,.osdThird i,.osdFirst i, .videoOsdBottom .paper-icon-button-light>i {
+    font-size: 2.45em;
+}
+span.osdDurationText, .osdPositionText, .osdMediaInfo {
+    font-size: 1.48em;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .osdFirst i,.osdThird i {
+        font-size:2.56em;
+    }
+    .osdSecond i {
+        font-size: 248%;
+    }
+    .osdSecond {
+        position: fixed;
+        left: 0;
+        right: 0;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-self: center;
+        align-self: center;
+        top: 50%;
+        margin-top: -2em;
+        font-size: 170%;
+    }
+    .osdFirst h3.osdTitle,.osdMediaInfo {
+        font-size: 1em;
+    }
+    i.material-icons.starIcon {
+        font-size: inherit;
+    }
+    .osdPause {
+        margin-left: 13%;
+        margin-right: 13%;
+    }
+}
+.videoOsdBottom .btnFastForward,.videoOsdBottom .btnPause,.videoOsdBottom .btnRewind,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
+    margin: 0;
+}
+.osdSecond {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.osdThird {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    flex: 1;
 }

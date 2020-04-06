@@ -928,7 +928,7 @@ define(["playbackManager", "dom", "inputManager", "datetime", "itemHelper", "med
             var html = datetime.getDisplayRunningTime(ticks);
 
             if (divider) {
-                html = "&nbsp;/&nbsp;" + html;
+                html = "" + html;
             }
 
             elem.innerHTML = html;
