@@ -346,9 +346,12 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
         font-size: inherit;
     }
 }
-.btnPause {
+.osdPause {
     margin-left: 13%;
     margin-right: 13%;
+}
+.videoOsdBottom .btnFastForward,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
+    margin: 0;
 }
 .osdSecond {
     -webkit-box-align: center;
