@@ -316,10 +316,8 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     font-size: 1.48em;
 }
 
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .osdFirst i,.osdThird i {
         font-size:2.56em;
     }
     .osdSecond i {
