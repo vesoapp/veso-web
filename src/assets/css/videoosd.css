@@ -365,4 +365,5 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     justify-content: flex-end;
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
+    flex: 1;
 }
