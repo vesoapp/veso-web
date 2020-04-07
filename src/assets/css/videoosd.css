@@ -280,7 +280,7 @@
     }
 }
 
-@media (max-width: 55em) {
+@media (max-width: 60em) and (orientation: landscape) {
     .osdSecond {
         position: fixed;
         left: 0;
