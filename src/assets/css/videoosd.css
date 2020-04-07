@@ -307,6 +307,10 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     font-size: 1.48em;
 }
 
+i.material-icons.starIcon {
+    font-size: inherit;
+}
+
 @media all and (max-width: 30em) {
     .osdPositionText,.osdDurationText,span.osdDurationText {
         font-size: 1.15em;
@@ -338,9 +342,6 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     }
     .osdFirst h3.osdTitle,.osdMediaInfo {
         font-size: 1em;
-    }
-    i.material-icons.starIcon {
-        font-size: inherit;
     }
     .osdPause {
         margin-left: 13%;
