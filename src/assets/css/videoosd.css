@@ -121,7 +121,6 @@
 }
 
 .videoOsdBottom .buttons {
-    padding: 0.25em 0 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -174,14 +173,6 @@
 .osdTitle,
 .osdTitleSmall {
     margin: 0 1em 0 0;
-}
-
-.osdMediaInfo,.osdFirst h3.osdTitle {
-    color: rgba(255,255,255,.8);
-}
-
-.osdFirst {
-    padding-bottom: 0.8em;
 }
 
 .osdMediaInfo {
@@ -267,77 +258,6 @@
     .osdMediaStatus span {
         display: none !important;
     }
-}
-
-@media all and (max-width: 75em) {
-    .videoOsdBottom .endsAtText {
-        display: none !important;
-    }
-}
-.videoOsdBottom .flex {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-}
-.osdFirst {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-.osdIn {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-.osdSecond {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-.osdFirst h3.osdTitle {
-    font-weight: 600;
-    font-size: 1.6em;
-}
-.osdSecond i,.osdThird i,.osdFirst i, .videoOsdBottom .paper-icon-button-light>i {
-    font-size: 2.45em;
-}
-span.osdDurationText, .osdPositionText, .osdMediaInfo {
-    font-size: 1.48em;
-}
-
-.osdMediaInfo,.osdMediaInfo i {
-    font-size: 1.48em;
-}
-
-@media all and (max-width: 30em) {
-    .osdPositionText,.osdDurationText,span.osdDurationText {
-        font-size: 1.15em;
-    }
-    .osdMediaInfo,.osdMediaInfo i {
-        font-size: 0.81em;
-    }
-    .osdFirst h3.osdTitle {
-        font-weight: normal;
-        font-size: 1.6em;
-    }
-}
-
-@media all and (max-width: 60em) {
-    .osdFirst h3.osdTitle {
-        font-weight: normal;
-        font-size: 1.4em;
-    }
-    .osdFirst i,.osdThird i {
-        font-size:2.56em;
-    }
-    .osdSecond i {
-        font-size: 248%;
-    }
-    .osdMediaInfo,.osdMediaInfo i {
-        font-size: 0.81em;
-    }
     .osdSecond {
         position: fixed;
         left: 0;
@@ -359,26 +279,53 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
         margin-right: 13%;
     }
 }
-.videoOsdBottom .osdCont {
-    padding: .5em 0 1.5%;
+
+@media (max-width: 55em) {
+    .osdSecond {
+        position: fixed;
+        left: 0;
+        right: 0;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-self: center;
+        align-self: center;
+        top: 50%;
+        margin-top: -2em;
+        font-size: 170%;
+    }
+    .osdPause {
+        margin-left: 13%;
+        margin-right: 13%;
+    }
 }
-.videoOsdBottom .btnFastForward,.videoOsdBottom .btnPause,.videoOsdBottom .btnRewind,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
-    margin: 0;
+
+@media all and (max-width: 75em) {
+    .videoOsdBottom .endsAtText {
+        display: none !important;
+    }
 }
-.osdSecond {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    flex-direction: row;
+.osdFirst {
+    margin-bottom: .5em;
+}
+.videoOsdBottom .paper-icon-button-light {
+    margin: 0 .29em;
 }
 .osdThird {
     -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
     justify-content: flex-end;
-    -webkit-flex-shrink: 0;
-    flex-shrink: 0;
-    flex: 1;
+    flex: auto;
+}
+.videoOsdBottom .flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.osdCont {
+    padding: .5em 0 1.5%;
+    margin: 0 -.5em;
 }
