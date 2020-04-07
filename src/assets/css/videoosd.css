@@ -297,8 +297,8 @@
     align-items: center;
 }
 .osdFirst h3.osdTitle {
-    font-weight: normal;
-    font-size: 2.49em;
+    font-weight: 600;
+    font-size: 1.48em;
 }
 .osdSecond i,.osdThird i,.osdFirst i, .videoOsdBottom .paper-icon-button-light>i {
     font-size: 2.45em;
