@@ -176,7 +176,7 @@
     margin: 0 1em 0 0;
 }
 
-.osdTitle {
+.osdTitle,.osdMediaInfo {
     color: rgba(255,255,255,.8);
 }
 
@@ -307,8 +307,8 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     font-size: 1.48em;
 }
 
-i.material-icons.starIcon {
-    font-size: inherit;
+.osdMediaInfo,.osdMediaInfo i {
+    font-size: 1em;
 }
 
 @media all and (max-width: 30em) {
@@ -340,7 +340,7 @@ i.material-icons.starIcon {
         margin-top: -2em;
         font-size: 170%;
     }
-    .osdFirst h3.osdTitle,.osdMediaInfo {
+    .osdFirst h3.osdTitle,.osdMediaInfo,.osdMediaInfo i {
         font-size: 1em;
     }
     .osdPause {
