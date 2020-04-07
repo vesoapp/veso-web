@@ -176,7 +176,7 @@
     margin: 0 1em 0 0;
 }
 
-.osdTitle {
+.osdTitle,.osdMediaInfo {
     color: rgba(255,255,255,.8);
 }
 
@@ -250,8 +250,6 @@
 }
 
 @media all and (max-width: 30em) {
-    .btnFastForward,
-    .btnRewind,
     .osdMediaInfo,
     .osdPoster {
         display: none !important;
@@ -267,13 +265,6 @@
 @media all and (max-width: 43em) {
     .videoOsdBottom .volumeButtons,
     .osdMediaStatus span {
-        display: none !important;
-    }
-}
-
-@media all and (max-width: 50em) {
-    .videoOsdBottom .btnFastForward,
-    .videoOsdBottom .btnRewind {
         display: none !important;
     }
 }
@@ -316,7 +307,17 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
     font-size: 1.48em;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+.osdMediaInfo,.osdMediaInfo i {
+    font-size: 1em;
+}
+
+@media all and (max-width: 30em) {
+    .osdPositionText,.osdDurationText,span.osdDurationText {
+        font-size: 1.15em;
+    }
+}
+
+@media all and (max-width: 60em) {
     .osdFirst i,.osdThird i {
         font-size:2.56em;
     }
@@ -339,16 +340,16 @@ span.osdDurationText, .osdPositionText, .osdMediaInfo {
         margin-top: -2em;
         font-size: 170%;
     }
-    .osdFirst h3.osdTitle,.osdMediaInfo {
+    .osdFirst h3.osdTitle,.osdMediaInfo,.osdMediaInfo i {
         font-size: 1em;
-    }
-    i.material-icons.starIcon {
-        font-size: inherit;
     }
     .osdPause {
         margin-left: 13%;
         margin-right: 13%;
     }
+}
+.videoOsdBottom .osdCont {
+    padding: .5em 0 1.5%;
 }
 .videoOsdBottom .btnFastForward,.videoOsdBottom .btnPause,.videoOsdBottom .btnRewind,.videoOsdBottom .btnRecord,.videoOsdBottom .btnPreviousTrack,.videoOsdBottom .btnNextTrack,.videoOsdBottom .buttonMute {
     margin: 0;
