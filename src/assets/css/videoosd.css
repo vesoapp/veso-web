@@ -176,7 +176,7 @@
     margin: 0 1em 0 0;
 }
 
-.osdMediaInfo {
+.osdMediaInfo,.osdFirst h3.osdTitle {
     color: rgba(255,255,255,.8);
 }
 
