@@ -16,6 +16,9 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
         html += '<button is="paper-icon-button-light" class="headerCastButton castButton headerButton headerButtonRight hide"><i class="material-icons">cast</i></button>';
         html += '<button type="button" is="paper-icon-button-light" class="headerButton headerButtonRight headerSearchButton hide"><i class="material-icons">search</i></button>';
         html += '<button is="paper-icon-button-light" class="headerButton headerButtonRight headerUserButton hide"><i class="material-icons">person</i></button>';
+        if (!layoutManager.mobile) {
+            html += '<button is="paper-icon-button-light" class="headerButton headerButtonRight headerSettingsButton hide"><i class="material-icons dashboard"></i></button>';
+        }
         html += "</div>";
         html += "</div>";
         html += '<div class="headerTabs sectionTabs hide">';
@@ -27,6 +30,7 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
 
         headerHomeButton = skinHeader.querySelector(".headerHomeButton");
         headerUserButton = skinHeader.querySelector(".headerUserButton");
+        headerSettingsButton = skinHeader.querySelector(".headerSettingsButton");
         headerCastButton = skinHeader.querySelector(".headerCastButton");
         headerAudioPlayerButton = skinHeader.querySelector(".headerAudioPlayerButton");
         headerSearchButton = skinHeader.querySelector(".headerSearchButton");
@@ -84,12 +88,22 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
             if (!layoutManager.tv) {
                 headerCastButton.classList.remove("hide");
             }
+            if (headerSettingsButton) {
+                if (user.localUser.Policy.IsAdministrator) {
+                    headerSettingsButton.classList.remove("hide");
+                } else {
+                    headerSettingsButton.classList.add("hide");
+                }
+            }
         } else {
             headerHomeButton.classList.add("hide");
             headerCastButton.classList.add("hide");
 
             if (headerSearchButton) {
                 headerSearchButton.classList.add("hide");
+            }
+            if (headerSettingsButton) {
+                headerSettingsButton.classList.add("hide");
             }
         }
 
@@ -144,6 +158,10 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
 
         if (!layoutManager.tv) {
             headerCastButton.addEventListener("click", onCastButtonClicked);
+        }
+
+        if (headerSettingsButton) {
+            headerSettingsButton.addEventListener("click", onSettingsClick);
         }
 
         headerAudioPlayerButton.addEventListener("click", showAudioPlayer);
@@ -604,7 +622,7 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
     }
 
     function onSettingsClick() {
-        Dashboard.navigate("mypreferencesmenu.html");
+        Dashboard.navigate("dashboard.html");
     }
 
     function onLogoutClick() {
@@ -794,6 +812,7 @@ define(["dom", "layoutManager", "inputManager", "connectionManager", "events", "
     var headerBackButton;
     var headerUserButton;
     var currentUser;
+    var headerSettingsButton;
     var headerCastButton;
     var headerSearchButton;
     var headerAudioPlayerButton;
