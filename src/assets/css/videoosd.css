@@ -108,6 +108,7 @@
     background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 );
+    padding-top: 1.25em;
 }
 
 .videoOsdBottom-hidden {
@@ -320,12 +321,44 @@
     justify-content: flex-end;
     flex: auto;
 }
-.videoOsdBottom .flex {
+.flex {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
 }
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    contain: layout style size;
+}
+.flex-direction-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
 .osdCont {
     padding: .5em 0 1.5%;
     margin: 0 -.5em;
+}
+.osdCont {
+    font-size: 1.5em;
+}
+@media (orientation: portrait) {
+    .osdCont {
+        font-size: 1.2em;
+    }
+}
+.videoOsdBottom .osdVolumeSliderContainer {
+    font-size: initial;
+}
+.iconFlipped {
+    -o-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
