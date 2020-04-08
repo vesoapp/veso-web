@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux'
-import counter from './counter';
+import math from './math';
 
-export default combineReducers({
-  counter
-})
+export default {
+  math
+};;

@@ -6,7 +6,7 @@ import johnWick from '../assets/images/johnWick.jpg';
 const VideoCards = ({ cards }) => (
   <div>
     {cards &&
-      cards.map(() => <VideoCard />)
+      cards.map((index) => <VideoCard key={index}/>)
     }
   </div>
 );
