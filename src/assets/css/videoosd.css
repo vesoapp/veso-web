@@ -329,3 +329,14 @@
     padding: .5em 0 1.5%;
     margin: 0 -.5em;
 }
+.osdCont {
+    font-size: 1.5em;
+}
+@media (orientation: portrait) {
+    .osdCont {
+        font-size: 1.2em;
+    }
+}
+.videoOsdBottom .osdVolumeSliderContainer {
+    font-size: initial;
+}
