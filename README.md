@@ -1,61 +1,30 @@
-# Veso web interface
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
-Veso is an open source media server. An emby/veso fork that will move to a js react framework and focus on remote/rclone mounted media rather than local storage.
+## Getting Started
 
-## Installation
-
-```bash
-git clone https://github.com/vesotv/veso-web.git
-cd veso-web
-yarn install 
-yarn run serve
-```
-
-# Veso
-
-Veso is an open source media server. An emby/veso fork that will move to a js react framework and focus on remote/rclone mounted media rather than local storage.
-
-## Installation
-
-Docker
+First, run the development server:
 
 ```bash
-docker run -d \
- --volume /path/to/config:/config \
- --volume /path/to/cache:/cache \
- --volume /path/to/media:/media \
- --user 1000:1000 \
- --p 8096:8096 \
- --p 8920:8920 `#optional` \
- --restart=unless-stopped \
- vesotv/veso
-```
-Docker compose
-```bash
- version: "3"
- services:
-   veso:
-     image: vesotv/veso
-     user: 1000:1000
-     ports:
-       - 8096:8096
-       - 8920:8920
-     volumes:
-       - /path/to/config:/config
-       - /path/to/cache:/cache
-       - /path/to/media:/media
+npm run dev
+# or
+yarn dev
 ```
 
-## Usage
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```python
-http://localhost:8096
-```
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Learn More
 
-Please make sure to update tests as appropriate.
+To learn more about Next.js, take a look at the following resources:
 
-## Contact
-``#veso`` on freenode
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on ZEIT Now
+
+The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
