@@ -1,24 +1,35 @@
 import React, { Fragment } from 'react';
 import { Box, Image, Flex } from '@chakra-ui/core';
-
-import johnWick from '../assets/images/johnWick.jpg';
+import { node } from 'prop-types';
 
 const VideoCards = ({ cards }) => (
-  <div>
+  <div className="progress-scroll">
     {cards &&
-      cards.map((index) => <VideoCard key={index}/>)
+      cards.map((index) => <VideoCard key={index} />)
     }
   </div>
 );
 
-const VideoCard = () => (
-  <Box
-    maxW="sm"
-    overflow="hidden"
-    width="290px"
-  >
-    <Image src={johnWick} alt="" />
-  </Box>
-);
+const VideoCard = () => {
+  const kittenPlaceholder = 'https://via.placeholder.com/1024x576.png';
+
+  return (
+
+      <div style={{ backgroundImage: `url(${kittenPlaceholder})` }} className="progress-item">
+        <div className="progress-item-inside">
+          <button class="play-btn">
+            <a href="./player/index.html">
+              <i class="material-icons">play_arrow</i>
+            </a>
+          < /button>
+        </div>      
+      </div>
+
+  )
+};
+
+VideoCards.propTypes = {
+  cards: node,
+}
 
 export default VideoCards;
