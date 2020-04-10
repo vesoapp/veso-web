@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react';
-import { Box, Image, Flex } from '@chakra-ui/core';
+import { Box, Image, Flex, Icon } from '@chakra-ui/core';
 import { node } from 'prop-types';
+import Container from './Container';
 
 const VideoCards = ({ cards }) => (
-  <div className="progress-scroll">
-    {cards &&
-      cards.map((index) => <VideoCard key={index} />)
-    }
-  </div>
+  <Container>
+    <div className="progress-scroll">
+      {cards &&
+        cards.map((index) => <VideoCard key={index} />)
+      }
+    </div>
+  </Container>
 );
 
 const VideoCard = () => {
@@ -19,7 +22,7 @@ const VideoCard = () => {
         <div className="progress-item-inside">
           <button className="play-btn">
             <a href="./player/index.html">
-              <i className="material-icons">play_arrow</i>
+              <Icon className="material-icons" name="phone" />
             </a>
           </button>
         </div>      

@@ -1,30 +1,26 @@
 import React from "react";
 import { Heading, Flex, Text, Image } from "@chakra-ui/core";
-
 import Logo from '../assets/images/logo.png';
+import Container from "./Container";
 
 const Header = () => (
-  <Flex
-    as="nav"
-    align="center"
-    justify="space-between"
-    wrap="wrap"
-    padding="0.6rem"
-    bg="black"
-    height="50px"
-    color="white"
-  >
-    <Flex>
-      <Heading as="h1" size="lg">
-        <Image
-          margin="2px"
-          height="25px"
-          src={Logo}
-          alt="Veso"
-        />
-      </Heading>
-    </Flex>
-  </Flex>
+  <div className="main-nav">
+    <Container>
+      <Flex
+        as="nav"
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        padding="0.6rem"
+        >
+          <Flex>
+            <div className="site-logo">
+              <a href="#"></a>
+            </div>
+          </Flex>
+        </Flex> 
+    </Container>
+  </div>
 );
 
 export default Header;
