@@ -1,7 +1,7 @@
+import { Flex } from '@chakra-ui/core';
 import React from 'react';
-import { Flex } from "@chakra-ui/core";
 
-const Container = ({children}) => (
+const Container: React.FunctionComponent = ({ children }) => (
   <Flex
     as="nav"
     align="center"

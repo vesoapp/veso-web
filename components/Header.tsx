@@ -1,9 +1,8 @@
-import React from "react";
-import { Heading, Flex, Text, Image } from "@chakra-ui/core";
-
+import { Flex, Heading, Image } from '@chakra-ui/core';
+import React from 'react';
 import Logo from '../assets/images/logo.png';
 
-const Header = () => (
+const Header: React.FunctionComponent = () => (
   <Flex
     as="nav"
     align="center"
@@ -16,12 +15,7 @@ const Header = () => (
   >
     <Flex>
       <Heading as="h1" size="lg">
-        <Image
-          margin="2px"
-          height="25px"
-          src={Logo}
-          alt="Veso"
-        />
+        <Image margin="2px" height="25px" src={Logo} alt="Veso" />
       </Heading>
     </Flex>
   </Flex>

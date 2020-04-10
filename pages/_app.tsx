@@ -1,17 +1,21 @@
-import React from 'react';
-import NextApp from 'next/app';
+import { ColorModeProvider, CSSReset, ThemeProvider } from '@chakra-ui/core';
 import withRedux from 'next-redux-wrapper';
-import makeStore from '../store';
-import { elementType, object } from 'prop-types';
-
+import NextApp, { AppContext } from 'next/app';
+import React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
-
+import makeStore from '../store';
 import theme from '../theme';
 
-class App extends NextApp {
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+interface AppProps {
+  Component: any;
+  store: any;
+}
+
+class App extends NextApp<AppProps> {
+  static async getInitialProps({ Component, ctx }: AppContext) {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
 
     return { pageProps };
   }
@@ -30,11 +34,6 @@ class App extends NextApp {
       </ThemeProvider>
     );
   }
-};
-
-App.propTypes = {
-  Component: elementType,
-  store: object,
 }
 
 export default withRedux(makeStore)(App);
