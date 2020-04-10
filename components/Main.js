@@ -2,14 +2,9 @@ import React from 'react';
 import { Flex } from "@chakra-ui/core";
 
 const Main = ({children}) => (
-  <Flex
-    className="main-container"
-    align="center"
-    justify="space-between"
-    wrap="wrap"
-  >
+  <div className="main-container">
     {children}
-  </Flex>
+  </div>
 );
 
 export default Main;

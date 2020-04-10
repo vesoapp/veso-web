@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react';
-import { Box, Image, Flex, Icon } from '@chakra-ui/core';
+import { Box, Image, Flex, Icon, Heading } from '@chakra-ui/core';
 import { node } from 'prop-types';
 import Container from './Container';
 
 const VideoCards = ({ cards }) => (
   <Container>
+    <h2 className="progress-heading">
+      Heading
+    </h2>
     <div className="progress-scroll">
       {cards &&
         cards.map((index) => <VideoCard key={index} />)

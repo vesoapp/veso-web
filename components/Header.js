@@ -11,7 +11,7 @@ const Header = () => (
         align="center"
         justify="space-between"
         wrap="wrap"
-        padding="0.6rem"
+        padding="0.6rem 0"
         >
           <Flex>
             <div className="site-logo">
