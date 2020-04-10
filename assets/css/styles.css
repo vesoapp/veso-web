@@ -47,6 +47,7 @@ h1,h2,h3,h4,h5 {
   white-space: nowrap;
   display: flex;
   overflow-x: auto;
+  z-index: 2;
 }
 
 .progress-scroll::-webkit-scrollbar {

@@ -4,7 +4,7 @@ import { node } from 'prop-types';
 import Container from './Container';
 
 const VideoCards = ({ cards }) => (
-  <Container>
+  <Container zIndex={2}>
     <h2 className="progress-heading">
       Heading
     </h2>
