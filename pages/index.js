@@ -6,6 +6,7 @@ import { Button } from '@chakra-ui/core';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Container from '../components/Container';
+import TrailerSlider from '../components/TrailerSlider';
 import VideoCards from '../components/VideoCards';
 
 import { subtract, increment } from '../store/actions/math';
@@ -22,6 +23,7 @@ export class Index extends PureComponent {
       <Fragment>
         <Header></Header>
         <Main>
+          <TrailerSlider></TrailerSlider>
           <VideoCards cards={[1, 2, 3, 4, 5, 6]}></VideoCards>
           <VideoCards cards={[1, 2, 3, 4, 5, 6]}></VideoCards>
           <VideoCards cards={[1, 2, 3, 4, 5, 6]}></VideoCards>
