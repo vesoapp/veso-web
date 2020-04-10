@@ -21,7 +21,7 @@ const VideoCard = () => {
             <a href="./player/index.html">
               <i className="material-icons">play_arrow</i>
             </a>
-          < /button>
+          </button>
         </div>      
       </div>
 
