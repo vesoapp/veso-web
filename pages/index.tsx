@@ -1,24 +1,25 @@
-import React, { Fragment, PureComponent } from 'react';
-import { withTheme } from 'emotion-theming';
-import { connect } from 'react-redux';
 import { Button } from '@chakra-ui/core';
-
-import Header from '../components/Header';
+import { withTheme } from 'emotion-theming';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import Container from '../components/Container';
+import Header from '../components/Header';
 import VideoCards from '../components/VideoCards';
+import { State } from '../store';
+import { increment, subtract } from '../store/actions/math';
 
-import { subtract, increment } from '../store/actions/math';
+interface IndexProps {
+  number: number;
+  testDown: any;
+  testUp: any;
+}
 
-export class Index extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
+export class Index extends PureComponent<IndexProps> {
   render() {
     const { number, testDown, testUp } = this.props;
 
     return (
-      <Fragment>
+      <>
         <Container>
           <Header />
         </Container>
@@ -26,16 +27,16 @@ export class Index extends PureComponent {
         {number}
         <Button onClick={testDown}> Subtract </Button>
         <Button onClick={testUp}> Add </Button>
-      </Fragment>
-    )
+      </>
+    );
   }
-};
+}
 
-const mapStateToProps = state => state.math
+const mapStateToProps = (state: State) => state.math;
 
 const mapDispatchToProps = {
   testDown: subtract,
-  testUp: increment
+  testUp: increment,
 };
 
-export default withTheme(connect(mapStateToProps, mapDispatchToProps)(Index)) ;
+export default withTheme(connect(mapStateToProps, mapDispatchToProps)(Index));
