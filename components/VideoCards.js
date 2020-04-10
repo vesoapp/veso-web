@@ -17,9 +17,9 @@ const VideoCard = () => {
 
       <div style={{ backgroundImage: `url(${kittenPlaceholder})` }} className="progress-item">
         <div className="progress-item-inside">
-          <button class="play-btn">
+          <button className="play-btn">
             <a href="./player/index.html">
-              <i class="material-icons">play_arrow</i>
+              <i className="material-icons">play_arrow</i>
             </a>
           < /button>
         </div>      
