@@ -6,8 +6,8 @@ const Container = ({children}) => (
     align="center"
     justify="space-between"
     wrap="wrap"
-    pl="6rem"
-    pr="6rem"
+    pl="3rem"
+    pr="3rem"
   >
     {children}
   </Flex>
