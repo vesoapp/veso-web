@@ -3,12 +3,12 @@ import NextApp from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import makeStore from '../store';
 import { elementType, object } from 'prop-types';
-import '../assets/css/styles.css';
 
 import { Provider } from 'react-redux';
 import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
 
 import theme from '../theme';
+import '../assets/css/styles.css';
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx }) {

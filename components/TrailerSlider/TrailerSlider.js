@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, AspectRatioBox } from "@chakra-ui/core";
+import { Box, AspectRatioBox } from "@chakra-ui/core";
 
 const TrailerSlider = () => (
     <div className="video-slider-container">

@@ -1,7 +1,9 @@
 import React from "react";
-import { Heading, Flex, Text, Image } from "@chakra-ui/core";
-import Logo from '../assets/images/logo.png';
-import Container from "./Container";
+import { Flex } from "@chakra-ui/core";
+
+import Logo from 'assets/images/logo.png';
+
+import Container from "../Container";
 
 const Header = () => (
   <div className="main-nav">

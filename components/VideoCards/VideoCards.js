@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { Box, Image, Flex, Icon, Heading } from '@chakra-ui/core';
+import React from 'react';
+import { Icon } from '@chakra-ui/core';
 import { node } from 'prop-types';
-import Container from './Container';
+import Container from '../Container';
 
 const VideoCards = ({ cards }) => (
   <Container zIndex={2}>
@@ -20,17 +20,15 @@ const VideoCard = () => {
   const kittenPlaceholder = 'https://via.placeholder.com/1024x576.png';
 
   return (
-
-      <div style={{ backgroundImage: `url(${kittenPlaceholder})` }} className="progress-item">
-        <div className="progress-item-inside">
-          <button className="play-btn">
-            <a href="./player/index.html">
-              <Icon className="material-icons" name="phone" />
-            </a>
-          </button>
-        </div>      
+    <div style={{ backgroundImage: `url(${kittenPlaceholder})` }} className="progress-item">
+      <div className="progress-item-inside">
+        <button className="play-btn">
+          <a href="./player/index.html">
+            <Icon className="material-icons" name="phone" />
+          </a>
+        </button>
       </div>
-
+    </div>
   )
 };
 
