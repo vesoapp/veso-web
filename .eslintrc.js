@@ -1,42 +1,61 @@
-module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-    commonjs: true,
-  },
-  extends: [
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parser: '@typescript-eslint/parser',
+/**
+ * @type {import("eslint").Linter.Config}
+ */
+const config = {
+  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
+    ecmaVersion: '2018',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react'],
   rules: {
-    'prettier/prettier': 'error',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.js'] }],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'no-console': 'warn',
-
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    'react/static-property-placement': ['off'],
     'react/prop-types': 0,
   },
   settings: {
+    react: {
+      version: 'detect',
+    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      plugins: ['@typescript-eslint'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      env: {
+        browser: true,
+      },
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        sourceType: 'module',
+      },
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 0,
+      },
+    },
+    {
+      files: ['next.config.js', 'next-env.d.ts'],
+      env: {
+        node: true,
+      },
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
+  ],
 };
+
+module.exports = config;
