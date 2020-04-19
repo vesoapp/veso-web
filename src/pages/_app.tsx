@@ -36,4 +36,9 @@ class App extends NextApp<AppProps> {
   }
 }
 
-export default withRedux(makeStore)(App);
+const config = {
+  storeKey: 'redux',
+  debug: true,
+};
+
+export default withRedux(makeStore, config)(App);
