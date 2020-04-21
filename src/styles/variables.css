@@ -1,0 +1,19 @@
+/* Global Variables */
+:root {
+  /* Fonts */
+  --font-system: system;
+
+  /* Colors */
+  --color-theme: #d9274a;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+
+  /* Spacing */
+  --spacing-main-horizontal: 10%;
+  --spacing-base: 4px;
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 36px;
+}

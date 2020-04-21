@@ -1,0 +1,105 @@
+import './index.css';
+
+# Styles
+
+This document outlines some of the Shared CSS configuration for the overall application. All shared styles need to be imported into the `styles/index.css` file for use in `_app.tsx`
+
+## Variables
+
+The `variables.css` file provides global CSS Variables (custom properties) for the following:
+
+1. Colours
+2. Fonts
+3. Spacing
+4. Dark theme (`prefers-color-scheme: dark`) overrides
+
+### Usage
+
+To use a variable in the CSS for a component find the relevant variable name (`variables.css`) and then use the `var` function in the CSS
+
+```css
+.MyComponent {
+  color: var(--color-foreground);
+}
+```
+
+Base dimensions are provided for spacing, however you can set a custom dimenstion based on the spacing variables using the `calc` function
+
+```css
+.MyComponent {
+  height: calc(var(--spacing-xs) * 3);
+}
+```
+
+### Conventions
+
+Variables for the global scope should be defined in the `variable.css` file, variables for components should be defined in the component module file within the relevant scope, for example:
+
+```css
+.MyComponent {
+  --my-var1: pink;
+}
+
+.MyComponent .sub {
+  --my-var2: yellow;
+}
+```
+
+Additionally the variable naming should be set using a combination of the variable type and descriptor for the value
+
+| Type  | Descriptor | Variable Name    |
+| ----- | ---------- | ---------------- |
+| Font  | Main       | `--font-main`    |
+| Color | Header     | `--color-header` |
+
+> Note that the naming of variables should be done using the American spelling for `color`
+
+## Grid
+
+The Grid configuration makes use of CSS Grid:
+
+1. Based on the Bootstrap Grid System
+2. Using a variation of 4 to 12 columns depending on device width
+3. Is `min-width` based
+4. Uses the `--spacing-xs` global variable for the grid gap
+
+The Breakpoints and columns for the Grid can be seen below:
+
+| Name          | Breakpoint          | No. Columns |
+| ------------- | ------------------- | ----------- |
+| Mobile        | `min-width: 0px`    | 4           |
+| Tablet        | `min-width: 768px`  | 6           |
+| Desktop       | `min-width: 992px`  | 8           |
+| Large Desktop | `min-width: 1200px` | 12          |
+
+The layout will wrap as normal based on the number of elements
+
+To make a given element the Grid parent container set the `grid` class on the container
+
+A Basic example of the Grid can be seen below. Resizing the window will show the impact of the breakpoints and grid-wrapping
+
+<style>
+  {`.grid * {
+  background-color: lightblue;
+  height: 100px
+  }
+`}
+</style>
+
+<div className="grid">
+  {[...Array(36).keys()].map((i) => (
+    <div key={i}>Element {i + 1}</div>
+  ))}
+</div>
+
+By default, each element in the grid will have a width and height span of `1fr` (grid unit) but typically elements will span a larger width or height, this can be set using the relevant grid-child properties
+
+## Typography
+
+The application typography makes use of the System Font Stack, to make use of this font manually (where necessary) the `--font-system` CSS variable can be used
+
+```css
+.MyComponent {
+  font-family: var(--font-system);
+}
+```
