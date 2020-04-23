@@ -6,9 +6,9 @@ name: Node.js CI
 # events but only for the master branch
 on:
   push:
-    branches: [ alpha, master ]
+    branches: [ alpha, develop, master ]
   pull_request:
-    branches: [ alpha, master ]
+    branches: [ alpha, develop, master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
