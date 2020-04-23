@@ -1,0 +1,13 @@
+/* Define the "system" font family, this alows us to just use "system" instead of having to list all the onts each time */
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local('.SFNSText-Light'), local('.HelveticaNeueDeskInterface-Light'),
+    local('.LucidaGrandeUI'), local('Ubuntu Light'), local('Segoe UI Light'),
+    local('Roboto-Light'), local('DroidSans'), local('Tahoma');
+}
+
+body {
+  font-family: system;
+}

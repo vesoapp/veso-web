@@ -4,6 +4,7 @@ import NextApp, { AppContext } from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import makeStore from '../store';
+import '../styles/index.css';
 import theme from '../theme';
 
 interface AppProps {
