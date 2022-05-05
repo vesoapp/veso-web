@@ -375,3 +375,14 @@
         transform: rotate(-360deg);
     }
 }
+
+.skipIntro {
+    padding: 0 1px;
+
+    position: absolute;
+    right: 1em;
+    top: 80vh;
+
+    background-color: rgba(25, 25, 25, 0.66);
+    border-radius: 1rem;
+}
