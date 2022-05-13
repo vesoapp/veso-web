@@ -1653,6 +1653,7 @@
     "EnableEnhancedNvdecDecoderHelp": "Experimental NVDEC implementation, do not enable this option unless you encounter decoding errors.",
     "EnableSplashScreen": "Enable the splash screen",
     "Bold": "Bold",
+    "SemiBold": "Semi Bold",
     "HomeVideosPhotos": "Home Videos and Photos",
     "MediaInfoDvBlSignalCompatibilityId": "DV bl signal compatibility id",
     "MediaInfoBlPresentFlag": "DV bl preset flag",
