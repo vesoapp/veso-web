@@ -1,6 +1,6 @@
-.ci             @dkanada @EraYaN
-.github         @jellyfin/core
-fedora          @joshuaboniface
-debian          @joshuaboniface
-.copr           @joshuaboniface
-deployment      @joshuaboniface
+.ci             @dannymichel
+.github         @dannymichel
+fedora          @dannymichel
+debian          @dannymichel
+.copr           @dannymichel
+deployment      @dannymichel
