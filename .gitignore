@@ -19,3 +19,4 @@ yarn-error.log
 # build artifacts
 fedora/jellyfin-web-*.src.rpm
 fedora/jellyfin-web-*.tar.gz
+.DS_Store
