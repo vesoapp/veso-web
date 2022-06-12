@@ -1644,5 +1644,6 @@
     "Scene": "Scene",
     "Sample": "Sample",
     "ThemeSong": "Theme Song",
-    "ThemeVideo": "Theme Video"
+    "ThemeVideo": "Theme Video",
+    "EnableSplashScreen": "Enable the splash screen"
 }
