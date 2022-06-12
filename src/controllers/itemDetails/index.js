@@ -194,7 +194,7 @@ function renderTrackSelections(page, instance, item, forceReload) {
     });
 
     resolutionNames.sort((a, b) => parseInt(b.Name, 10) - parseInt(a.Name, 10));
-    sourceNames.sort(function(a, b) {
+    sourceNames.sort((a, b) => {
         const nameA = a.Name.toUpperCase();
         const nameB = b.Name.toUpperCase();
         if (nameA < nameB) {
@@ -280,6 +280,7 @@ function renderAudioSelections(page, mediaSources) {
     const tracks = mediaSource.MediaStreams.filter(function (m) {
         return m.Type === 'Audio';
     });
+    tracks.sort(itemHelper.sortTracks);
     const select = page.querySelector('.selectAudio');
     select.setLabel(globalize.translate('Audio'));
     const selectedId = mediaSource.DefaultAudioStreamIndex;
@@ -309,31 +310,26 @@ function renderSubtitleSelections(page, mediaSources) {
     const tracks = mediaSource.MediaStreams.filter(function (m) {
         return m.Type === 'Subtitle';
     });
+    tracks.sort(itemHelper.sortTracks);
     const select = page.querySelector('.selectSubtitles');
     select.setLabel(globalize.translate('Subtitles'));
     const selectedId = mediaSource.DefaultSubtitleStreamIndex == null ? -1 : mediaSource.DefaultSubtitleStreamIndex;
 
-    const videoTracks = mediaSource.MediaStreams.filter(function (m) {
-        return m.Type === 'Video';
-    });
+    let selected = selectedId === -1 ? ' selected' : '';
+    select.innerHTML = '<option value="-1">' + globalize.translate('Off') + '</option>' + tracks.map(function (v) {
+        selected = v.Index === selectedId ? ' selected' : '';
+        return '<option value="' + v.Index + '" ' + selected + '>' + v.DisplayTitle + '</option>';
+    }).join('');
 
-    // This only makes sense on Video items
-    if (videoTracks.length) {
-        let selected = selectedId === -1 ? ' selected' : '';
-        select.innerHTML = '<option value="-1">' + globalize.translate('Off') + '</option>' + tracks.map(function (v) {
-            selected = v.Index === selectedId ? ' selected' : '';
-            return '<option value="' + v.Index + '" ' + selected + '>' + v.DisplayTitle + '</option>';
-        }).join('');
+    if (tracks.length > 0) {
+        select.removeAttribute('disabled');
+    } else {
+        select.setAttribute('disabled', 'disabled');
+    }
 
-        if (tracks.length > 0) {
-            select.removeAttribute('disabled');
-        } else {
-            select.setAttribute('disabled', 'disabled');
-        }
-
+    if (tracks.length) {
         page.querySelector('.selectSubtitlesContainer').classList.remove('hide');
     } else {
-        select.innerHTML = '';
         page.querySelector('.selectSubtitlesContainer').classList.add('hide');
     }
 }
@@ -519,7 +515,7 @@ function setTrailerButtonVisibility(page, item) {
 }
 
 function renderBackdrop(item) {
-    if (dom.getWindowSize().innerWidth >= 1000) {
+    if (!layoutManager.mobile && dom.getWindowSize().innerWidth >= 1000) {
         setBackdrops([item]);
     } else {
         clearBackdrop();
@@ -1186,9 +1182,9 @@ function renderMoreFromArtist(view, item, apiClient) {
         };
 
         if (item.Type === 'MusicArtist') {
-            query.AlbumArtistIds = item.Id;
+            query.ContributingArtistIds = item.Id;
         } else {
-            query.AlbumArtistIds = item.AlbumArtists[0].Id;
+            query.ContributingArtistIds = item.AlbumArtists.map(artist => artist.Id).join(',');
         }
 
         apiClient.getItems(apiClient.getCurrentUserId(), query).then(function (result) {
@@ -1790,7 +1786,11 @@ function renderAdditionalParts(page, item, user) {
 function renderScenes(page, item) {
     let chapters = item.Chapters || [];
 
-    if (chapters.length && !chapters[0].ImageTag && (chapters = []), chapters.length) {
+    if (chapters.length && !chapters[0].ImageTag) {
+        chapters = [];
+    }
+
+    if (chapters.length) {
         page.querySelector('#scenesCollapsible').classList.remove('hide');
         const scenesContent = page.querySelector('#scenesContent');
 
