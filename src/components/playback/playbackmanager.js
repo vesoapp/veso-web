@@ -1827,12 +1827,18 @@ class PlaybackManager {
                     Limit: UNLIMITED_ITEMS
                 }, queryOptions));
             } else if (firstItem.IsFolder) {
+                let sortBy = null;
+                if (options.shuffle) {
+                    sortBy = 'Random';
+                } else if (firstItem.Type !== 'BoxSet') {
+                    sortBy = 'SortName';
+                }
                 promise = getItemsForPlayback(serverId, mergePlaybackQueries({
                     ParentId: firstItem.Id,
                     Filters: 'IsNotFolder',
                     Recursive: true,
                     // These are pre-sorted
-                    SortBy: options.shuffle ? 'Random' : (['BoxSet'].indexOf(firstItem.Type) === -1 ? 'SortName' : null),
+                    SortBy: sortBy,
                     MediaTypes: 'Audio,Video'
                 }, queryOptions));
             } else if (firstItem.Type === 'Episode' && items.length === 1 && getPlayer(firstItem, options).supportsProgress !== false) {
@@ -3034,7 +3040,7 @@ class PlaybackManager {
 
             const streamInfo = error.streamInfo || getPlayerData(player).streamInfo;
 
-            if (streamInfo) {
+            if (streamInfo?.url) {
                 const currentlyPreventsVideoStreamCopy = streamInfo.url.toLowerCase().indexOf('allowvideostreamcopy=false') !== -1;
                 const currentlyPreventsAudioStreamCopy = streamInfo.url.toLowerCase().indexOf('allowaudiostreamcopy=false') !== -1;
 
@@ -3657,7 +3663,7 @@ class PlaybackManager {
         if (player.audioTracks) {
             const result = player.audioTracks();
             if (result) {
-                return result;
+                return result.sort(itemHelper.sortTracks);
             }
         }
 
@@ -3666,14 +3672,14 @@ class PlaybackManager {
         const mediaStreams = (mediaSource || {}).MediaStreams || [];
         return mediaStreams.filter(function (s) {
             return s.Type === 'Audio';
-        });
+        }).sort(itemHelper.sortTracks);
     }
 
     subtitleTracks(player = this._currentPlayer) {
         if (player.subtitleTracks) {
             const result = player.subtitleTracks();
             if (result) {
-                return result;
+                return result.sort(itemHelper.sortTracks);
             }
         }
 
@@ -3682,7 +3688,7 @@ class PlaybackManager {
         const mediaStreams = (mediaSource || {}).MediaStreams || [];
         return mediaStreams.filter(function (s) {
             return s.Type === 'Subtitle';
-        });
+        }).sort(itemHelper.sortTracks);
     }
 
     getSupportedCommands(player) {

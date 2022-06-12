@@ -52,15 +52,17 @@ module.exports = {
         'no-trailing-spaces': ['error'],
         '@babel/no-unused-expressions': ['error', { 'allowShortCircuit': true, 'allowTernary': true, 'allowTaggedTemplates': true }],
         'no-void': ['error', { 'allowAsStatement': true }],
+        'no-nested-ternary': ['error'],
         'one-var': ['error', 'never'],
         'padded-blocks': ['error', 'never'],
-        'prefer-const': ['error', {'destructuring': 'all'}],
+        'prefer-const': ['error', { 'destructuring': 'all' }],
         'quotes': ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': false }],
         '@babel/semi': ['error'],
         'no-var': ['error'],
         'space-before-blocks': ['error'],
         'space-infix-ops': 'error',
-        'yoda': 'error'
+        'yoda': 'error',
+        'no-sequences': ['error', { 'allowInParentheses': false }]
     },
     settings: {
         react: {

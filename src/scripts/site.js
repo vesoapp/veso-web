@@ -42,7 +42,7 @@ import { currentSettings } from './settings/userSettings';
 import taskButton from './taskbutton';
 
 function loadCoreDictionary() {
-    const languages = ['af', 'ar', 'be-by', 'bg-bg', 'bn_bd', 'ca', 'cs', 'da', 'de', 'el', 'en-gb', 'en-us', 'eo', 'es', 'es-419', 'es-ar', 'es_do', 'es-mx', 'fa', 'fi', 'fil', 'fr', 'fr-ca', 'gl', 'gsw', 'he', 'hi-in', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'lt-lt', 'mr', 'ms', 'nb', 'nl', 'pl', 'pr', 'pt', 'pt-br', 'pt-pt', 'ro', 'ru', 'sk', 'sl-si', 'sq', 'sv', 'ta', 'th', 'tr', 'uk', 'ur_pk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
+    const languages = ['af', 'ar', 'be-by', 'bg-bg', 'bn_bd', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en-gb', 'en-us', 'eo', 'es', 'es-419', 'es-ar', 'es_do', 'es-mx', 'et', 'fa', 'fi', 'fil', 'fr', 'fr-ca', 'gl', 'gsw', 'he', 'hi-in', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'lt-lt', 'lv', 'mr', 'ms', 'nb', 'nl', 'nn', 'pl', 'pr', 'pt', 'pt-br', 'pt-pt', 'ro', 'ru', 'sk', 'sl-si', 'sq', 'sv', 'ta', 'th', 'tr', 'uk', 'ur_pk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
     const translations = languages.map(function (language) {
         return {
             lang: language,
@@ -246,11 +246,24 @@ async function onAppReady() {
             }
         };
 
-        Events.on(ServerConnections, 'localusersignedin', handleStyleChange);
-        Events.on(ServerConnections, 'localusersignedout', handleStyleChange);
+        const handleLanguageChange = () => {
+            const locale = globalize.getCurrentLocale();
+
+            document.documentElement.setAttribute('lang', locale);
+        };
+
+        const handleUserChange = () => {
+            handleStyleChange();
+            handleLanguageChange();
+        };
+
+        Events.on(ServerConnections, 'localusersignedin', handleUserChange);
+        Events.on(ServerConnections, 'localusersignedout', handleUserChange);
         Events.on(currentSettings, 'change', (e, prop) => {
             if (prop == 'disableCustomCss' || prop == 'customCss') {
                 handleStyleChange();
+            } else if (prop == 'language') {
+                handleLanguageChange();
             }
         });
 

@@ -733,7 +733,7 @@
     "LabelFormat": "Formátum:",
     "LabelFriendlyName": "Könnyen megjegyezhető név:",
     "LabelServerNameHelp": "Ez a név kerül a Szerver azonosítására és alapértelmezetten a hoszt neve kerül felhasználásra.",
-    "LabelGroupMoviesIntoCollectionsHelp": "Ha a filmlista nézetet választja, akkor a dobozos készletek csoportosított filmekkel rendelkező elemekként jelennek meg.",
+    "LabelGroupMoviesIntoCollectionsHelp": "A gyűjtemény filmjei egyetlen csoportos elemként jelennek meg a filmlisták megjelenítésekor.",
     "LabelH264Crf": "H.264 CRF kódolás:",
     "LabelHomeNetworkQuality": "Otthoni hálózat minősége:",
     "LabelHttpsPort": "Helyi HTTPS port száma:",
@@ -1650,5 +1650,7 @@
     "MessageUnauthorizedUser": "Jelenleg nincs jogosultsága a szerver elérésére. További információért fordulj a szerver rendszergazdájához.",
     "Digital": "Digitális",
     "EnableEnhancedNvdecDecoderHelp": "Kísérleti NVDEC implementáció, csak akkor engedélyezze ezt a lehetőséget, ha dekódolási hibákat észlel.",
-    "HomeVideosPhotos": "Otthoni videók és fotók"
+    "HomeVideosPhotos": "Otthoni videók és fotók",
+    "Bold": "Félkövér",
+    "LabelTextWeight": "Betűvastagság:"
 }
