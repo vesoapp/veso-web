@@ -40,6 +40,12 @@
     font-size: 130%;
 }
 
+.centerButtons button {
+    text-shadow: 1px 1px 4px rgb(0 0 0 / 20%);
+    -webkit-text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    -moz-text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
 .centerButtons .material-icons:before {
     font-size: 170%;
 }
