@@ -39,3 +39,4 @@
    ```sh
    npm run build:development
    ```
+Join us on discord https://discord.gg/Ce4PmFcX7Y
