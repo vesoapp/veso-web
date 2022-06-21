@@ -94,7 +94,7 @@ import '../../../elements/emby-button/emby-button';
             html += '<div class="taskProgressInner" style="width:' + progress + '%;">';
             html += '</div>';
             html += '</div>';
-            html += "<span style='color:#00a4dc;margin-left:5px;'>" + progress + '%</span>';
+            html += "<span style='color:#d61e30;margin-left:5px;'>" + progress + '%</span>';
             html += '</div>';
         } else {
             html += "<span style='color:#FF0000;'>" + globalize.translate('LabelStopping') + '</span>';
