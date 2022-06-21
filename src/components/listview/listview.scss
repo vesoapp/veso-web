@@ -151,8 +151,8 @@
 }
 
 .listItemImageButton:hover {
-    color: #00a4dc;
-    background: rgba(0, 164, 220, 0.2);
+    color: #d61e30;
+    background: rgba(220, 0, 0, 0.2);
     transform: scale(1.2, 1.2);
 }
 
@@ -215,7 +215,7 @@
 }
 
 .listItemIcon:not(.listItemIcon-transparent) {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff;
     padding: 0.5em;
     border-radius: 100em;
