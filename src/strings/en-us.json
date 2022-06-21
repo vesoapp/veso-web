@@ -708,6 +708,7 @@
     "LabelLibraryPageSizeHelp": "Set the amount of items to show on a library page. Set to 0 in order to disable paging.",
     "LabelMaxDaysForNextUp": "Max days in 'Next Up':",
     "LabelMaxDaysForNextUpHelp": "Set the maximum amount of days a show should stay in the 'Next Up' list without watching it.",
+    "LabelMaxVideoResolution": "Maximum Allowed Video Transcoding Resolution",
     "LabelLineup": "Lineup:",
     "LabelLocalCustomCss": "Custom CSS code for styling which applies to this client only. You may want to disable server custom CSS code.",
     "LabelLocalHttpServerPortNumber": "Local HTTP port number:",
@@ -1379,6 +1380,7 @@
     "ScanForNewAndUpdatedFiles": "Scan for new and updated files",
     "ScanLibrary": "Scan library",
     "Schedule": "Schedule",
+    "ScreenResolution": "Screen Resolution",
     "Screenshot": "Screenshot",
     "Screenshots": "Screenshots",
     "Search": "Search",
@@ -1645,5 +1647,10 @@
     "Sample": "Sample",
     "ThemeSong": "Theme Song",
     "ThemeVideo": "Theme Video",
-    "EnableSplashScreen": "Enable the splash screen"
+    "EnableSplashScreen": "Enable the splash screen",
+    "LabelVppTonemappingBrightness": "VPP Tone mapping brightness gain:",
+    "LabelVppTonemappingBrightnessHelp": "Apply brightness gain in VPP tone mapping. Both recommended and default values are 0.",
+    "LabelVppTonemappingContrast": "VPP Tone mapping contrast gain:",
+    "LabelVppTonemappingContrastHelp": "Apply contrast gain in VPP tone mapping. The recommended and default values are 1.2 and 1.",
+    "VideoRangeTypeNotSupported": "The video's range type is not supported"
 }
