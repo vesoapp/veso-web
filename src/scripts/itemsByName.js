@@ -89,11 +89,11 @@ function renderItems(page, item) {
     const sectionElems = elem.querySelectorAll('.verticalSection');
 
     for (let i = 0, length = sectionElems.length; i < length; i++) {
-        renderSection(page, item, sectionElems[i], sectionElems[i].getAttribute('data-type'));
+        renderSection(item, sectionElems[i], sectionElems[i].getAttribute('data-type'));
     }
 }
 
-function renderSection(page, item, element, type) {
+function renderSection(item, element, type) {
     switch (type) {
         case 'Program':
             loadItems(element, item, type, {
@@ -301,26 +301,26 @@ function loadItems(element, item, type, query, listOptions) {
 
 function getMoreItemsHref(item, type) {
     if (item.Type === 'Genre') {
-        return '#!/list.html?type=' + type + '&genreId=' + item.Id + '&serverId=' + item.ServerId;
+        return '#/list.html?type=' + type + '&genreId=' + item.Id + '&serverId=' + item.ServerId;
     }
 
     if (item.Type === 'MusicGenre') {
-        return '#!/list.html?type=' + type + '&musicGenreId=' + item.Id + '&serverId=' + item.ServerId;
+        return '#/list.html?type=' + type + '&musicGenreId=' + item.Id + '&serverId=' + item.ServerId;
     }
 
     if (item.Type === 'Studio') {
-        return '#!/list.html?type=' + type + '&studioId=' + item.Id + '&serverId=' + item.ServerId;
+        return '#/list.html?type=' + type + '&studioId=' + item.Id + '&serverId=' + item.ServerId;
     }
 
     if (item.Type === 'MusicArtist') {
-        return '#!/list.html?type=' + type + '&artistId=' + item.Id + '&serverId=' + item.ServerId;
+        return '#/list.html?type=' + type + '&artistId=' + item.Id + '&serverId=' + item.ServerId;
     }
 
     if (item.Type === 'Person') {
-        return '#!/list.html?type=' + type + '&personId=' + item.Id + '&serverId=' + item.ServerId;
+        return '#/list.html?type=' + type + '&personId=' + item.Id + '&serverId=' + item.ServerId;
     }
 
-    return '#!/list.html?type=' + type + '&parentId=' + item.Id + '&serverId=' + item.ServerId;
+    return '#/list.html?type=' + type + '&parentId=' + item.Id + '&serverId=' + item.ServerId;
 }
 
 function addCurrentItemToQuery(query, item) {
@@ -373,6 +373,8 @@ function getItemsFunction(options, item) {
     };
 }
 
-window.ItemsByName = {
-    renderItems: renderItems
+const ItemsByName = {
+    renderItems
 };
+
+export default ItemsByName;
