@@ -16,7 +16,7 @@ html {
 }
 
 .skinHeader-withBackground {
-    background: #000420;
+    background: #101010;
     background: linear-gradient(to right, #000420 0%, #06256f 18%, #2b052b 38%, #2b052b 68%, #06256f 81%, #000420 100%);
 }
 
