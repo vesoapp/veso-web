@@ -18,8 +18,8 @@ if [[ ${IS_UNSTABLE} == 'yes' ]]; then
     sed -i "/%changelog/q" jellyfin-web.spec
 
     cat <<EOF >>jellyfin-web.spec
-* $( LANG=C date '+%a %b %d %Y' ) Jellyfin Packaging Team <packaging@jellyfin.org>
-- Jellyfin Web unstable build ${BUILD_ID} for merged PR #${PR_ID}
+* $( LANG=C date '+%a %b %d %Y' ) Veso Packaging Team <packaging@jellyfin.org>
+- Veso Web unstable build ${BUILD_ID} for merged PR #${PR_ID}
 EOF
     popd
 fi
