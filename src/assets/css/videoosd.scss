@@ -310,9 +310,9 @@
     height: 96px;
     width: 96px;
 
-    color: rgba(0, 164, 220, 0);
-    background: rgba(0, 164, 220, 0);
-    box-shadow: 0 0 0 0 rgba(0, 164, 220, 0);
+    color: rgba(220, 0, 0, 0);
+    background: rgba(220, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(220, 0, 0, 0);
     transform: scale(1);
 }
 
@@ -327,46 +327,46 @@
 @keyframes pulse {
     0% {
         transform: scale(0.95);
-        color: rgba(0, 164, 220, 0.7);
-        background: rgba(0, 164, 220, 0.3);
-        box-shadow: 0 0 0 0 rgba(0, 164, 220, 0.3);
+        color: rgba(220, 0, 0, 0.7);
+        background: rgba(220, 0, 0, 0.3);
+        box-shadow: 0 0 0 0 rgba(220, 0, 0, 0.3);
     }
 
     70% {
         transform: scale(1);
-        color: rgba(0, 164, 220, 0);
-        background: rgba(0, 164, 220, 0);
-        box-shadow: 0 0 0 60px rgba(0, 164, 220, 0);
+        color: rgba(220, 0, 0, 0);
+        background: rgba(220, 0, 0, 0);
+        box-shadow: 0 0 0 60px rgba(220, 0, 0, 0);
     }
 
     100% {
         transform: scale(0.95);
-        color: rgba(0, 164, 220, 0);
-        background: rgba(0, 164, 220, 0);
-        box-shadow: 0 0 0 0 rgba(0, 164, 220, 0);
+        color: rgba(220, 0, 0, 0);
+        background: rgba(220, 0, 0, 0);
+        box-shadow: 0 0 0 0 rgba(220, 0, 0, 0);
     }
 }
 
 @keyframes infinite-pulse {
     0% {
         transform: scale(0.95);
-        color: rgba(0, 164, 220, 0.7);
-        background: rgba(0, 164, 220, 0.3);
-        box-shadow: 0 0 0 0 rgba(0, 164, 220, 0.3);
+        color: rgba(220, 0, 0, 0.7);
+        background: rgba(220, 0, 0, 0.3);
+        box-shadow: 0 0 0 0 rgba(220, 0, 0, 0.3);
     }
 
     70% {
         transform: scale(1);
-        color: rgba(0, 164, 220, 0.6);
-        background: rgba(0, 164, 220, 0);
-        box-shadow: 0 0 0 60px rgba(0, 164, 220, 0);
+        color: rgba(220, 0, 0, 0.6);
+        background: rgba(220, 0, 0, 0);
+        box-shadow: 0 0 0 60px rgba(220, 0, 0, 0);
     }
 
     100% {
         transform: scale(0.95);
-        color: rgba(0, 164, 220, 0.7);
-        background: rgba(0, 164, 220, 0.3);
-        box-shadow: 0 0 0 0 rgba(0, 164, 220, 0);
+        color: rgba(220, 0, 0, 0.7);
+        background: rgba(220, 0, 0, 0.3);
+        box-shadow: 0 0 0 0 rgba(220, 0, 0, 0);
     }
 }
 
