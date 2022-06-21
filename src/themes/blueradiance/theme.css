@@ -66,18 +66,18 @@ html {
 
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
-        color: #00a4dc;
-        background-color: rgba(0, 164, 220, 0.2);
+        color: #d61e30;
+        background-color: rgba(220, 0, 0, 0.2);
     }
 }
 
 .paper-icon-button-light:active:not(:disabled) {
-    color: #00a4dc;
-    background-color: rgba(0, 164, 220, 0.2);
+    color: #d61e30;
+    background-color: rgba(220, 0, 0, 0.2);
 }
 
 .paper-icon-button-light.show-focus:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .fab,
@@ -96,7 +96,7 @@ a[data-role=button] {
 }
 
 .button-submit {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
@@ -126,7 +126,7 @@ a[data-role=button] {
 .inputLabelFocused,
 .selectLabelFocused,
 .textareaLabelFocused {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .checkboxOutline {
@@ -207,16 +207,16 @@ a[data-role=button] {
 }
 
 .itemSelectionPanel {
-    border: 1px solid #00a4dc;
+    border: 1px solid #d61e30;
 }
 
 .selectionCommandsPanel {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
 .upNextDialog-countdownText {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .alphaPickerButton {
@@ -230,7 +230,7 @@ a[data-role=button] {
 }
 
 .alphaPickerButton-tv:focus {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff !important;
 }
 
@@ -265,15 +265,15 @@ a[data-role=button] {
 }
 
 .progressring-spiner {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .button-flat:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .button-link {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .mediaInfoText {
@@ -291,7 +291,7 @@ a[data-role=button] {
 
 .emby-input:focus,
 .emby-textarea:focus {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .emby-select-withcolor {
@@ -306,16 +306,16 @@ a[data-role=button] {
 }
 
 .emby-select-withcolor:focus {
-    border-color: #00a4dc !important;
+    border-color: #d61e30 !important;
 }
 
 .emby-select-tv-withcolor:focus {
-    background-color: #00a4dc !important;
+    background-color: #d61e30 !important;
     color: #fff !important;
 }
 
 .emby-checkbox:checked + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
@@ -324,11 +324,11 @@ a[data-role=button] {
 
 .emby-checkbox:checked + span + .checkboxOutline,
 .itemProgressBarForeground {
-    background-color: #00a4dc;
+    background-color: #d61e30;
 }
 
 .emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .itemProgressBarForeground-recording {
@@ -339,7 +339,7 @@ a[data-role=button] {
 .fullSyncIndicator,
 .mediaSourceIndicator,
 .playedIndicator {
-    background: #00a4dc;
+    background: #d61e30;
 }
 
 .fullSyncIndicator {
@@ -359,12 +359,12 @@ a[data-role=button] {
 }
 
 .navMenuOption-selected {
-    background: #00a4dc !important;
+    background: #d61e30 !important;
     color: #fff;
 }
 
 .emby-button.show-focus:focus {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
@@ -373,15 +373,15 @@ a[data-role=button] {
 }
 
 .emby-tab-button-active {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .emby-tab-button.show-focus:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .emby-tab-button:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .channelPrograms,
@@ -412,7 +412,7 @@ a[data-role=button] {
 
 .guide-channelHeaderCell:focus,
 .programCell:focus {
-    background-color: #00a4dc !important;
+    background-color: #d61e30 !important;
     color: #fff !important;
 }
 
@@ -432,11 +432,11 @@ a[data-role=button] {
 
 .guide-date-tab-button.emby-tab-button-active,
 .guide-date-tab-button:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .guide-date-tab-button.show-focus:focus {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff;
 }
 
@@ -461,7 +461,7 @@ a[data-role=button] {
 }
 
 .buttonActive {
-    color: #00a4dc !important;
+    color: #d61e30 !important;
 }
 
 .cardBox:not(.visualCardBox) .cardPadder {
@@ -474,7 +474,7 @@ a[data-role=button] {
 
 .card:focus .cardBox.visualCardBox,
 .card:focus .cardBox:not(.visualCardBox) .cardScalable {
-    border-color: #00a4dc !important;
+    border-color: #d61e30 !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -502,5 +502,5 @@ a[data-role=button] {
 }
 
 .metadataSidebarIcon {
-    color: #00a4dc;
+    color: #d61e30;
 }
