@@ -56,18 +56,18 @@ html {
 
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
-        color: #00a4dc;
-        background-color: rgba(0, 164, 220, 0.2);
+        color: #d61e30;
+        background-color: rgba(220, 0, 0, 0.2);
     }
 }
 
 .paper-icon-button-light:active:not(:disabled) {
-    color: #00a4dc;
-    background-color: rgba(0, 164, 220, 0.2);
+    color: #d61e30;
+    background-color: rgba(220, 0, 0, 0.2);
 }
 
 .paper-icon-button-light.show-focus:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .fab,
@@ -82,7 +82,7 @@ html {
 }
 
 .button-submit {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
@@ -112,7 +112,7 @@ html {
 .inputLabelFocused,
 .selectLabelFocused,
 .textareaLabelFocused {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .checkboxOutline {
@@ -186,16 +186,16 @@ html {
 }
 
 .itemSelectionPanel {
-    border: 1px solid #00a4dc;
+    border: 1px solid #d61e30;
 }
 
 .selectionCommandsPanel {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
 .upNextDialog-countdownText {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .alphaPickerButton {
@@ -209,7 +209,7 @@ html {
 }
 
 .alphaPickerButton-tv:focus {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff !important;
 }
 
@@ -239,15 +239,15 @@ html {
 }
 
 .progressring-spiner {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .button-flat:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .button-link {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .mediaInfoText {
@@ -266,7 +266,7 @@ html {
 
 .emby-input:focus,
 .emby-textarea:focus {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .emby-select-withcolor {
@@ -281,16 +281,16 @@ html {
 }
 
 .emby-select-withcolor:focus {
-    border-color: #00a4dc !important;
+    border-color: #d61e30 !important;
 }
 
 .emby-select-tv-withcolor:focus {
-    background-color: #00a4dc !important;
+    background-color: #d61e30 !important;
     color: #fff !important;
 }
 
 .emby-checkbox:checked + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
@@ -299,11 +299,11 @@ html {
 
 .emby-checkbox:checked + span + .checkboxOutline,
 .itemProgressBarForeground {
-    background-color: #00a4dc;
+    background-color: #d61e30;
 }
 
 .emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
-    border-color: #00a4dc;
+    border-color: #d61e30;
 }
 
 .itemProgressBarForeground-recording {
@@ -314,7 +314,7 @@ html {
 .fullSyncIndicator,
 .mediaSourceIndicator,
 .playedIndicator {
-    background: #00a4dc;
+    background: #d61e30;
 }
 
 .fullSyncIndicator {
@@ -331,12 +331,12 @@ html {
 }
 
 .navMenuOption-selected {
-    background: #00a4dc !important;
+    background: #d61e30 !important;
     color: #fff;
 }
 
 .emby-button.show-focus:focus {
-    background: #00a4dc;
+    background: #d61e30;
     color: #fff;
 }
 
@@ -349,11 +349,11 @@ html {
 }
 
 .emby-tab-button.show-focus:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .emby-tab-button:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .channelPrograms,
@@ -384,7 +384,7 @@ html {
 
 .guide-channelHeaderCell:focus,
 .programCell:focus {
-    background-color: #00a4dc !important;
+    background-color: #d61e30 !important;
     color: #fff !important;
 }
 
@@ -404,11 +404,11 @@ html {
 
 .guide-date-tab-button.emby-tab-button-active,
 .guide-date-tab-button:focus {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .guide-date-tab-button.show-focus:focus {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff;
 }
 
@@ -434,12 +434,12 @@ html {
 }
 
 .buttonActive {
-    color: #00a4dc !important;
+    color: #d61e30 !important;
 }
 
 .card:focus .cardBox.visualCardBox,
 .card:focus .cardBox:not(.visualCardBox) .cardScalable {
-    border-color: #00a4dc !important;
+    border-color: #d61e30 !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -469,17 +469,17 @@ html {
 }
 
 .metadataSidebarIcon {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 .emby-button.detailFloatingButton {
-    background-color: #00a4dc;
+    background-color: #d61e30;
     color: #fff;
 }
 
 .layout-tv .emby-button.detailFloatingButton:focus {
     background-color: #f2f2f2;
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 #comicsPlayer,
@@ -511,7 +511,7 @@ html {
 }
 
 #dialogToc .bookplayerButtonIcon:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
 
 #dialogToc .toc li a:link {
@@ -520,5 +520,5 @@ html {
 
 #dialogToc .toc li a:active,
 #dialogToc .toc li a:hover {
-    color: #00a4dc;
+    color: #d61e30;
 }
