@@ -46,7 +46,7 @@ function getTextStyles(settings, preview) {
             list.push({ name: 'text-shadow', value: '0.04em 0.04em #fff, 0px 0.04em #fff, 0.04em #fff, -0.04em -0.04em #000, 0px -0.04em #000, -0.04em 0px #000' });
             break;
         case 'uniform':
-            list.push({ name: 'text-shadow', value: '#000 0px 0.03em, #000 0px -0.03em, #000 0px 0.06em, #000 0px -0.06em, #000 0.03em 0px, #000 -0.03em 0px, #000 0.03em 0.03em, #000 -0.03em 0.03em, #000 0.03em -0.03em, #000 -0.03em -0.03em, #000 0.03em 0.06em, #000 -0.03em 0.06em, #000 0.03em -0.06em, #000 -0.03em -0.06em, #000 0.06em 0px, #000 -0.06em 0px, #000 0.06em 0.03em, #000 -0.06em 0.03em, #000 0.06em -0.03em, #000 -0.06em -0.03em' });
+            list.push({ name: 'text-shadow', value: '#000 0px 0px 0px, #000 0px 1px 0px, #000 0px -1px 0px, #000 0px 2px 0px, #000 0px -2px 0px, #000 1px 0px 0px, #000 -1px 0px 0px, #000 1px 1px 0px, #000 -1px 1px 0px, #000 1px -1px 0px, #000 -1px -1px 0px, #000 1px 2px 0px, #000 -1px 2px 0px, #000 1px -2px 0px, #000 -1px -2px 0px, #000 2px 0px 0px, #000 -2px 0px 0px, #000 2px 1px 0px, #000 -2px 1px 0px, #000 2px -1px 0px, #000 -2px -1px 0px, #000 2px 2px 0px, #000 -2px 2px 0px, #000 2px -2px 0px, #000 -2px -2px 0px, #000 3px 0px 0px, #000 -3px 0px 0px, #000 3px 1px 0px, #000 -3px 1px 0px, #000 3px -1px 0px, #000 -3px -1px 0px' });
             break;
         case 'none':
             list.push({ name: 'text-shadow', value: 'none' });
