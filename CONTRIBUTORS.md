@@ -54,6 +54,7 @@
  - [taku0](https://github.com/taku0)
  - [is343](https://github.com/is343)
  - [Meet Pandya](https://github.com/meet-k-pandya)
+ - [Viperinius](https://github.com/Viperinius)
 
 # Emby Contributors
 
