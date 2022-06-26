@@ -4,6 +4,7 @@
 
 .emby-scroller {
     margin-left: 3.3%;
+    margin-left: max(env(safe-area-inset-left), 3.3%);
     margin-right: 3.3%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -14,6 +15,7 @@
 
 .emby-scroller::-webkit-scrollbar {
     display: none;
+    margin-right: max(env(safe-area-inset-right), 3.3%);
 }
 
 /* align first card in scroller to heading */
@@ -30,7 +32,9 @@
 .layout-tv .emby-scroller,
 .layout-mobile .emby-scroller {
     padding-left: 3.3%;
+    padding-left: max(env(safe-area-inset-left), 3.3%);
     padding-right: 3.3%;
+    padding-right: max(env(safe-area-inset-right), 3.3%);
     margin-left: 0;
     margin-right: 0;
 }
