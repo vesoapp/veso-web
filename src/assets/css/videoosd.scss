@@ -28,6 +28,40 @@
     pointer-events: none;
 }
 
+.centerButtons {
+    position: fixed;
+    left: 0;
+    right: 0;
+    -webkit-justify-content: center;
+    justify-content: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-self: center;
+    align-self: center;
+    top: 50%;
+    margin-top: -2em;
+    font-size: 130%;
+}
+
+.centerButtons button {
+    text-shadow: 1px 1px 4px rgb(0 0 0 / 20%);
+    -webkit-text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    -moz-text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.centerButtons .material-icons::before {
+    font-size: 170%;
+}
+
+.centerButtons .btnPause {
+    margin-left: 13%;
+    margin-right: 13%;
+}
+
+.rotateButtons {
+    transform: scaleX(-1);
+}
+
 .skinHeader-withBackground.osdHeader {
     transition: opacity 0.3s ease-out;
     position: relative;
