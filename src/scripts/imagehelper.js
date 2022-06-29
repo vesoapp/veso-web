@@ -11,6 +11,7 @@
             case 'Sony PS4':
                 return baseUrl + 'playstation.svg';
             case 'Kodi':
+            case 'Kodi JellyCon':
                 return baseUrl + 'kodi.svg';
             case 'Veso Android':
             case 'AndroidTV':
@@ -18,6 +19,8 @@
                 return baseUrl + 'android.svg';
             case 'Veso Mobile (iOS)':
             case 'Veso Mobile (iPadOS)':
+            case 'Veso iOS':
+            case 'Infuse':
                 return baseUrl + 'apple.svg';
             case 'Veso Web':
                 switch (device.Name || device.DeviceName) {
