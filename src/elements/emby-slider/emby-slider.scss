@@ -245,3 +245,28 @@
     display: block;
     margin-bottom: 0.25em;
 }
+
+.sliderMarkerContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 0.54em; /* half of slider thumb size */
+}
+
+.sliderMarker {
+    position: absolute;
+    transform: translate3d(0, -100%, 0) rotate(90deg);
+}
+
+.sliderMarker.chapterMarker::before {
+    font-family: 'Material Icons', sans-serif;
+    content: "\e892";
+}
+
+.sliderMarker.unwatched {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.sliderMarker.watched {
+    color: #d61e30;
+}
