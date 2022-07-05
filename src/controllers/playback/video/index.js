@@ -1598,6 +1598,31 @@ import { appRouter } from '../../../components/appRouter';
             return '<h1 class="sliderBubbleText">' + datetime.getDisplayRunningTime(ticks) + '</h1>';
         };
 
+        nowPlayingPositionSlider.getMarkerInfo = function () {
+            const markers = [];
+
+            const item = currentItem;
+
+            // use markers based on chapters
+            if (item && item.Chapters && item.Chapters.length) {
+                const runtimeDuration = item.RunTimeTicks;
+
+                for (let i = 0, length = item.Chapters.length; i < length; i++) {
+                    const currentChapter = item.Chapters[i];
+
+                    const fraction = currentChapter.StartPositionTicks / runtimeDuration;
+
+                    markers.push({
+                        className: 'chapterMarker',
+                        name: currentChapter.Name,
+                        progress: fraction
+                    });
+                }
+            }
+
+            return markers;
+        };
+
         view.querySelector('.btnPreviousTrack').addEventListener('click', function () {
             playbackManager.previousTrack(currentPlayer);
         });
