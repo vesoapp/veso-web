@@ -57,6 +57,9 @@
  - [Meet Pandya](https://github.com/meet-k-pandya)
  - [Viperinius](https://github.com/Viperinius)
  - [Meet Pandya](https://github.com/meet-k-pandya)
+ - [Viperinius](https://github.com/Viperinius)
+ - [Meet Pandya](https://github.com/meet-k-pandya)
+ - [Viperinius](https://github.com/Viperinius)
 
 # Emby Contributors
 
