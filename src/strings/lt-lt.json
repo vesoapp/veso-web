@@ -948,7 +948,7 @@
     "MessageNoAvailablePlugins": "Nėra galimų įskiepių.",
     "LabelCurrentStatus": "Dabartinis statusas:",
     "MessageConfirmShutdown": "Ar tikrai norite išjungti serverį?",
-    "MessageConfirmRestart": "Ar tikrai norite iš naujo paleisti Jellyfin?",
+    "MessageConfirmRestart": "Ar tikrai norite iš naujo paleisti Veso?",
     "MessageConfirmRemoveMediaLocation": "Ar tikrai norite pašalinti šią vietą?",
     "MessageConfirmProfileDeletion": "Ar tikrai norite ištrinti šį profilį?",
     "MessageConfirmDeleteTunerDevice": "Ar tikrai norite ištrinti šį įrenginį?",
