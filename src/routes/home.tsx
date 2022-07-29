@@ -160,7 +160,7 @@ const Home: FunctionComponent<IProps> = (props: IProps) => {
             <Page
                 id='indexPage'
                 className='mainAnimatedPage homePage libraryPage allLibraryPage backdropPage pageWithAbsoluteTabs withTabs'
-                isBackButtonEnabled={false}
+                isDomCacheEnabled= {true}
                 backDropType='movie,series,book'
             >
                 <div className='tabContent pageTabContent' id='homeTab' data-index='0'>
