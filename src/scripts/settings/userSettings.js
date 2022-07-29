@@ -1,6 +1,7 @@
 import appSettings from './appSettings';
 import { Events } from 'jellyfin-apiclient';
 import { toBoolean } from '../../utils/string.ts';
+import browser from '../browser';
 
 function onSaveTimeout() {
     const self = this;
@@ -226,7 +227,7 @@ export class UserSettings {
             return this.set('enableBackdrops', val.toString(), false);
         }
 
-        return toBoolean(this.get('enableBackdrops', false), false);
+        return toBoolean(this.get('enableBackdrops', false), !browser.slow);
     }
 
     /**
