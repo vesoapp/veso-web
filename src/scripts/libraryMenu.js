@@ -355,14 +355,14 @@ import '../assets/css/flexstyles.scss';
         }
     }
 
-    function refreshDashboardInfoInDrawer(apiClient) {
+    function refreshDashboardInfoInDrawer(page, apiClient) {
         currentDrawerType = 'admin';
         loadNavDrawer();
 
         if (navDrawerScrollContainer.querySelector('.adminDrawerLogo')) {
-            updateDashboardMenuSelectedItem();
+            updateDashboardMenuSelectedItem(page);
         } else {
-            createDashboardMenu(apiClient);
+            createDashboardMenu(page, apiClient);
         }
     }
 
@@ -370,9 +370,9 @@ import '../assets/css/flexstyles.scss';
         return window.location.href.toString().toLowerCase().indexOf(url.toLowerCase()) !== -1;
     }
 
-    function updateDashboardMenuSelectedItem() {
+    function updateDashboardMenuSelectedItem(page) {
         const links = navDrawerScrollContainer.querySelectorAll('.navMenuOption');
-        const currentViewId = viewManager.currentView().id;
+        const currentViewId = page.id;
 
         for (let i = 0, length = links.length; i < length; i++) {
             let link = links[i];
@@ -590,7 +590,7 @@ import '../assets/css/flexstyles.scss';
         });
     }
 
-    function createDashboardMenu(apiClient) {
+    function createDashboardMenu(page, apiClient) {
         return getToolsMenuHtml(apiClient).then(function (toolsMenuHtml) {
             let html = '';
             html += '<a class="adminDrawerLogo clearLink" is="emby-linkbutton" href="#/home.html">';
@@ -598,7 +598,7 @@ import '../assets/css/flexstyles.scss';
             html += '</a>';
             html += toolsMenuHtml;
             navDrawerScrollContainer.innerHTML = html;
-            updateDashboardMenuSelectedItem();
+            updateDashboardMenuSelectedItem(page);
         });
     }
 
@@ -961,7 +961,7 @@ import '../assets/css/flexstyles.scss';
             pageTitleElement.innerHTML = '';
         }
 
-        document.title = 'Jellyfin';
+        document.title = 'Veso';
     }
 
     function setTitle (title) {
@@ -987,7 +987,7 @@ import '../assets/css/flexstyles.scss';
             pageTitleElement.innerText = html || '';
         }
 
-        document.title = title || 'Jellyfin';
+        document.title = title || 'Veso';
     }
 
     function setTransparentMenu (transparent) {
@@ -1017,7 +1017,7 @@ import '../assets/css/flexstyles.scss';
                 mainDrawerButton.classList.remove('hide');
             }
 
-            refreshDashboardInfoInDrawer(apiClient);
+            refreshDashboardInfoInDrawer(page, apiClient);
         } else {
             if (mainDrawerButton) {
                 if (enableLibraryNavDrawer || (isHomePage && enableLibraryNavDrawerHome)) {
