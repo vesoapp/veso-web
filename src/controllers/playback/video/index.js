@@ -483,9 +483,8 @@ import { appRouter } from '../../../components/appRouter';
             });
         }
 
-        function skipIntro(e) {
+        function skipIntro() {
             playbackManager.seekMs(tvIntro.IntroEnd * 1000);
-            playbackManager.unpause(currentPlayer);
         }
 
         function onPlayPauseStateChanged() {
@@ -1490,6 +1489,11 @@ import { appRouter } from '../../../components/appRouter';
         let lastPointerDown = 0;
         /* eslint-disable-next-line compat/compat */
         dom.addEventListener(view, window.PointerEvent ? 'pointerdown' : 'click', function (e) {
+            // If the user clicked the skip intro button, don't pause the video. Fixes ConfusedPolarBear/intro-skipper#44.
+            if (dom.parentWithClass(e.target, ['btnSkipIntro'])) {
+                return;
+            }
+
             if (dom.parentWithClass(e.target, ['videoOsdBottom', 'upNextContainer'])) {
                 return void showOsd();
             }
