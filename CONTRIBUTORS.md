@@ -1,4 +1,4 @@
-# Jellyfin Contributors
+# Veso Contributors
 
  - [JoshuaBoniface](https://github.com/joshuaboniface)
  - [nvllsvm](https://github.com/nvllsvm)
@@ -52,6 +52,7 @@
  - [MinecraftPlaye](https://github.com/MinecraftPlaye)
  - [Matthew Jones](https://github.com/matthew-jones-uk)
  - [taku0](https://github.com/taku0)
+ - [Viperinius](https://github.com/Viperinius)
 
 # Emby Contributors
 

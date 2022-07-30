@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        The Free Software Media System web client
 License:        GPLv2
 URL:            https://jellyfin.org
-# Jellyfin Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
+# Veso Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
 Source0:        jellyfin-web-%{version}.tar.gz
 
 BuildArch:		noarch
@@ -18,7 +18,7 @@ BuildRequires:	npm
 %endif
 
 %description
-Jellyfin is a free software media system that puts you in control of managing and streaming your media.
+Veso is a free software media system that puts you in control of managing and streaming your media.
 
 
 %prep
@@ -46,9 +46,9 @@ npm ci --no-audit --unsafe-perm
 
 
 %changelog
-* Fri Dec 04 2020 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Fri Dec 04 2020 Veso Packaging Team <packaging@jellyfin.org>
 - Forthcoming stable release
-* Mon Jul 27 2020 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Jul 27 2020 Veso Packaging Team <packaging@jellyfin.org>
 - Forthcoming stable release
-* Mon Mar 23 2020 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Mar 23 2020 Veso Packaging Team <packaging@jellyfin.org>
 - Forthcoming stable release

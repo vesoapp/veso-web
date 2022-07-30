@@ -474,7 +474,34 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
                 updatePlaylist();
                 enableStopOnBack(true);
                 updatePlaybackRate(player);
+                getIntroTimestamps(state.NowPlayingItem);
             }
+        }
+
+        function getIntroTimestamps(item) {
+            const apiClient = ServerConnections.getApiClient(item);
+            const address = apiClient.serverAddress();
+
+            const url = `${address}/Episode/${item.Id}/IntroTimestamps`;
+            const reqInit = {
+                headers: {
+                    "Authorization": `MediaBrowser Token=${apiClient.accessToken()}`
+                }
+            };
+
+            fetch(url, reqInit).then(r => {
+                if (!r.ok) {
+                    return;
+                }
+
+                return r.json();
+            }).then(intro => {
+                tvIntro = intro;
+            });
+        }
+
+        function skipIntro() {
+            playbackManager.seekMs(tvIntro.IntroEnd * 1000);
         }
 
         function onPlayPauseStateChanged() {
@@ -594,6 +621,22 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
                     const item = currentItem;
                     refreshProgramInfoIfNeeded(player, item);
                     showComingUpNextIfNeeded(player, item, currentTime, currentRuntimeTicks);
+
+                    // Check if an introduction sequence was detected for this item.
+                    if (!tvIntro?.Valid) {
+                        return;
+                    }
+
+                    const seconds = playbackManager.currentTime(player) / 1000;
+                    const skipIntro = document.querySelector(".skipIntro");
+
+                    // If the skip prompt should be shown, show it.
+                    if (seconds >= tvIntro.ShowSkipPromptAt && seconds < tvIntro.HideSkipPromptAt) {
+                        skipIntro.classList.remove("hide");
+                        return;
+                    }
+
+                    skipIntro.classList.add("hide");
                 }
             }
         }
@@ -1320,6 +1363,7 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
         let programEndDateMs = 0;
         let playbackStartTimeTicks = 0;
         let subtitleSyncOverlay;
+        let tvIntro;
         const nowPlayingVolumeSlider = view.querySelector('.osdVolumeSlider');
         const nowPlayingVolumeSliderContainer = view.querySelector('.osdVolumeSliderContainer');
         const nowPlayingPositionSlider = view.querySelector('.osdPositionSlider');
@@ -1469,6 +1513,11 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
         let lastPointerDown = 0;
         /* eslint-disable-next-line compat/compat */
         dom.addEventListener(view, window.PointerEvent ? 'pointerdown' : 'click', function (e) {
+            // If the user clicked the skip intro button, don't pause the video. Fixes ConfusedPolarBear/intro-skipper#44.
+            if (dom.parentWithClass(e.target, ['btnSkipIntro'])) {
+                return;
+            }
+
             if (dom.parentWithClass(e.target, ['videoOsdBottom', 'upNextContainer'])) {
                 showOsd();
                 return;
@@ -1574,6 +1623,31 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
             return '<h1 class="sliderBubbleText">' + datetime.getDisplayRunningTime(ticks) + '</h1>';
         };
 
+        nowPlayingPositionSlider.getMarkerInfo = function () {
+            const markers = [];
+
+            const item = currentItem;
+
+            // use markers based on chapters
+            if (item && item.Chapters && item.Chapters.length) {
+                const runtimeDuration = item.RunTimeTicks;
+
+                for (let i = 0, length = item.Chapters.length; i < length; i++) {
+                    const currentChapter = item.Chapters[i];
+
+                    const fraction = currentChapter.StartPositionTicks / runtimeDuration;
+
+                    markers.push({
+                        className: 'chapterMarker',
+                        name: currentChapter.Name,
+                        progress: fraction
+                    });
+                }
+            }
+
+            return markers;
+        };
+
         view.querySelector('.btnPreviousTrack').addEventListener('click', function () {
             playbackManager.previousTrack(currentPlayer);
         });
@@ -1597,6 +1671,7 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
         });
         view.querySelector('.btnAudio').addEventListener('click', showAudioTrackSelection);
         view.querySelector('.btnSubtitles').addEventListener('click', showSubtitleTrackSelection);
+        view.querySelector('.btnSkipIntro').addEventListener('click', skipIntro);
 
         // Register to SyncPlay playback events and show big animated icon
         const showIcon = (action) => {
