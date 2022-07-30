@@ -69,13 +69,13 @@ html {
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
         color: #d61e30;
-        background-color: rgba(0, 164, 220, 0.2);
+        background-color: rgba(220, 0, 0, 0.2);
     }
 }
 
 .paper-icon-button-light:active:not(:disabled) {
     color: #d61e30;
-    background-color: rgba(0, 164, 220, 0.2);
+    background-color: rgba(220, 0, 0, 0.2);
 }
 
 .paper-icon-button-light.show-focus:focus {
