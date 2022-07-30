@@ -33,6 +33,16 @@
     position: relative;
 }
 
+.emby-tabs-slider > .emby-tab-button {
+    padding-top: 0;
+}
+
 .tabContent:not(.is-active) {
     display: none;
+}
+
+@media all and (max-width: 60em) {
+    .emby-tabs-slider > .emby-tab-button {
+        padding-top: 1em;
+    }
 }
