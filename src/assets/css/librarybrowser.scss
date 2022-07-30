@@ -87,7 +87,7 @@
 }
 
 .libraryPage {
-    padding-top: 7em !important;
+    padding-top: 3.8em !important;
 }
 
 .itemDetailPage {
@@ -107,7 +107,7 @@
 }
 
 .libraryPage:not(.noSecondaryNavPage) {
-    padding-top: 7.5em !important;
+    padding-top: 5.5em !important;
 }
 
 .absolutePageTabContent {
@@ -369,7 +369,7 @@
 
 @media all and (max-width: 100em) {
     .withSectionTabs .headerTop {
-        padding-bottom: 0.55em;
+        padding-bottom: 0;
     }
 
     .sectionTabs {
@@ -598,13 +598,15 @@
     flex-direction: column;
 
     .layout-mobile & {
-        padding-left: 5%;
-        padding-right: 5%;
+        padding-left: 5% !important;
+        padding-right: 5% !important;
     }
 
     .layout-desktop &,
     .layout-tv & {
         .emby-scroller {
+            margin-left: 0;
+
             [dir="ltr"] & {
                 margin-left: 0;
             }
@@ -744,7 +746,7 @@
 .layout-mobile .mainDetailButtons {
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: center !important;
 }
 
 .layout-mobile .mainDetailButtons {
@@ -797,7 +799,7 @@
     .layout-mobile & {
         display: block;
         position: relative;
-        padding: 0.5rem 5%;
+        padding: 0.5rem 5% !important;
     }
 
     .layout-desktop & {
@@ -841,6 +843,8 @@
     flex: 1 0 0;
 
     .layout-mobile & {
+        padding-left: 37.5%;
+
         [dir="ltr"] {
             @include header-poster-padding;
         }
@@ -1141,10 +1145,6 @@ div.itemDetailGalleryLink.defaultCardBackground {
 }
 
 @media all and (max-width: 62.5em) {
-    .mainDetailButtons {
-        margin-left: -0.5em;
-    }
-
     .detailButtonHideonMobile {
         display: none !important;
     }
@@ -1250,10 +1250,6 @@ div.itemDetailGalleryLink.defaultCardBackground {
     line-height: initial;
 }
 
-.itemsContainer {
-    margin: 0 auto;
-}
-
 @media all and (max-height: 31.25em) {
     .itemBackdrop {
         height: 52vh;
@@ -1299,6 +1295,7 @@ div.itemDetailGalleryLink.defaultCardBackground {
     margin: 0;
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: 0.5em;
 }
 
 /* these next two rules are for the scroller element headers */
@@ -1310,12 +1307,13 @@ div.itemDetailGalleryLink.defaultCardBackground {
 div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     margin: 0;
     padding-top: 0.5em;
-    padding-bottom: 0.2em;
+    padding-bottom: 0.5em;
 }
 
 .layout-mobile :not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     margin: 0;
     padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .sectionTitleButton {
@@ -1375,7 +1373,7 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 }
 
 .sectionTitleTextButton > .sectionTitle {
-    margin-bottom: 0.35em;
+    margin-bottom: 0.5em;
     margin-top: 0;
 }
 
@@ -1422,14 +1420,9 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 }
 
 @media all and (min-height: 31.25em) {
-    [dir="ltr"] .padded-right-withalphapicker {
-        padding-right: 7.5%;
-        padding-right: max(env(safe-area-inset-right), 7.5%);
-    }
-
-    [dir="rtl"] .padded-right-withalphapicker {
-        padding-left: 7.5%;
-        padding-left: max(env(safe-area-inset-left), 7.5%);
+    .padded-right-withalphapicker {
+        padding-right: 3.3%;
+        padding-right: max(env(safe-area-inset-left), 3.3%);
     }
 }
 
@@ -1536,5 +1529,16 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 @media all and (min-width: 40em) {
     .detail-clamp-text {
         line-clamp: 6;
+    }
+}
+
+@media all and (max-width: 60em) {
+    .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: 6.6em !important;
+    }
+
+    .padded-right-withalphapicker {
+        padding-right: 7% !important;
+        padding-left: 7% !important;
     }
 }
