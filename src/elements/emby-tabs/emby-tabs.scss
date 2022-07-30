@@ -36,3 +36,15 @@
 .tabContent:not(.is-active) {
     display: none;
 }
+
+@media only screen and (min-device-width: 61em) and (max-device-width: 100em) {
+    .emby-tabs-slider > .emby-tab-button {
+        padding-top: 0;
+    }
+}
+
+@media all and (max-width: 60em) {
+    .emby-tabs-slider > .emby-tab-button {
+        padding-top: 1em;
+    }
+}
