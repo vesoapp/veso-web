@@ -55,7 +55,7 @@
 }
 
 .libraryPage {
-    padding-top: 7em !important;
+    padding-top: 3.8em !important;
 }
 
 .itemDetailPage {
@@ -75,7 +75,7 @@
 }
 
 .libraryPage:not(.noSecondaryNavPage) {
-    padding-top: 7.5em !important;
+    padding-top: 5.5em !important;
 }
 
 .absolutePageTabContent {
@@ -277,7 +277,7 @@
 
 @media all and (max-width: 100em) {
     .withSectionTabs .headerTop {
-        padding-bottom: 0.55em;
+        padding-bottom: 0;
     }
 
     .sectionTabs {
@@ -1035,10 +1035,6 @@ div.itemDetailGalleryLink.defaultCardBackground {
     line-height: initial;
 }
 
-.itemsContainer {
-    margin: 0 auto;
-}
-
 @media all and (max-height: 31.25em) {
     .itemBackdrop {
         height: 52vh;
@@ -1084,6 +1080,7 @@ div.itemDetailGalleryLink.defaultCardBackground {
     margin: 0;
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: 0.5em;
 }
 
 /* these next two rules are for the scroller element headers */
@@ -1095,12 +1092,13 @@ div.itemDetailGalleryLink.defaultCardBackground {
 div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     margin: 0;
     padding-top: 0.5em;
-    padding-bottom: 0.2em;
+    padding-bottom: 0.5em;
 }
 
 .layout-mobile :not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     margin: 0;
     padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .sectionTitleButton {
@@ -1140,7 +1138,7 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 }
 
 .sectionTitleTextButton > .sectionTitle {
-    margin-bottom: 0.35em;
+    margin-bottom: 0.5em;
     margin-top: 0;
 }
 
@@ -1172,7 +1170,8 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 
 @media all and (min-height: 31.25em) {
     .padded-right-withalphapicker {
-        padding-right: 7.5%;
+        padding-right: 3.3%;
+        padding-right: max(env(safe-area-inset-left), 3.3%);
     }
 }
 
@@ -1279,5 +1278,16 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
 @media all and (min-width: 40em) {
     .detail-clamp-text {
         -webkit-line-clamp: 6;
+    }
+}
+
+@media all and (max-width: 60em) {
+    .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: 6.6em !important;
+    }
+
+    .padded-right-withalphapicker {
+        padding-right: 7%;
+        padding-left: 7%;
     }
 }
