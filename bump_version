@@ -54,7 +54,7 @@ echo -e "jellyfin-web (${new_version_pkg}${new_version_deb_sup}) unstable; urgen
 
   * New upstream version ${new_version}; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v${new_version}
 
- -- Jellyfin Packaging Team <packaging@jellyfin.org>  $( date --rfc-2822 )
+ -- Veso Packaging Team <packaging@jellyfin.org>  $( date --rfc-2822 )
 " >> ${debian_changelog_temp}
 cat ${debian_changelog_file} >> ${debian_changelog_temp}
 # Move into place
@@ -76,7 +76,7 @@ sed -i "s/${old_version_sed}/${new_version_pkg}/g" xx00
 sed -i '/^%changelog/d' xx01
 # Create new temp file with our changelog
 echo -e "%changelog
-* $( LANG=C date '+%a %b %d %Y' ) Jellyfin Packaging Team <packaging@jellyfin.org>
+* $( LANG=C date '+%a %b %d %Y' ) Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version ${new_version}; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v${new_version}" >> ${fedora_changelog_temp}
 cat xx01 >> ${fedora_changelog_temp}
 # Reassembble
