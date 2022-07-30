@@ -48,7 +48,7 @@
 }
 
 .mdl-switch__input:checked + .mdl-switch__label + .mdl-switch__trackContainer > .mdl-switch__track {
-    background: rgba(0, 164, 220, 0.5);
+    background: rgba(220, 0, 0, 0.5);
 }
 
 .mdl-switch__input[disabled] + .mdl-switch__label + .mdl-switch__trackContainer > .mdl-switch__track {
@@ -104,8 +104,8 @@
 }
 
 .mdl-switch__input:checked:focus + .mdl-switch__label + .mdl-switch__trackContainer .mdl-switch__focus-helper {
-    box-shadow: 0 0 0 1.39em rgba(0, 164, 220, 0.26);
-    background-color: rgba(0, 164, 220, 0.26);
+    box-shadow: 0 0 0 1.39em rgba(220, 0, 0, 0.26);
+    background-color: rgba(220, 0, 0, 0.26);
 }
 
 .mdl-switch__label {
