@@ -26,7 +26,7 @@ labels: bug
 **System (please complete the following information):**
  - Platform: [e.g. Linux, Windows, iPhone, Tizen]
  - Browser: [e.g. Firefox, Chrome, Safari]
- - Jellyfin Version: [e.g. 10.6.0]
+ - Veso Version: [e.g. 10.6.0]
 
 **Additional Context**
 <!-- Add any other context about the problem here. -->

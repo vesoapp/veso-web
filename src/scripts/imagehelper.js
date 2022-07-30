@@ -13,16 +13,16 @@
             case 'Kodi':
             case 'Kodi JellyCon':
                 return baseUrl + 'kodi.svg';
-            case 'Jellyfin Android':
+            case 'Veso Android':
             case 'AndroidTV':
             case 'Android TV':
                 return baseUrl + 'android.svg';
-            case 'Jellyfin Mobile (iOS)':
-            case 'Jellyfin Mobile (iPadOS)':
-            case 'Jellyfin iOS':
+            case 'Veso Mobile (iOS)':
+            case 'Veso Mobile (iPadOS)':
+            case 'Veso iOS':
             case 'Infuse':
                 return baseUrl + 'apple.svg';
-            case 'Jellyfin Web':
+            case 'Veso Web':
                 switch (device.Name || device.DeviceName) {
                     case 'Opera':
                     case 'Opera TV':
