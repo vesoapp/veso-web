@@ -46,7 +46,7 @@ function getTextStyles(settings, preview) {
             list.push({ name: 'text-shadow', value: '1px 1px white, 0px 1px white, 1px 0px white, -1px -1px black, 0px -1px black, -1px 0px black' });
             break;
         case 'uniform':
-            list.push({ name: 'text-shadow', value: '-1px 0px #000000, 0px 1px #000000, 1px 0px #000000, 0px -1px #000000' });
+            list.push({ name: 'text-shadow', value: '#000 0px 0px 0px, #000 0px 1px 0px, #000 0px -1px 0px, #000 0px 2px 0px, #000 0px -2px 0px, #000 1px 0px 0px, #000 -1px 0px 0px, #000 1px 1px 0px, #000 -1px 1px 0px, #000 1px -1px 0px, #000 -1px -1px 0px, #000 1px 2px 0px, #000 -1px 2px 0px, #000 1px -2px 0px, #000 -1px -2px 0px, #000 2px 0px 0px, #000 -2px 0px 0px, #000 2px 1px 0px, #000 -2px 1px 0px, #000 2px -1px 0px, #000 -2px -1px 0px, #000 2px 2px 0px, #000 -2px 2px 0px, #000 2px -2px 0px, #000 -2px -2px 0px, #000 3px 0px 0px, #000 -3px 0px 0px, #000 3px 1px 0px, #000 -3px 1px 0px, #000 3px -1px 0px, #000 -3px -1px 0px' });
             break;
         case 'none':
             list.push({ name: 'text-shadow', value: 'none' });
@@ -93,7 +93,7 @@ function getTextStyles(settings, preview) {
             list.push({ name: 'font-variant', value: 'small-caps' });
             break;
         default:
-            list.push({ name: 'font-family', value: 'inherit' });
+            list.push({ name: 'font-family', value: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol' });
             list.push({ name: 'font-variant', value: 'none' });
             break;
     }
