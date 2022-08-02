@@ -15,7 +15,7 @@ import alert from './alert';
     function getEntryHtml(entry, apiClient) {
         let html = '';
         html += '<div class="listItem listItem-border">';
-        let color = '#00a4dc';
+        let color = '#d61e30';
         let icon = 'notifications';
 
         if (entry.Severity == 'Error' || entry.Severity == 'Fatal' || entry.Severity == 'Warn') {

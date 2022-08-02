@@ -33,6 +33,10 @@
     position: relative;
 }
 
+.emby-tabs-slider > .emby-tab-button {
+    padding-top: 0;
+}
+
 .tabContent:not(.is-active) {
     display: none;
 }

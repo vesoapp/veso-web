@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        The Free Software Media System web client
 License:        GPLv2
 URL:            https://jellyfin.org
-# Jellyfin Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
+# Veso Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
 Source0:        jellyfin-web-%{version}.tar.gz
 
 BuildArch:		noarch
@@ -18,7 +18,7 @@ BuildRequires:	npm
 %endif
 
 %description
-Jellyfin is a free software media system that puts you in control of managing and streaming your media.
+Veso is a free software media system that puts you in control of managing and streaming your media.
 
 
 %prep
@@ -46,11 +46,11 @@ npm ci --no-audit --unsafe-perm
 
 
 %changelog
-* Mon Aug 01 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Aug 01 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.3; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.3
-* Mon Aug 01 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Aug 01 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.2; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.2
-* Sun Jun 26 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Sun Jun 26 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.1; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.1
-* Fri Jun 10 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Fri Jun 10 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.0; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.0
