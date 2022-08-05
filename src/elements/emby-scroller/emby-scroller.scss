@@ -32,15 +32,15 @@
     margin-right: 0.6em;
 }
 
-.layout-mobile .detailPageWrapperContainer .emby-scroller {
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .layout-tv .emby-scroller,
 .layout-mobile .emby-scroller {
     padding-left: 3.3%;
     padding-right: 3.3%;
     margin-left: 0;
     margin-right: 0;
+}
+
+.layout-mobile .detailPageWrapperContainer .emby-scroller {
+    padding-left: 0;
+    padding-right: 0;
 }
