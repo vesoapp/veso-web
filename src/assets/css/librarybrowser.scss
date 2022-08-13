@@ -75,7 +75,7 @@
 }
 
 .libraryPage:not(.noSecondaryNavPage) {
-    padding-top: 7.5em !important;
+    padding-top: 5.5em !important;
 }
 
 .absolutePageTabContent {
@@ -277,7 +277,7 @@
 
 @media all and (max-width: 100em) {
     .withSectionTabs .headerTop {
-        padding-bottom: 0.55em;
+        padding-bottom: 0;
     }
 
     .sectionTabs {
