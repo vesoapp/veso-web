@@ -44,3 +44,10 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+@media all and (max-width: 60em) {
+    .emby-scroller {
+        margin-left: 7%;
+        margin-right: 7%;
+    }
+}

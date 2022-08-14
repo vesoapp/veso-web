@@ -1278,3 +1278,15 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
         -webkit-line-clamp: 6;
     }
 }
+
+@media all and (max-width: 60em) {
+    .padded-left {
+        padding-left: 7%;
+    }
+    .padded-right {
+        padding-right: 7%;
+    }
+    .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: 6.6em!important;
+    }
+}
