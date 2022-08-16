@@ -12,6 +12,8 @@ import Dashboard from '../../utils/dashboard';
         $('#txtMinAudiobookResume', page).val(config.MinAudiobookResume);
         $('#txtMaxAudiobookResume', page).val(config.MaxAudiobookResume);
         $('#txtMinResumeDuration', page).val(config.MinResumeDurationSeconds);
+        page.querySelector('#chkMarkResumableItemUnplayedOnPlay').checked = config.MarkResumableItemUnplayedOnPlay || false;
+        page.querySelector('#chkUpdateLastPlayedAndPlayCountOnPlayCompletion').checked = config.UpdateLastPlayedAndPlayCountOnPlayCompletion || false;
         loading.hide();
     }
 
@@ -24,6 +26,8 @@ import Dashboard from '../../utils/dashboard';
             config.MinAudiobookResume = $('#txtMinAudiobookResume', form).val();
             config.MaxAudiobookResume = $('#txtMaxAudiobookResume', form).val();
             config.MinResumeDurationSeconds = $('#txtMinResumeDuration', form).val();
+            config.MarkResumableItemUnplayedOnPlay = form.querySelector('#chkMarkResumableItemUnplayedOnPlay').checked;
+            config.UpdateLastPlayedAndPlayCountOnPlayCompletion = form.querySelector('#chkUpdateLastPlayedAndPlayCountOnPlayCompletion').checked;
 
             ApiClient.updateServerConfiguration(config).then(Dashboard.processServerConfigurationUpdateResult);
         });
