@@ -1,13 +1,13 @@
 # Support
 
-Jellyfin contributors have limited availability to address general support
-questions. Please make sure you are using the latest version of Jellyfin.
+Veso contributors have limited availability to address general support
+questions. Please make sure you are using the latest version of Veso.
 
 When looking for support or information, please first search for your
 question in these venues:
 
-* [Jellyfin Forum](https://forum.jellyfin.org)
-* [Jellyfin Documentation](https://docs.jellyfin.org)
+* [Veso Forum](https://forum.jellyfin.org)
+* [Veso Documentation](https://docs.jellyfin.org)
 * [Open or **closed** issues in the organization](https://github.com/issues?q=sort%3Aupdated-desc+org%3Ajellyfin+is%3Aissue+)
 
 If you didn't find an answer in the resources above, contributors and other
@@ -19,6 +19,6 @@ users are reachable through the following channels:
 
 GitHub issues are for tracking enhancements and bugs, not general support.
 
-The open source license grants you the freedom to use Jellyfin.
+The open source license grants you the freedom to use Veso.
 It does not guarantee commitments of other people's time.
 Please be respectful and manage your expectations.
