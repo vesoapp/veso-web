@@ -64,6 +64,7 @@
     "worker-loader": "3.0.8"
   },
   "dependencies": {
+    "@dannymichel/proxima-nova": "4.5.2",
     "@fontsource/noto-sans": "4.5.11",
     "@fontsource/noto-sans-hk": "4.5.11",
     "@fontsource/noto-sans-jp": "4.5.11",
