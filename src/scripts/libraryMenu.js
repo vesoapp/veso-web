@@ -969,7 +969,7 @@ import '../styles/flexstyles.scss';
             pageTitleElement.innerHTML = '';
         }
 
-        document.title = 'Jellyfin';
+        document.title = 'Veso';
     }
 
     function setTitle (title) {
@@ -995,7 +995,7 @@ import '../styles/flexstyles.scss';
             pageTitleElement.innerText = html || '';
         }
 
-        document.title = title || 'Jellyfin';
+        document.title = title || 'Veso';
     }
 
     function setTransparentMenu (transparent) {
