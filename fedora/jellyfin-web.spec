@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        The Free Software Media System web client
 License:        GPLv2
 URL:            https://jellyfin.org
-# Jellyfin Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
+# Veso Server tarball created by `make -f .copr/Makefile srpm`, real URL ends with `v%%{version}.tar.gz`
 Source0:        jellyfin-web-%{version}.tar.gz
 
 BuildArch:		noarch
@@ -18,7 +18,7 @@ BuildRequires:	npm
 %endif
 
 %description
-Jellyfin is a free software media system that puts you in control of managing and streaming your media.
+Veso is a free software media system that puts you in control of managing and streaming your media.
 
 
 %prep
@@ -46,23 +46,23 @@ npm ci --no-audit --unsafe-perm
 
 
 %changelog
-* Sun Jan 22 2023 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Sun Jan 22 2023 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.9; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.9
-* Tue Nov 29 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Tue Nov 29 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.8; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.8
-* Mon Oct 31 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Oct 31 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.7; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.7
-* Fri Oct 28 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Fri Oct 28 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.6; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.6
-* Sat Sep 24 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Sat Sep 24 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.5; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.5
-* Sat Aug 13 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Sat Aug 13 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.4; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.4
-* Mon Aug 01 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Aug 01 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.3; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.3
-* Mon Aug 01 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Mon Aug 01 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.2; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.2
-* Sun Jun 26 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Sun Jun 26 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.1; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.1
-* Fri Jun 10 2022 Jellyfin Packaging Team <packaging@jellyfin.org>
+* Fri Jun 10 2022 Veso Packaging Team <packaging@jellyfin.org>
 - New upstream version 10.8.0; release changelog at https://github.com/jellyfin/jellyfin-web/releases/tag/v10.8.0
