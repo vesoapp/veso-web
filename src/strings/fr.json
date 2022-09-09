@@ -1467,7 +1467,7 @@
     "LabelSelectStereo": "Stéréo",
     "LabelSelectMono": "Mono",
     "LabelSelectAudioChannels": "Canaux",
-    "LabelAllowedAudioChannels": "Nombre maximal de canaux audio autorisés :",
+    "LabelAllowedAudioChannels": "Nombre maximal de canaux audio autorisés",
     "LabelOriginalMediaInfo": "Informations sur le média original",
     "AspectRatioFill": "Remplir",
     "AspectRatioCover": "Couvrir",
@@ -1654,7 +1654,7 @@
     "LabelTextWeight": "Poids de la police :",
     "Bold": "Gras",
     "EnableSplashScreen": "Activer l'écran de démarrage",
-    "LabelMaxVideoResolution": "Résolution maximale du transcodage vidéo :",
+    "LabelMaxVideoResolution": "Résolution maximale du transcodage vidéo",
     "MediaInfoDvBlSignalCompatibilityId": "ID de compatibilité du signal DV 'bl'",
     "MediaInfoBlPresentFlag": "Indicateur de préréglage DV 'bl'",
     "MediaInfoElPresentFlag": "Indicateur de préréglage DV 'el'",
@@ -1675,5 +1675,6 @@
     "RememberSubtitleSelectionsHelp": "Choisir la piste de sous-titres la plus proche de la dernière vidéo.",
     "RememberSubtitleSelections": "Définir la piste de sous-titre en fonction de l'élément précédent",
     "RememberAudioSelectionsHelp": "Choisir la piste audio la plus proche de la dernière vidéo.",
-    "RememberAudioSelections": "Définir la piste audio en fonction de l'élément précédent"
+    "RememberAudioSelections": "Définir la piste audio en fonction de l'élément précédent",
+    "IgnoreDtsHelp": "Désactiver cette option pourrait résoudre certains problèmes, comme par exemple l'audio manquant sur des pistes ayant des flux audios et vidéos séparés."
 }
