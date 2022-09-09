@@ -1,7 +1,7 @@
 Source: jellyfin-web
 Section: misc
 Priority: optional
-Maintainer: Jellyfin Team <team@jellyfin.org>
+Maintainer: Veso Team <team@jellyfin.org>
 Build-Depends:  debhelper (>= 9),
                 npm | nodejs
 Standards-Version: 3.9.4
@@ -12,5 +12,5 @@ Vcs-Browser: https://github.org/jellyfin/jellyfin-web
 Package: jellyfin-web
 Recommends: jellyfin-server
 Architecture: all
-Description: Jellyfin is the Free Software Media System.
- This package provides the Jellyfin web client.
+Description: Veso is the Free Software Media System.
+ This package provides the Veso web client.
