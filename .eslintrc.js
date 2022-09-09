@@ -215,7 +215,7 @@ module.exports = {
                 // Dependency globals
                 '$': 'readonly',
                 'jQuery': 'readonly',
-                // Jellyfin globals
+                // Veso globals
                 'ApiClient': 'writable',
                 'Events': 'writable',
                 'chrome': 'writable',
