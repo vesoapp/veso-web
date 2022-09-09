@@ -43,22 +43,22 @@ function getWebDeviceIcon(browser) {
             case 'Kodi':
             case 'Kodi JellyCon':
                 return BASE_DEVICE_IMAGE_URL + 'kodi.svg';
-            case 'Jellyfin Android':
+            case 'Veso Android':
             case 'AndroidTV':
             case 'Android TV':
                 return BASE_DEVICE_IMAGE_URL + 'android.svg';
-            case 'Jellyfin Mobile (iOS)':
-            case 'Jellyfin Mobile (iPadOS)':
-            case 'Jellyfin iOS':
+            case 'Veso Mobile (iOS)':
+            case 'Veso Mobile (iPadOS)':
+            case 'Veso iOS':
             case 'Infuse':
                 return BASE_DEVICE_IMAGE_URL + 'apple.svg';
             case 'Home Assistant':
                 return BASE_DEVICE_IMAGE_URL + 'home-assistant.svg';
-            case 'Jellyfin Roku':
+            case 'Veso Roku':
                 return BASE_DEVICE_IMAGE_URL + 'roku.svg';
             case 'Finamp':
                 return BASE_DEVICE_IMAGE_URL + 'finamp.svg';
-            case 'Jellyfin Web':
+            case 'Veso Web':
                 return getWebDeviceIcon(device.Name || device.DeviceName);
             default:
                 return BASE_DEVICE_IMAGE_URL + 'other.svg';
