@@ -17,7 +17,7 @@ jobs:
     vmImage: 'ubuntu-latest'
 
   steps:
-  - script: echo "##vso[task.setvariable variable=JellyfinVersion]$( awk -F '/' '{ print $NF }' <<<'$(Build.SourceBranch)' | sed 's/^v//' )"
+  - script: echo "##vso[task.setvariable variable=VesoVersion]$( awk -F '/' '{ print $NF }' <<<'$(Build.SourceBranch)' | sed 's/^v//' )"
     displayName: Set release version (stable)
     condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/v')
 
@@ -64,11 +64,11 @@ jobs:
     vmImage: 'ubuntu-latest'
 
   variables:
-  - name: JellyfinVersion
+  - name: VesoVersion
     value: 0.0.0
 
   steps:
-  - script: echo "##vso[task.setvariable variable=JellyfinVersion]$( awk -F '/' '{ print $NF }' <<<'$(Build.SourceBranch)' | sed 's/^v//' )"
+  - script: echo "##vso[task.setvariable variable=VesoVersion]$( awk -F '/' '{ print $NF }' <<<'$(Build.SourceBranch)' | sed 's/^v//' )"
     displayName: Set release version (stable)
     condition: startsWith(variables['Build.SourceBranch'], 'refs/tags')  
 
@@ -96,7 +96,7 @@ jobs:
       containerRegistry: Docker Hub
       tags: |
         stable-$(Build.BuildNumber)
-        $(JellyfinVersion)
+        $(VesoVersion)
 
 - job: CollectArtifacts
   displayName: 'Collect Artifacts'
