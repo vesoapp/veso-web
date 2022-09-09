@@ -1,4 +1,5 @@
 @import "../../styles/noto-sans/index.scss";
+@import "../../styles/proxima-nova/index.scss";
 
 @mixin font($weight: null, $size: null) {
     font-weight: $weight;
@@ -6,8 +7,8 @@
 }
 
 html {
-    @include font($size: 93%);
-    font-family: "Noto Sans", "Noto Sans HK", "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    @include font($size: 96%);
+    font-family: "Proxima Nova", "Noto Sans", "Noto Sans HK", "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", "Noto Sans TC", sans-serif;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -52,5 +53,5 @@ h3 {
 }
 
 .layout-mobile {
-    font-size: 90%;
+    font-size: 94%;
 }
