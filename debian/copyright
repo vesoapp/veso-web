@@ -3,7 +3,7 @@ Upstream-Name: jellyfin-web
 Source: https://github.com/jellyfin/jellyfin-web
 
 Files: *
-Copyright: 2018-2020 Jellyfin Team
+Copyright: 2018-2020 Veso Team
 License: GPL-3.0
 
 Files: debian/*
