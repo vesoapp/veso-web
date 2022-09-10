@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# build.sh - Build Jellyfin binary packages
-# Part of the Jellyfin Project
+# build.sh - Build Veso binary packages
+# Part of the Veso Project
 
 set -o errexit
 set -o pipefail
 
 usage() {
-    echo -e "build.sh - Build Jellyfin binary packages"
+    echo -e "build.sh - Build Veso binary packages"
     echo -e "Usage:"
     echo -e "  $0 -t/--type <BUILD_TYPE> -p/--platform <PLATFORM> [-k/--keep-artifacts] [-l/--list-platforms]"
     echo -e "Notes:"
