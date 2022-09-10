@@ -1,7 +1,7 @@
 {
   "name": "jellyfin-web",
   "version": "10.9.0",
-  "description": "Web interface for Jellyfin",
+  "description": "Web interface for Veso",
   "repository": "https://github.com/jellyfin/jellyfin-web",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
