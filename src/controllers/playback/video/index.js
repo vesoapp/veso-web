@@ -485,7 +485,7 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
             const url = `${address}/Episode/${item.Id}/IntroTimestamps`;
             const reqInit = {
                 headers: {
-                    "Authorization": `MediaBrowser Token=${apiClient.accessToken()}`
+                    'Authorization': `MediaBrowser Token=${apiClient.accessToken()}`
                 }
             };
 
@@ -628,15 +628,15 @@ import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../../components
                     }
 
                     const seconds = playbackManager.currentTime(player) / 1000;
-                    const skipIntro = document.querySelector(".skipIntro");
+                    const skipIntro = document.querySelector('.skipIntro');
 
                     // If the skip prompt should be shown, show it.
                     if (seconds >= tvIntro.ShowSkipPromptAt && seconds < tvIntro.HideSkipPromptAt) {
-                        skipIntro.classList.remove("hide");
+                        skipIntro.classList.remove('hide');
                         return;
                     }
 
-                    skipIntro.classList.add("hide");
+                    skipIntro.classList.add('hide');
                 }
             }
         }
