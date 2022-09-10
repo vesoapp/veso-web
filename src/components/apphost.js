@@ -7,7 +7,7 @@ import * as webSettings from '../scripts/settings/webSettings';
 import globalize from '../scripts/globalize';
 import profileBuilder from '../scripts/browserDeviceProfile';
 
-const appName = 'Jellyfin Web';
+const appName = 'Veso Web';
 
 function getBaseProfileOptions(item) {
     const disableHlsVideoAudioCodecs = [];
