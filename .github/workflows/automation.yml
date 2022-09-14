@@ -12,7 +12,7 @@ jobs:
   triage:
     name: 'Merge conflict labeling'
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'jellyfin/jellyfin-web' }}
+    if: ${{ github.repository == 'vesoapp/veso-web' }}
     steps:
       - uses: eps1lon/actions-label-merge-conflict@v2.0.1
         with:
