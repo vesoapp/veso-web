@@ -401,7 +401,7 @@ import ServerConnections from '../ServerConnections';
         return function () {
             const apiClient = ServerConnections.getApiClient(serverId);
 
-            const limit = enableScrollX() ? 12 : 5;
+            const limit = enableScrollX() ? 24 : 10;
 
             const options = {
                 Limit: limit,
