@@ -124,8 +124,9 @@ function saveValues(context, settings, settingsKey) {
     userSettings.setFilter(settingsKey + '-filter-VideoTypes', videoTypes.join(','));
 
     // Series status
-    const seriesStatuses = [];
-    elems = context.querySelectorAll('.chkSeriesStatus');
+    // TODO: Add filtering by series status?
+    // const seriesStatuses = [];
+    // elems = context.querySelectorAll('.chkSeriesStatus');
 
     for (let i = 0, length = elems.length; i < length; i++) {
         if (elems[i].checked) {
