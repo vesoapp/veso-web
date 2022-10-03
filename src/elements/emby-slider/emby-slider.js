@@ -536,10 +536,8 @@ import '../emby-input/emby-input';
         }
 
         for (const range of ranges) {
-            if (position != null) {
-                if (position >= range.end) {
-                    continue;
-                }
+            if (position != null && position >= range.end) {
+                continue;
             }
 
             setRange(elem, range.start, range.end);
