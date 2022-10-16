@@ -591,13 +591,15 @@
     flex-direction: column;
 
     .layout-mobile & {
-        padding-left: 5%;
-        padding-right: 5%;
+        padding-left: 5% !important;
+        padding-right: 5% !important;
     }
 
     .layout-desktop &,
     .layout-tv & {
         .emby-scroller {
+            margin-left: 0;
+
             [dir="ltr"] & {
                 margin-left: 0;
             }
@@ -737,7 +739,7 @@
 .layout-mobile .mainDetailButtons {
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: center !important;
 }
 
 .layout-mobile .mainDetailButtons {
@@ -790,7 +792,7 @@
     .layout-mobile & {
         display: block;
         position: relative;
-        padding: 0.5rem 5%;
+        padding: 0.5rem 5% !important;
     }
 
     .layout-desktop & {
@@ -834,6 +836,8 @@
     flex: 1 0 0;
 
     .layout-mobile & {
+        padding-left: 37.5%;
+
         [dir="ltr"] {
             @include header-poster-padding;
         }
@@ -1132,10 +1136,6 @@ div.itemDetailGalleryLink.defaultCardBackground {
 }
 
 @media all and (max-width: 62.5em) {
-    .mainDetailButtons {
-        margin-left: -0.5em;
-    }
-
     .detailButtonHideonMobile {
         display: none !important;
     }
@@ -1529,7 +1529,7 @@ div:not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     }
 
     .padded-right-withalphapicker {
-        padding-right: 7%;
-        padding-left: 7%;
+        padding-right: 7% !important;
+        padding-left: 7% !important;
     }
 }

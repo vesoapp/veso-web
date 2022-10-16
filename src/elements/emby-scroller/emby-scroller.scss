@@ -30,15 +30,8 @@
 
 /* align first card in scroller to heading */
 .itemsContainer > .card > .cardBox {
-    [dir="ltr"] & {
-        margin-left: 0;
-        margin-right: 0.6em;
-    }
-
-    [dir="rtl"] & {
-        margin-right: 0;
-        margin-left: 0.6em;
-    }
+    margin-left: 0.3em;
+    margin-right: 0.3em;
     margin-bottom: 0.6em;
 }
 
