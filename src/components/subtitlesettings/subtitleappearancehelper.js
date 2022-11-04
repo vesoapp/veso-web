@@ -30,7 +30,10 @@ function getTextStyles(settings, preview) {
 
     switch (settings.textWeight || '') {
         case 'bold':
-            list.push({ name: 'font-weight', value: 'bold' });
+            list.push({ name: 'font-weight', value: '700' });
+            break;
+        case 'semi-bold':
+            list.push({ name: 'font-weight', value: '600' });
             break;
         case 'normal':
         default:
