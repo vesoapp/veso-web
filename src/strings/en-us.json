@@ -922,6 +922,7 @@
     "LabelTextSize": "Text size:",
     "LabelTextWeight": "Text weight:",
     "Bold": "Bold",
+    "SemiBold": "Semi Bold",
     "LabelTheme": "Theme:",
     "LabelTime": "Time:",
     "LabelTimeLimitHours": "Time limit (hours):",
