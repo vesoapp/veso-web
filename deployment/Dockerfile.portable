@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:bullseye-20260623
 
 # Docker build arguments
 ARG SOURCE_DIR=/jellyfin
