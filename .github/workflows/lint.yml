@@ -68,7 +68,7 @@ jobs:
           cache: npm
 
       - name: Set up stylelint matcher
-        uses: xt0rted/stylelint-problem-matcher@34db1b874c0452909f0696aedef70b723870a583 # tag=v1
+        uses: xt0rted/stylelint-problem-matcher@34db1b874c0452909f0696aedef70b723870a583 # v1.3.0
 
       - name: Install Node.js dependencies
         run: npm ci --no-audit
@@ -92,7 +92,7 @@ jobs:
           cache: npm
 
       - name: Set up stylelint matcher
-        uses: xt0rted/stylelint-problem-matcher@34db1b874c0452909f0696aedef70b723870a583 # tag=v1
+        uses: xt0rted/stylelint-problem-matcher@34db1b874c0452909f0696aedef70b723870a583 # v1.3.0
 
       - name: Install Node.js dependencies
         run: npm ci --no-audit
